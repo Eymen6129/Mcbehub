@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bedrock Mod Hub</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             box-sizing: border-box;
@@ -308,7 +308,7 @@
             <div class="category-grid">
                 <div class="category-card" onclick="selectCategoryFromGrid('Survival')">
                     <div class="category-icon" style="background: linear-gradient(135deg, #10b981, #047857);">
-                        <i class="fa-solid fa-pickaxe"></i>
+                        <i class="fa-solid fa-gem"></i>
                     </div>
                     <h4>Survival</h4>
                 </div>
@@ -326,7 +326,7 @@
                 </div>
                 <div class="category-card" onclick="selectCategoryFromGrid('World')">
                     <div class="category-icon" style="background: linear-gradient(135deg, #8b5cf6, #6d28d9);">
-                        <i class="fa-solid fa-earth-americas"></i>
+                        <i class="fa-solid fa-globe"></i>
                     </div>
                     <h4>World</h4>
                 </div>
@@ -355,16 +355,108 @@
             <i class="fa-regular fa-bookmark"></i> Kaydedilenler
         </div>
     </nav>
-<script>
-    // Minecraft Bedrock Modları & Mod Temalı Simgeler
+
+    <script>
+        // Standart Font Awesome İkonları ile Mod Listesi
         const modsData = [
-            { id: 'mod1', title: 'Vein Miner Pro', category: 'Survival', desc: 'Maden damarlarını ve dev ağaçları tek vuruşta kır, madenciliği kolaylaştır.', downloads: 0, likes: 0, file: 'Vein_Miner.mcaddon', icon: 'fa-pickaxe', bg: 'linear-gradient(135deg, #10b981, #059669)' },
-            { id: 'mod2', title: 'Mob Catcher Addon', category: 'Quality of Life', desc: 'Köylüleri ve mobları özel ağlar ile envanterinde kolayca taşı.', downloads: 0, likes: 0, file: 'Mob_Catcher.mcaddon', icon: 'fa-cow', bg: 'linear-gradient(135deg, #3b82f6, #1d4ed8)' },
-            { id: 'mod3', title: 'Action & Stuff Animations', category: 'Quality of Life', desc: 'Minecraft Bedrock karakter hareketlerini ve dövüş animasyonlarını akıcı hale getirir.', downloads: 0, likes: 0, file: 'Actions_Stuff.mcpack', icon: 'fa-person-running', bg: 'linear-gradient(135deg, #8b5cf6, #6d28d9)' },
+            { id: 'mod1', title: 'Vein Miner Pro', category: 'Survival', desc: 'Maden damarlarını ve dev ağaçları tek vuruşta kır, madenciliği kolaylaştır.', downloads: 0, likes: 0, file: 'Vein_Miner.mcaddon', icon: 'fa-gem', bg: 'linear-gradient(135deg, #10b981, #059669)' },
+            { id: 'mod2', title: 'Mob Catcher Addon', category: 'Quality of Life', desc: 'Köylüleri ve mobları özel ağlar ile envanterinde kolayca taşı.', downloads: 0, likes: 0, file: 'Mob_Catcher.mcaddon', icon: 'fa-paw', bg: 'linear-gradient(135deg, #3b82f6, #1d4ed8)' },
+            { id: 'mod3', title: 'Action & Stuff Animations', category: 'Quality of Life', desc: 'Minecraft Bedrock karakter hareketlerini ve dövüş animasyonlarını akıcı hale getirir.', downloads: 0, likes: 0, file: 'Actions_Stuff.mcpack', icon: 'fa-running', bg: 'linear-gradient(135deg, #8b5cf6, #6d28d9)' },
             { id: 'mod4', title: 'Modern Furniture Addon', category: 'World', desc: 'Evinizi dekore edebileceğiniz 100+ çalışan modern mobilya eşyası ekler.', downloads: 0, likes: 0, file: 'Modern_Furniture.mcaddon', icon: 'fa-couch', bg: 'linear-gradient(135deg, #ec4899, #be185d)' },
             { id: 'mod5', title: 'Dynamic Lighting Addon', category: 'Utility', desc: 'Elinizde tuttuğunuz meşale veya parlayan eşyalar etrafı doğrudan aydınlatır.', downloads: 0, likes: 0, file: 'Dynamic_Lights.mcpack', icon: 'fa-lightbulb', bg: 'linear-gradient(135deg, #f59e0b, #d97706)' },
-            { id: 'mod6', title: 'More Tools & Weapons', category: 'Combat', desc: 'Zümrüt, bakır ve ametist malzemelerinden yeni zırh ve silah setleri oluşturun.', downloads: 0, likes: 0, file: 'More_Tools.mcaddon', icon: 'fa-hand-fist', bg: 'linear-gradient(135deg, #ef4444, #dc2626)' },
-            { id: 'mod7', title: 'Waypoints & Minimap', category: 'Utility', desc: 'Haritada kaybolmamak için konum işaretleyin ve ekranda minyatür harita kullanın.', downloads: 0, likes: 0, file: 'Minimap_Addon.mcaddon', icon: 'fa-map-location-dot', bg: 'linear-gradient(135deg, #14b8a6, #0d9488)' },
+            { id: 'mod6', title: 'More Tools & Weapons', category: 'Combat', desc: 'Zümrüt, bakır ve ametist malzemelerinden yeni zırh ve silah setleri oluşturun.', downloads: 0, likes: 0, file: 'More_Tools.mcaddon', icon: 'fa-fist-raised', bg: 'linear-gradient(135deg, #ef4444, #dc2626)' },
+            { id: 'mod7', title: 'Waypoints & Minimap', category: 'Utility', desc: 'Haritada kaybolmamak için konum işaretleyin ve ekranda minyatür harita kullanın.', downloads: 0, likes: 0, file: 'Minimap_Addon.mcaddon', icon: 'fa-map-marked-alt', bg: 'linear-gradient(135deg, #14b8a6, #0d9488)' },
+            { id: 'mod8', title: 'Chisel Addon', category: 'World', desc: 'Bloklara 2000’den fazla farklı dekoratif desen veren keski eklentisi.', downloads: 0, likes: 0, file: 'Chisel_Addon.mcaddon', icon: 'fa-hammer', bg: 'linear-gradient(135deg, #64748b, #334155)' }
+        ];
+
+        let currentTab = 'home';
+        let selectedCategory = 'all';
+
+        window.onload = function() {
+            setupPopovers();
+            renderMods();
+            updateUserProfile();
+        };
+
+        function setupPopovers() {
+            document.getElementById('notif-btn').addEventListener('click', function(e) {
+                e.stopPropagation();
+                togglePopover('notification-popover');
+            });
+            document.getElementById('profile-btn').addEventListener('click', function(e) {
+                e.stopPropagation();
+                togglePopover('profile-popover');
+            });
+            document.addEventListener('click', function() {
+                document.querySelectorAll('.popover-panel').forEach(p => p.classList.remove('active'));
+            });
+        }
+
+        function togglePopover(id) {
+            let p = document.getElementById(id);
+            let active = p.classList.contains('active');
+            document.querySelectorAll('.popover-panel').forEach(panel => panel.classList.remove('active'));
+            if(!active) p.classList.add('active');
+        }
+
+        function renderMods() {
+            let container = document.querySelector('.mod-list');
+            container.innerHTML = '';
+
+            let filtered = modsData.filter(mod => {
+                let matchesCategory = (selectedCategory === 'all' || mod.category === selectedCategory);
+                let matchesSearch = mod.title.toLowerCase().includes(document.getElementById('searchInput').value.toLowerCase());
+                let isSaved = localStorage.getItem(mod.id + '_saved') === 'true';
+
+                if(currentTab === 'saved') return isSaved && matchesSearch;
+                return matchesCategory && matchesSearch;
+            });
+
+            if(currentTab === 'popular') {
+                filtered.sort((a, b) => {
+                    let dA = parseInt(localStorage.getItem(a.id + '_dl_count') || a.downloads);
+                    let dB = parseInt(localStorage.getItem(b.id + '_dl_count') || b.downloads);
+                    return dB - dA;
+                });
+            }
+
+            if(filtered.length === 0) {
+                document.getElementById('empty-msg').style.display = 'block';
+            } else {
+                document.getElementById('empty-msg').style.display = 'none';
+            }
+
+            filtered.forEach(mod => {
+                let dlCount = localStorage.getItem(mod.id + '_dl_count') || mod.downloads;
+                let likeCount = localStorage.getItem(mod.id + '_likes') || mod.likes;
+                let isLiked = localStorage.getItem(mod.id + '_liked') === 'true';
+                let isSaved = localStorage.getItem(mod.id + '_saved') === 'true';
+
+                let card = document.createElement('div');
+                card.className = 'mod-card';
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="mod-img-box" style="background: ${mod.bg};">
+                            <i class="fa-solid ${mod.icon}"></i>
+                        </div>
+                        <div>
+                            <div class="badges">
+                                <span class="badge">${mod.category}</span>
+                                <span class="badge-version">1.21+</span>
+                            </div>
+                            <div class="mod-title">${mod.title}</div>
+                        </div>
+<script>                                                                                                                                                                                                                                                         
+
+// Standart Font Awesome İkonları ile Mod Listesi
+        const modsData = [
+            { id: 'mod1', title: 'Vein Miner Pro', category: 'Survival', desc: 'Maden damarlarını ve dev ağaçları tek vuruşta kır, madenciliği kolaylaştır.', downloads: 0, likes: 0, file: 'Vein_Miner.mcaddon', icon: 'fa-gem', bg: 'linear-gradient(135deg, #10b981, #059669)' },
+            { id: 'mod2', title: 'Mob Catcher Addon', category: 'Quality of Life', desc: 'Köylüleri ve mobları özel ağlar ile envanterinde kolayca taşı.', downloads: 0, likes: 0, file: 'Mob_Catcher.mcaddon', icon: 'fa-paw', bg: 'linear-gradient(135deg, #3b82f6, #1d4ed8)' },
+            { id: 'mod3', title: 'Action & Stuff Animations', category: 'Quality of Life', desc: 'Minecraft Bedrock karakter hareketlerini ve dövüş animasyonlarını akıcı hale getirir.', downloads: 0, likes: 0, file: 'Actions_Stuff.mcpack', icon: 'fa-running', bg: 'linear-gradient(135deg, #8b5cf6, #6d28d9)' },
+            { id: 'mod4', title: 'Modern Furniture Addon', category: 'World', desc: 'Evinizi dekore edebileceğiniz 100+ çalışan modern mobilya eşyası ekler.', downloads: 0, likes: 0, file: 'Modern_Furniture.mcaddon', icon: 'fa-couch', bg: 'linear-gradient(135deg, #ec4899, #be185d)' },
+            { id: 'mod5', title: 'Dynamic Lighting Addon', category: 'Utility', desc: 'Elinizde tuttuğunuz meşale veya parlayan eşyalar etrafı doğrudan aydınlatır.', downloads: 0, likes: 0, file: 'Dynamic_Lights.mcpack', icon: 'fa-lightbulb', bg: 'linear-gradient(135deg, #f59e0b, #d97706)' },
+            { id: 'mod6', title: 'More Tools & Weapons', category: 'Combat', desc: 'Zümrüt, bakır ve ametist malzemelerinden yeni zırh ve silah setleri oluşturun.', downloads: 0, likes: 0, file: 'More_Tools.mcaddon', icon: 'fa-fist-raised', bg: 'linear-gradient(135deg, #ef4444, #dc2626)' },
+            { id: 'mod7', title: 'Waypoints & Minimap', category: 'Utility', desc: 'Haritada kaybolmamak için konum işaretleyin ve ekranda minyatür harita kullanın.', downloads: 0, likes: 0, file: 'Minimap_Addon.mcaddon', icon: 'fa-map-marked-alt', bg: 'linear-gradient(135deg, #14b8a6, #0d9488)' },
             { id: 'mod8', title: 'Chisel Addon', category: 'World', desc: 'Bloklara 2000’den fazla farklı dekoratif desen veren keski eklentisi.', downloads: 0, likes: 0, file: 'Chisel_Addon.mcaddon', icon: 'fa-hammer', bg: 'linear-gradient(135deg, #64748b, #334155)' }
         ];
 
@@ -466,7 +558,6 @@
             });
         }
 
-        // İndirme Sınırsız Yapıldı + 1 Kişi = 1 İndirme Sayaç Mantığı
         function downloadMod(id, fileName) {
             let userDownloaded = localStorage.getItem(id + '_user_downloaded') === 'true';
 
