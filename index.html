@@ -11,6 +11,8 @@
             margin: 0;
             padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            -webkit-tap-highlight-color: transparent; /* Mobil tıklamadaki mavi gölgeyi kaldırır */
+            outline: none !important; /* Mavi odaklanma çerçevesini kaldırır */
         }
         body {
             background-color: #f8fafc;
@@ -36,6 +38,7 @@
             font-weight: 800;
             font-size: 22px;
             color: #0f172a;
+            cursor: pointer;
         }
         .logo span { color: #10b981; }
         .header-icons {
@@ -43,7 +46,39 @@
             gap: 18px;
             color: #64748b;
             font-size: 20px;
+            position: relative;
         }
+        .header-icon-btn {
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s;
+        }
+        .header-icon-btn:hover { color: #10b981; }
+        
+        /* Popup Paneller (Bildirim & Profil) */
+        .popover-panel {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border: 1px solid #e2e8f0;
+            width: 260px;
+            padding: 16px;
+            display: none;
+            z-index: 200;
+            font-size: 13px;
+        }
+        .popover-panel.active { display: block; }
+        .popover-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #f1f5f9;
+            color: #0f172a;
+        }
+
         /* Container */
         .container {
             padding: 20px;
@@ -65,7 +100,6 @@
         .search-box input {
             background: transparent;
             border: none;
-            outline: none;
             color: #0f172a;
             width: 100%;
             font-size: 15px;
@@ -107,7 +141,6 @@
             margin-bottom: 18px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             border: 1px solid #f1f5f9;
-            position: relative;
         }
         .card-header {
             display: flex;
@@ -193,6 +226,7 @@
         }
         .like-btn.liked { color: #ef4444; background: #fee2e2; }
         .bookmark-btn.saved { color: #f59e0b; background: #fef3c7; }
+        
         .btn-download {
             display: flex;
             align-items: center;
@@ -208,9 +242,13 @@
             cursor: pointer;
             border: none;
             width: 100%;
+            transition: background 0.2s;
         }
-        .btn-download:active { transform: scale(0.98); background: #059669; }
-        
+        .btn-download.downloaded {
+            background: #64748b;
+            cursor: default;
+        }
+
         #no-results {
             text-align: center;
             color: #94a3b8;
@@ -219,7 +257,7 @@
             font-weight: 600;
         }
 
-        /* Alt Menü Barı */
+        /* Alt Navigasyon Barı */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -251,13 +289,27 @@
 <body>
 
     <header>
-        <div class="logo">
+        <div class="logo" onclick="switchNav('home', document.querySelector('.nav-item'))">
             <i class="fa-solid fa-cube" style="color: #10b981;"></i>
             Bedrock<span>Hub</span>
         </div>
         <div class="header-icons">
-            <i class="fa-regular fa-bell"></i>
-            <i class="fa-regular fa-user"></i>
+            <div class="header-icon-btn" onclick="togglePopover('notification-popover')">
+                <i class="fa-regular fa-bell"></i>
+                <div id="notification-popover" class="popover-panel">
+                    <div class="popover-title"><i class="fa-solid fa-bell"></i> Bildirimler</div>
+                    <p style="color: #64748b;">Henüz yeni bir bildirim yok. Mod güncellemeleri burada görünecek!</p>
+                </div>
+            </div>
+            
+            <div class="header-icon-btn" onclick="togglePopover('profile-popover')">
+                <i class="fa-regular fa-user"></i>
+                <div id="profile-popover" class="popover-panel">
+                    <div class="popover-title"><i class="fa-solid fa-user"></i> Profilim</div>
+                    <p style="font-weight: 700; color: #0f172a;">Oyuncu #128</p>
+                    <p style="color: #64748b; margin-top: 4px;">Toplam İndirme: <span id="user-total-downloads">0</span></p>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -270,7 +322,7 @@
         </div>
 
         <!-- Kategoriler -->
-        <div class="categories">
+        <div class="categories" id="categories-section">
             <button class="cat-btn active" onclick="filterCategory('all', this)">Tümü</button>
             <button class="cat-btn" onclick="filterCategory('QoL', this)">Quality of Life</button>
             <button class="cat-btn" onclick="filterCategory('Survival', this)">Survival</button>
@@ -284,7 +336,7 @@
 
         <div id="mod-list">
             <!-- Mod 1 -->
-            <div class="mod-card" data-id="mod1" data-category="QoL" data-title="mob catcher addon" data-downloads="0">
+            <div class="mod-card" data-id="mod1" data-category="QoL" data-title="mob catcher addon" data-downloads="12">
                 <div class="card-header">
                     <div class="mod-icon"><i class="fa-solid fa-paw"></i></div>
                     <div class="mod-info">
@@ -299,7 +351,7 @@
                     Hayvanları ve köylüleri özel bir ağ ile envanterinde taşımanı sağlayan pratik eklenti.
                 </div>
                 <div class="mod-stats">
-                    <span><i class="fa-solid fa-download"></i> <span id="count-mod1">0</span> İndirme</span>
+                    <span><i class="fa-solid fa-download"></i> <span id="count-mod1">12</span> İndirme</span>
                     <div class="action-btns">
                         <button class="like-btn" onclick="toggleLike('mod1')">
                             <i class="fa-solid fa-heart"></i> <span id="like-mod1">0</span>
@@ -309,13 +361,13 @@
                         </button>
                     </div>
                 </div>
-                <button class="btn-download" onclick="downloadMod('mod1', 'Mob_Catcher.mcaddon')">
+                <button class="btn-download" id="btn-mod1" onclick="downloadMod('mod1', 'Mob_Catcher.mcaddon')">
                     <i class="fa-solid fa-arrow-down"></i> İndir (.mcaddon)
                 </button>
             </div>
 
             <!-- Mod 2 -->
-            <div class="mod-card" data-id="mod2" data-category="Survival" data-title="vein miner pro" data-downloads="0">
+            <div class="mod-card" data-id="mod2" data-category="Survival" data-title="vein miner pro" data-downloads="25">
                 <div class="card-header">
                     <div class="mod-icon"><i class="fa-solid fa-pickaxe"></i></div>
                     <div class="mod-info">
@@ -330,7 +382,7 @@
                     Maden damarlarını ve dev ağaçları tek vuruşta kır, droplar doğrudan çantana gelsin.
                 </div>
                 <div class="mod-stats">
-                    <span><i class="fa-solid fa-download"></i> <span id="count-mod2">0</span> İndirme</span>
+                    <span><i class="fa-solid fa-download"></i> <span id="count-mod2">25</span> İndirme</span>
                     <div class="action-btns">
                         <button class="like-btn" onclick="toggleLike('mod2')">
                             <i class="fa-solid fa-heart"></i> <span id="like-mod2">0</span>
@@ -340,13 +392,13 @@
                         </button>
                     </div>
                 </div>
-                <button class="btn-download" onclick="downloadMod('mod2', 'Vein_Miner.mcaddon')">
+                <button class="btn-download" id="btn-mod2" onclick="downloadMod('mod2', 'Vein_Miner.mcaddon')">
                     <i class="fa-solid fa-arrow-down"></i> İndir (.mcaddon)
                 </button>
             </div>
 
             <!-- Mod 3 -->
-            <div class="mod-card" data-id="mod3" data-category="Utility" data-title="smart armor switcher" data-downloads="0">
+            <div class="mod-card" data-id="mod3" data-category="Utility" data-title="smart armor switcher" data-downloads="8">
                 <div class="card-header">
                     <div class="mod-icon"><i class="fa-solid fa-shield-halved"></i></div>
                     <div class="mod-info">
@@ -361,7 +413,7 @@
                     Elytra ile elmas göğüslük arasında envanteri açmadan tek dokunuşla hızlıca geçiş yap!
                 </div>
                 <div class="mod-stats">
-                    <span><i class="fa-solid fa-download"></i> <span id="count-mod3">0</span> İndirme</span>
+                    <span><i class="fa-solid fa-download"></i> <span id="count-mod3">8</span> İndirme</span>
                     <div class="action-btns">
                         <button class="like-btn" onclick="toggleLike('mod3')">
                             <i class="fa-solid fa-heart"></i> <span id="like-mod3">0</span>
@@ -371,7 +423,7 @@
                         </button>
                     </div>
                 </div>
-                <button class="btn-download" onclick="downloadMod('mod3', 'Smart_Armor.mcaddon')">
+                <button class="btn-download" id="btn-mod3" onclick="downloadMod('mod3', 'Smart_Armor.mcaddon')">
                     <i class="fa-solid fa-arrow-down"></i> İndir (.mcaddon)
                 </button>
             </div>
@@ -405,34 +457,69 @@
                 updateLikeDisplay(id);
                 updateBookmarkDisplay(id);
             });
+            updateUserProfile();
         };
 
-        // Otomatik Gerçek Dosya İndirme Fonksiyonu
+        // 1 Kişi = 1 İndirme Mantığı
         function downloadMod(modId, fileName) {
-            let count = parseInt(localStorage.getItem(modId + '_dl') || '0') + 1;
-            localStorage.setItem(modId + '_dl', count);
-            updateDownloadDisplay(modId);
+            let isDownloaded = localStorage.getItem(modId + '_user_downloaded') === 'true';
 
-            // Gerçek .mcaddon Dosyası Oluştur ve Cihaza İndir
-            let dummyData = "/* Minecraft Bedrock Addon Pack */";
-            let blob = new Blob([dummyData], { type: "application/octet-stream" });
-            let link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = fileName;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            if (!isDownloaded) {
+                // Sayacı sadece ilk kez indirildiğinde 1 artır
+                let card = document.querySelector(`[data-id="${modId}"]`);
+                let currentDL = parseInt(card.getAttribute('data-downloads') || '0') + 1;
+                
+                localStorage.setItem(modId + '_user_downloaded', 'true');
+                localStorage.setItem(modId + '_dl_count', currentDL);
+                
+                updateDownloadDisplay(modId);
+                updateUserProfile();
+
+                // Gerçek .mcaddon Dosyasını Cihaza İndir
+                let dummyData = "/* Minecraft Bedrock Addon Pack */";
+                let blob = new Blob([dummyData], { type: "application/octet-stream" });
+                let link = document.createElement("a");
+                link.href = URL.createObjectURL(blob);
+                link.download = fileName;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
         }
 
         function updateDownloadDisplay(modId) {
-            let count = localStorage.getItem(modId + '_dl') || '0';
-            let el = document.getElementById('count-' + modId);
-            if(el) el.innerText = count;
             let card = document.querySelector(`[data-id="${modId}"]`);
-            if(card) card.setAttribute('data-downloads', count);
+            let isDownloaded = localStorage.getItem(modId + '_user_downloaded') === 'true';
+            let storedCount = localStorage.getItem(modId + '_dl_count');
+
+            let count = storedCount ? storedCount : card.getAttribute('data-downloads');
+            card.setAttribute('data-downloads', count);
+            document.getElementById('count-' + modId).innerText = count;
+
+            let btn = document.getElementById('btn-' + modId);
+            if (isDownloaded) {
+                btn.classList.add('downloaded');
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> İndirildi';
+            }
         }
 
-        // Like (Beğeni) Sistemi
+        function updateUserProfile() {
+            let total = 0;
+            ['mod1', 'mod2', 'mod3'].forEach(id => {
+                if (localStorage.getItem(id + '_user_downloaded') === 'true') total++;
+            });
+            document.getElementById('user-total-downloads').innerText = total;
+        }
+
+        // Bildirim & Profil Popover
+        function togglePopover(id) {
+            let panel = document.getElementById(id);
+            let isVisible = panel.classList.contains('active');
+            document.querySelectorAll('.popover-panel').forEach(p => p.classList.remove('active'));
+            if (!isVisible) panel.classList.add('active');
+        }
+
+// Like (Beğeni)
         function toggleLike(modId) {
             let isLiked = localStorage.getItem(modId + '_liked') === 'true';
             let likes = parseInt(localStorage.getItem(modId + '_likes') || '0');
@@ -462,7 +549,7 @@
             }
         }
 
-        // Kaydetme (Bookmark)
+        // Kaydetme
         function toggleBookmark(modId) {
             let isSaved = localStorage.getItem(modId + '_saved') === 'true';
             localStorage.setItem(modId + '_saved', !isSaved);
@@ -480,7 +567,7 @@
             }
         }
 
-        // Arama ve Filtreleme
+        // Filtreleme ve Navigasyon
         function filterMods() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.querySelectorAll('.mod-card');
@@ -514,11 +601,14 @@
             filterMods();
         }
 
-        // Popüler Sekmesi için En Çok İndirilene Göre Sıralama
         function switchNav(tab, el) {
             currentTab = tab;
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-            el.classList.add('active');
+            if(el) el.classList.add('active');
+
+            if (tab === 'categories') {
+                document.getElementById('categories-section').scrollIntoView({ behavior: 'smooth' });
+            }
 
             let container = document.getElementById('mod-list');
             let cards = Array.from(container.getElementsByClassName('mod-card'));
