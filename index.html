@@ -53,11 +53,10 @@
             cursor: pointer;
             padding: 6px;
             border-radius: 8px;
-            transition: background 0.2s;
+            position: relative;
         }
-        .header-btn:active { background: #f1f5f9; }
 
-        /* Modal / Popover (Bildirim & Profil) */
+        /* Popover Paneller */
         .popover-panel {
             position: absolute;
             top: 45px;
@@ -132,14 +131,14 @@
             border-color: #10b981;
         }
 
-        /* Sayfa Bölümleri */
+        /* Sayfa Tabları */
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        /* Kategori Sayfası Özel Görünümü */
+        /* Kategori Grid Görünümü */
         .category-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
             gap: 12px;
             margin-top: 10px;
         }
@@ -147,18 +146,22 @@
             background: #ffffff;
             border: 1px solid #e2e8f0;
             border-radius: 14px;
-            padding: 20px;
+            padding: 18px 12px;
             text-align: center;
             cursor: pointer;
             box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            transition: transform 0.2s;
         }
-        .category-card i {
-            font-size: 28px;
-            color: #10b981;
+        .category-card:active { transform: scale(0.97); }
+        .category-card img {
+            width: 44px;
+            height: 44px;
+            object-fit: cover;
+            border-radius: 10px;
             margin-bottom: 8px;
         }
         .category-card h4 {
-            font-size: 14px;
+            font-size: 13px;
             color: #0f172a;
         }
 
@@ -172,27 +175,63 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.03);
         }
         .card-header { display: flex; gap: 14px; margin-bottom: 10px; }
-        .mod-icon {
-            width: 60px; height: 60px; border-radius: 12px;
-            background: #ecfdf5; color: #10b981;
-            display: flex; align-items: center; justify-content: center; font-size: 26px;
+        .mod-img {
+            width: 65px;
+            height: 65px;
+            border-radius: 14px;
+            object-fit: cover;
+            flex-shrink: 0;
+            background: #e2e8f0;
         }
         .badges { display: flex; gap: 6px; margin-bottom: 4px; }
         .badge { background: #ecfdf5; color: #059669; font-size: 10px; padding: 2px 8px; border-radius: 12px; font-weight: 700; }
         .badge-version { background: #f1f5f9; color: #64748b; font-size: 10px; padding: 2px 8px; border-radius: 12px; }
         .mod-title { font-size: 16px; font-weight: 800; color: #0f172a; }
         .mod-desc { font-size: 13px; color: #475569; margin-bottom: 12px; line-height: 1.4; }
-        .mod-stats { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #64748b; margin-bottom: 12px; }
         
+        .mod-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .action-btns {
+            display: flex;
+            gap: 8px;
+        }
+        .action-btn {
+            background: #f1f5f9;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            color: #64748b;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+        }
+        .action-btn.liked { color: #ef4444; background: #fee2e2; }
+        .action-btn.saved { color: #f59e0b; background: #fef3c7; }
+
         .btn-download {
             display: flex; align-items: center; justify-content: center; gap: 8px;
             background: #10b981; color: #ffffff;
             padding: 12px; border-radius: 10px; font-weight: 700; font-size: 14px;
             cursor: pointer; border: none; width: 100%;
+            transition: background 0.2s;
         }
-        .btn-download.downloaded { background: #64748b; }
+        .btn-download:active { background: #059669; }
 
-        /* Alt Navigasyon Barı */
+        #empty-msg {
+            text-align: center; color: #94a3b8; padding: 40px 0; font-weight: 600; display: none;
+        }
+
+        /* Bottom Nav */
         .bottom-nav {
             position: fixed; bottom: 0; left: 0; right: 0;
             background: #ffffff; display: flex; justify-content: space-around;
@@ -240,14 +279,18 @@
             <input type="text" id="searchInput" placeholder="Eklenti veya mod ara..." onkeyup="filterMods()">
         </div>
 
-        <!-- ANA SAYFA TAB'I -->
+        <!-- ANA SAYFA / POPÜLER / KAYDEDİLENLER TAB'I -->
         <div id="tab-home" class="tab-content active">
-            <div class="categories-filter">
+            <div class="categories-filter" id="filter-bar">
                 <button class="cat-btn active" onclick="filterCategory('all', this)">Tümü</button>
-                <button class="cat-btn" onclick="filterCategory('QoL', this)">Quality of Life</button>
                 <button class="cat-btn" onclick="filterCategory('Survival', this)">Survival</button>
+                <button class="cat-btn" onclick="filterCategory('Quality of Life', this)">Quality of Life</button>
                 <button class="cat-btn" onclick="filterCategory('Utility', this)">Utility</button>
+                <button class="cat-btn" onclick="filterCategory('World', this)">World</button>
+                <button class="cat-btn" onclick="filterCategory('Combat', this)">Combat</button>
             </div>
+            
+            <div id="empty-msg">Gösterilecek mod bulunamadı.</div>
             <div class="mod-list"></div>
         </div>
 
@@ -255,23 +298,31 @@
         <div id="tab-categories" class="tab-content">
             <h3 style="margin-bottom: 12px; font-size: 16px;">Kategorilere Göz At</h3>
             <div class="category-grid">
-                <div class="category-card" onclick="selectCategoryFromGrid('QoL')">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i>
-                    <h4>Quality of Life</h4>
-                </div>
                 <div class="category-card" onclick="selectCategoryFromGrid('Survival')">
-                    <i class="fa-solid fa-shield-halved"></i>
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=120&q=80" alt="Survival">
                     <h4>Survival</h4>
                 </div>
+                <div class="category-card" onclick="selectCategoryFromGrid('Quality of Life')">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=120&q=80" alt="QoL">
+                    <h4>Quality of Life</h4>
+                </div>
                 <div class="category-card" onclick="selectCategoryFromGrid('Utility')">
-                    <i class="fa-solid fa-wrench"></i>
+                    <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=120&q=80" alt="Utility">
                     <h4>Utility</h4>
+                </div>
+                <div class="category-card" onclick="selectCategoryFromGrid('World')">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=120&q=80" alt="World">
+                    <h4>World</h4>
+                </div>
+                <div class="category-card" onclick="selectCategoryFromGrid('Combat')">
+                    <img src="https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=120&q=80" alt="Combat">
+                    <h4>Combat</h4>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Alt Navigasyon Barı -->
+<!-- Alt Navigasyon Barı -->
     <nav class="bottom-nav">
         <div class="nav-item active" id="nav-home" onclick="switchTab('home')">
             <i class="fa-solid fa-house"></i> Ana Sayfa
@@ -288,22 +339,27 @@
     </nav>
 
     <script>
+        // Gerçek Minecraft Bedrock Modları Veritabanı
         const modsData = [
-            { id: 'mod1', title: 'Mob Catcher Addon', category: 'QoL', desc: 'Hayvanları ve köylüleri özel bir ağ ile envanterinde taşımanı sağlayan pratik eklenti.', downloads: 13, file: 'Mob_Catcher.mcaddon' },
-            { id: 'mod2', title: 'Vein Miner Pro', category: 'Survival', desc: 'Maden damarlarını ve dev ağaçları tek vuruşta kır, droplar doğrudan çantana gelsin.', downloads: 26, file: 'Vein_Miner.mcaddon' },
-            { id: 'mod3', title: 'Smart Armor Switcher', category: 'Utility', desc: 'Elytra ile elmas göğüslük arasında envanteri açmadan tek dokunuşla hızlıca geçiş yap!', downloads: 9, file: 'Smart_Armor.mcaddon' }
+            { id: 'mod1', title: 'Vein Miner Pro', category: 'Survival', desc: 'Maden damarlarını ve dev ağaçları tek vuruşta kır, madenciliği kolaylaştır.', downloads: 0, likes: 0, file: 'Vein_Miner.mcaddon', img: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=200&q=80' },
+            { id: 'mod2', title: 'Mob Catcher Addon', category: 'Quality of Life', desc: 'Köylüleri ve mobları özel ağlar ile envanterinde kolayca taşı.', downloads: 0, likes: 0, file: 'Mob_Catcher.mcaddon', img: 'https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=200&q=80' },
+            { id: 'mod3', title: 'Action & Stuff Animations', category: 'Quality of Life', desc: 'Minecraft Bedrock karakter hareketlerini ve dövüş animasyonlarını akıcı hale getirir.', downloads: 0, likes: 0, file: 'Actions_Stuff.mcpack', img: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=200&q=80' },
+            { id: 'mod4', title: 'Modern Furniture Addon', category: 'World', desc: 'Evinizi dekore edebileceğiniz 100+ çalışan modern mobilya eşyası ekler.', downloads: 0, likes: 0, file: 'Modern_Furniture.mcaddon', img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=200&q=80' },
+            { id: 'mod5', title: 'Dynamic Lighting Addon', category: 'Utility', desc: 'Elinizde tuttuğunuz meşale veya parlayan eşyalar etrafı doğrudan aydınlatır.', downloads: 0, likes: 0, file: 'Dynamic_Lights.mcpack', img: 'https://images.unsplash.com/photo-1517411032315-54ef2cb783bb?auto=format&fit=crop&w=200&q=80' },
+            { id: 'mod6', title: 'More Tools & Weapons', category: 'Combat', desc: 'Zümrüt, bakır ve ametist malzemelerinden yeni zırh ve silah setleri oluşturun.', downloads: 0, likes: 0, file: 'More_Tools.mcaddon', img: 'https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=200&q=80' },
+            { id: 'mod7', title: 'Waypoints & Minimap', category: 'Utility', desc: 'Haritada kaybolmamak için konum işaretleyin ve ekranda minyatür harita kullanın.', downloads: 0, likes: 0, file: 'Minimap_Addon.mcaddon', img: 'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=200&q=80' },
+            { id: 'mod8', title: 'Chisel Addon', category: 'World', desc: 'Bloklara 2000’den fazla farklı dekoratif desen veren keski eklentisi.', downloads: 0, likes: 0, file: 'Chisel_Addon.mcaddon', img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=200&q=80' }
         ];
 
         let currentTab = 'home';
         let selectedCategory = 'all';
 
         window.onload = function() {
-            renderMods();
             setupPopovers();
+            renderMods();
             updateUserProfile();
         };
 
-        // Popover Dinleyicileri (Zil ve Profil Butonları)
         function setupPopovers() {
             document.getElementById('notif-btn').addEventListener('click', function(e) {
                 e.stopPropagation();
@@ -313,7 +369,6 @@
                 e.stopPropagation();
                 togglePopover('profile-popover');
             });
-
             document.addEventListener('click', function() {
                 document.querySelectorAll('.popover-panel').forEach(p => p.classList.remove('active'));
             });
@@ -326,7 +381,6 @@
             if(!active) p.classList.add('active');
         }
 
-        // Modları Listeleme
         function renderMods() {
             let container = document.querySelector('.mod-list');
             container.innerHTML = '';
@@ -334,20 +388,37 @@
             let filtered = modsData.filter(mod => {
                 let matchesCategory = (selectedCategory === 'all' || mod.category === selectedCategory);
                 let matchesSearch = mod.title.toLowerCase().includes(document.getElementById('searchInput').value.toLowerCase());
+                let isSaved = localStorage.getItem(mod.id + '_saved') === 'true';
+
+                if(currentTab === 'saved') return isSaved && matchesSearch;
                 return matchesCategory && matchesSearch;
             });
 
             if(currentTab === 'popular') {
-                filtered.sort((a, b) => b.downloads - a.downloads);
+                filtered.sort((a, b) => {
+                    let dA = parseInt(localStorage.getItem(a.id + '_dl_count') || a.downloads);
+                    let dB = parseInt(localStorage.getItem(b.id + '_dl_count') || b.downloads);
+                    return dB - dA;
+                });
+            }
+
+            if(filtered.length === 0) {
+                document.getElementById('empty-msg').style.display = 'block';
+            } else {
+                document.getElementById('empty-msg').style.display = 'none';
             }
 
             filtered.forEach(mod => {
-                let isDownloaded = localStorage.getItem(mod.id + '_downloaded') === 'true';
+                let dlCount = localStorage.getItem(mod.id + '_dl_count') || mod.downloads;
+                let likeCount = localStorage.getItem(mod.id + '_likes') || mod.likes;
+                let isLiked = localStorage.getItem(mod.id + '_liked') === 'true';
+                let isSaved = localStorage.getItem(mod.id + '_saved') === 'true';
+
                 let card = document.createElement('div');
                 card.className = 'mod-card';
                 card.innerHTML = `
                     <div class="card-header">
-                        <div class="mod-icon"><i class="fa-solid fa-box-open"></i></div>
+                        <img class="mod-img" src="${mod.img}" alt="${mod.title}">
                         <div>
                             <div class="badges">
                                 <span class="badge">${mod.category}</span>
@@ -358,49 +429,86 @@
                     </div>
                     <div class="mod-desc">${mod.desc}</div>
                     <div class="mod-stats">
-                        <span><i class="fa-solid fa-download"></i> ${mod.downloads} İndirme</span>
+                        <span><i class="fa-solid fa-download"></i> <span id="dl-${mod.id}">${dlCount}</span> İndirme</span>
+                        <div class="action-btns">
+                            <button class="action-btn ${isLiked ? 'liked' : ''}" onclick="toggleLike('${mod.id}')">
+                                <i class="fa-solid fa-heart"></i> <span id="like-${mod.id}">${likeCount}</span>
+                            </button>
+                            <button class="action-btn ${isSaved ? 'saved' : ''}" onclick="toggleBookmark('${mod.id}')">
+                                <i class="fa-solid fa-bookmark"></i>
+                            </button>
+                        </div>
                     </div>
-                    <button class="btn-download ${isDownloaded ? 'downloaded' : ''}" onclick="downloadMod('${mod.id}', '${mod.file}')">
-                        <i class="fa-solid ${isDownloaded ? 'fa-check' : 'fa-arrow-down'}"></i> ${isDownloaded ? 'İndirildi' : 'İndir (.mcaddon)'}
+                    <button class="btn-download" onclick="downloadMod('${mod.id}', '${mod.file}')">
+                        <i class="fa-solid fa-arrow-down"></i> İndir (.mcaddon)
                     </button>
                 `;
                 container.appendChild(card);
             });
         }
 
-        // 1 Kişi = 1 İndirme
-        function downloadMod(id, file) {
-            if (localStorage.getItem(id + '_downloaded') !== 'true') {
-                localStorage.setItem(id + '_downloaded', 'true');
-                let mod = modsData.find(m => m.id === id);
-                if(mod) mod.downloads++;
-                renderMods();
-                updateUserProfile();
+        // İndirme Sistemi: Kullanıcı sınırsız indirebilir ama kişi başı sadece 1 indirme sayılır!
+        function downloadMod(id, fileName) {
+            let userDownloaded = localStorage.getItem(id + '_user_downloaded') === 'true';
 
-                let blob = new Blob(["pack"], { type: "application/octet-stream" });
-                let a = document.createElement("a");
-                a.href = URL.createObjectURL(blob);
-                a.download = file;
-                a.click();
+            if (!userDownloaded) {
+                localStorage.setItem(id + '_user_downloaded', 'true');
+                let mod = modsData.find(m => m.id === id);
+                let currentDL = parseInt(localStorage.getItem(id + '_dl_count') || mod.downloads) + 1;
+                localStorage.setItem(id + '_dl_count', currentDL);
             }
+
+            renderMods();
+            updateUserProfile();
+
+            // Dosya İndirme Tetikleme
+            let blob = new Blob(["Minecraft Mod File Content"], { type: "application/octet-stream" });
+            let a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.download = fileName;
+            a.click();
+        }
+
+        function toggleLike(id) {
+            let isLiked = localStorage.getItem(id + '_liked') === 'true';
+            let mod = modsData.find(m => m.id === id);
+            let currentLikes = parseInt(localStorage.getItem(id + '_likes') || mod.likes);
+
+            if(isLiked) {
+                currentLikes--;
+                localStorage.setItem(id + '_liked', 'false');
+            } else {
+                currentLikes++;
+                localStorage.setItem(id + '_liked', 'true');
+            }
+            localStorage.setItem(id + '_likes', currentLikes);
+            renderMods();
+        }
+
+        function toggleBookmark(id) {
+            let isSaved = localStorage.getItem(id + '_saved') === 'true';
+            localStorage.setItem(id + '_saved', !isSaved);
+            renderMods();
         }
 
         function updateUserProfile() {
-            let count = modsData.filter(m => localStorage.getItem(m.id + '_downloaded') === 'true').length;
+            let count = 0;
+            modsData.forEach(m => {
+                if(localStorage.getItem(m.id + '_user_downloaded') === 'true') count++;
+            });
             document.getElementById('user-total-downloads').innerText = count;
         }
 
-        // Tab Geçişleri
         function switchTab(tab) {
             currentTab = tab;
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
 
-            document.getElementById('nav-' + (tab === 'popular' || tab === 'saved' ? 'home' : tab))?.classList.add('active');
-
             if(tab === 'categories') {
+                document.getElementById('nav-categories').classList.add('active');
                 document.getElementById('tab-categories').classList.add('active');
             } else {
+                document.getElementById('nav-' + tab).classList.add('active');
                 document.getElementById('tab-home').classList.add('active');
                 renderMods();
             }
@@ -415,7 +523,7 @@
 
         function selectCategoryFromGrid(cat) {
             switchTab('home');
-            let btn = Array.from(document.querySelectorAll('.cat-btn')).find(b => b.innerText.includes(cat));
+            let btn = Array.from(document.querySelectorAll('.cat-btn')).find(b => b.innerText.trim() === cat);
             if(btn) filterCategory(cat, btn);
         }
 
@@ -423,3 +531,4 @@
     </script>
 </body>
 </html>
+        
