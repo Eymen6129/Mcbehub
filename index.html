@@ -3,53 +3,342 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bedrock Mod Hub</title>
+    <title>Bedrock Mod Hub - MCBE Addons</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        body {
-            background-color: #121212;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
+        * {
+            box-sizing: border-box;
             margin: 0;
-            padding: 20px;
-            text-align: center;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
-        h1 {
-            color: #4CAF50;
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            padding-bottom: 80px;
         }
+        /* Header */
+        header {
+            background: #1e293b;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 20px;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            color: #10b981;
+        }
+        .header-icons {
+            display: flex;
+            gap: 16px;
+            color: #94a3b8;
+            font-size: 18px;
+        }
+        /* Container */
+        .container {
+            padding: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        /* Search Box */
+        .search-box {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            color: #94a3b8;
+        }
+        .search-box input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            width: 100%;
+            font-size: 14px;
+        }
+        /* Categories Filter */
+        .categories {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+            scrollbar-width: none;
+        }
+        .categories::-webkit-scrollbar {
+            display: none;
+        }
+        .cat-btn {
+            background: #1e293b;
+            color: #94a3b8;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+            border: 1px solid #334155;
+        }
+        .cat-btn.active {
+            background: #10b981;
+            color: #ffffff;
+            border-color: #10b981;
+        }
+        /* Mod Card */
         .mod-card {
-            background-color: #1e1e1e;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 15px auto;
-            max-width: 400px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            background: #1e293b;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            border: 1px solid #334155;
         }
-        .btn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
+        .card-header {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 12px;
+        }
+        .mod-img {
+            width: 72px;
+            height: 72px;
+            border-radius: 14px;
+            object-fit: cover;
+            background: #334155;
+            flex-shrink: 0;
+        }
+        .mod-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .badges {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+        .badge {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+        }
+        .badge-version {
+            background: #334155;
+            color: #cbd5e1;
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        .mod-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #f8fafc;
+        }
+        .mod-desc {
+            font-size: 13px;
+            color: #94a3b8;
+            line-height: 1.5;
+            margin-bottom: 14px;
+        }
+        .mod-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 14px;
+        }
+        .btn-download {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #10b981;
+            color: #ffffff;
             text-decoration: none;
-            border-radius: 5px;
-            display: inline-block;
-            margin-top: 10px;
-            font-weight: bold;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        .btn-download:active {
+            transform: scale(0.98);
+            background: #059669;
+        }
+        /* Bottom Navigation Bar */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #1e293b;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            border-top: 1px solid #334155;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 11px;
+            gap: 4px;
+            font-weight: 600;
+        }
+        .nav-item.active {
+            color: #10b981;
+        }
+        .nav-item i {
+            font-size: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Minecraft Bedrock Mod Hub</h1>
-    <p>En iyi QoL ve Survival Addon'ları</p>
 
-    <div class="mod-card">
-        <h3>Mob Catcher Addon</h3>
-        <p>Hayvanları ve köylüleri cebinde taşımanı sağlayan pratik eklenti.</p>
-        <a href="#" class="btn">İndir (.mcaddon)</a>
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-cube" style="color: #10b981;"></i>
+            Bedrock<span>Hub</span>
+        </div>
+        <div class="header-icons">
+            <i class="fa-solid fa-bell"></i>
+            <i class="fa-regular fa-user"></i>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- Arama Kutusu -->
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Eklenti veya mod ara...">
+        </div>
+
+        <!-- Kategoriler -->
+        <div class="categories">
+            <div class="cat-btn active">Tümü</div>
+            <div class="cat-btn">Quality of Life</div>
+            <div class="cat-btn">Survival</div>
+            <div class="cat-btn">Animasyon</div>
+            <div class="cat-btn">Arayüz & UI</div>
+        </div>
+        
+        <!-- Mod 1 -->
+        <div class="mod-card">
+            <div class="card-header">
+                <img src="https://images.unsplash.com/photo-1627856013091-fed6e4e30025?w=150&auto=format&fit=crop&q=80" class="mod-img" alt="Mob Catcher">
+                <div class="mod-info">
+                    <div class="badges">
+                        <span class="badge">QoL</span>
+                        <span class="badge-version">1.21+</span>
+                    </div>
+                    <div class="mod-title">Mob Catcher Addon</div>
+                </div>
+            </div>
+            <div class="mod-desc">
+                Hayvanları ve köylüleri özel bir ağ ile envanterinde taşımanı sağlayan pratik eklenti.
+            </div>
+            <div class="mod-stats">
+                <span><i class="fa-solid fa-download"></i> 18.4K İndirme</span>
+                <span>v1.2.0</span>
+            </div>
+            <a href="#" class="btn-download">
+                <i class="fa-solid fa-arrow-down"></i> İncele ve İndir (.mcaddon)
+            </a>
+        </div>
+
+        <!-- Mod 2 -->
+        <div class="mod-card">
+            <div class="card-header">
+                <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=150&auto=format&fit=crop&q=80" class="mod-img" alt="Vein Miner">
+                <div class="mod-info">
+                    <div class="badges">
+                        <span class="badge">Survival</span>
+                        <span class="badge-version">1.21+</span>
+                    </div>
+                    <div class="mod-title">Vein Miner Pro</div>
+                </div>
+            </div>
+            <div class="mod-desc">
+                Maden damarlarını ve dev ağaçları tek vuruşta kır, droplar doğrudan çantana gelsin.
+            </div>
+            <div class="mod-stats">
+                <span><i class="fa-solid fa-download"></i> 52.1K İndirme</span>
+                <span>v2.1.0</span>
+            </div>
+            <a href="#" class="btn-download">
+                <i class="fa-solid fa-arrow-down"></i> İncele ve İndir (.mcaddon)
+            </a>
+        </div>
+
+        <!-- Mod 3 -->
+        <div class="mod-card">
+            <div class="card-header">
+                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=150&auto=format&fit=crop&q=80" class="mod-img" alt="Smart Armor">
+                <div class="mod-info">
+                    <div class="badges">
+                        <span class="badge">Utility</span>
+                        <span class="badge-version">1.21+</span>
+                    </div>
+                    <div class="mod-title">Smart Armor Switcher</div>
+                </div>
+            </div>
+            <div class="mod-desc">
+                Elytra ile elmas göğüslük arasında envanteri açmadan tek dokunuşla hızlıca geçiş yap!
+            </div>
+            <div class="mod-stats">
+                <span><i class="fa-solid fa-download"></i> 9.8K İndirme</span>
+                <span>v1.0.4</span>
+            </div>
+            <a href="#" class="btn-download">
+                <i class="fa-solid fa-arrow-down"></i> İncele ve İndir (.mcaddon)
+            </a>
+        </div>
+
     </div>
 
-    <div class="mod-card">
-        <h3>Vein Miner Pro</h3>
-        <p>Madenleri ve ağaçları tek hamlede kır, doğrudan çantana gelsin.</p>
-        <a href="#" class="btn">İndir (.mcaddon)</a>
-    </div>
+    <!-- Alt Menü -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active">
+            <i class="fa-solid fa-house"></i>
+            Ana Sayfa
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-solid fa-layer-group"></i>
+            Kategoriler
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-solid fa-fire"></i>
+            Popüler
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-bookmark"></i>
+            Kaydedilenler
+        </a>
+    </nav>
+
 </body>
-</html>
+            </html>
+            
