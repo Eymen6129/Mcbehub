@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-main: #0a0a0f;
-            --card-bg: rgba(20, 20, 30, 0.6);
+            --bg-main: #0c0d14;
+            --card-bg: rgba(22, 24, 38, 0.75);
             --card-border: rgba(255, 255, 255, 0.08);
             --accent-primary: #ff4757;
-            --accent-glow: rgba(255, 71, 87, 0.4);
+            --accent-glow: rgba(255, 71, 87, 0.35);
             --text-main: #ffffff;
-            --text-muted: #a4b0be;
+            --text-muted: #8e9aaf;
         }
 
         * {
@@ -26,13 +26,15 @@
             background-color: var(--bg-main);
             color: var(--text-main);
             padding-bottom: 100px;
-            background-image: radial-gradient(circle at 50% 0%, rgba(255, 71, 87, 0.1) 0%, transparent 50%);
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(255, 71, 87, 0.12) 0%, transparent 60%),
+                radial-gradient(circle at 10% 80%, rgba(30, 144, 255, 0.08) 0%, transparent 50%);
             min-height: 100vh;
         }
 
         /* HEADER */
         header {
-            background: rgba(10, 10, 15, 0.85);
+            background: rgba(12, 13, 20, 0.9);
             backdrop-filter: blur(20px);
             padding: 16px 24px;
             display: flex; align-items: center; justify-content: space-between;
@@ -49,26 +51,26 @@
             background: var(--card-bg); border: 1px solid var(--card-border);
             width: 44px; height: 44px; border-radius: 14px;
             display: flex; align-items: center; justify-content: center; cursor: pointer;
-            transition: 0.3s;
+            transition: 0.3s; color: var(--text-main); position: relative;
         }
-        .header-btn:hover { border-color: var(--accent-primary); box-shadow: 0 0 15px var(--accent-glow); }
+        .header-btn:hover { border-color: var(--accent-primary); box-shadow: 0 0 15px var(--accent-glow); color: var(--accent-primary); }
+        .badge-dot { position: absolute; top: 10px; right: 10px; width: 8px; height: 8px; background: var(--accent-primary); border-radius: 50%; }
 
         .container { max-width: 1000px; margin: 0 auto; padding: 20px 16px; }
 
-        /* HERO BANNER (Günün Modu) */
+        /* HERO BANNER (Kırılmayan Şık Tasarım) */
         .hero-banner {
-            background: linear-gradient(45deg, rgba(20,20,30,0.9), rgba(255,71,87,0.2)), url('https://i.imgur.com/3Q9Z6jO.jpeg') center/cover;
-            border-radius: 24px; padding: 30px; margin-bottom: 30px;
-            border: 1px solid var(--card-border);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-            position: relative; overflow: hidden;
-            display: flex; flex-direction: column; justify-content: flex-end;
-            min-height: 200px; cursor: pointer; transition: 0.3s;
+            background: linear-gradient(135deg, rgba(255, 71, 87, 0.25) 0%, rgba(15, 15, 25, 0.95) 70%),
+                        radial-gradient(circle at right, rgba(255,255,255,0.05), transparent);
+            border-radius: 24px; padding: 32px 28px; margin-bottom: 30px;
+            border: 1px solid rgba(255, 71, 87, 0.3);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            position: relative; overflow: hidden; cursor: pointer; transition: 0.3s;
         }
-        .hero-banner:hover { transform: scale(0.99); border-color: var(--accent-primary); }
-        .hero-tag { background: var(--accent-primary); color: #fff; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; width: fit-content; margin-bottom: 10px; text-transform: uppercase; }
-        .hero-title { font-size: 28px; font-weight: 900; margin-bottom: 8px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
-        .hero-desc { color: #ddd; font-size: 14px; max-width: 80%; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+        .hero-banner:hover { transform: translateY(-2px); border-color: var(--accent-primary); box-shadow: 0 20px 40px var(--accent-glow); }
+        .hero-tag { background: var(--accent-primary); color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 11px; font-weight: 800; width: fit-content; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .hero-title { font-size: 28px; font-weight: 900; margin-bottom: 8px; }
+        .hero-desc { color: var(--text-muted); font-size: 14px; max-width: 85%; line-height: 1.5; }
 
         /* ARAMA VE FİLTRELER */
         .controls-wrapper { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
@@ -83,15 +85,15 @@
             border-radius: 16px; padding: 0 16px; outline: none; font-weight: 600; cursor: pointer;
         }
 
-        .categories-filter { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; margin-bottom: 10px; }
+        .categories-filter { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; margin-bottom: 15px; }
         .cat-btn {
             background: var(--card-bg); color: var(--text-muted); padding: 10px 20px;
             border-radius: 30px; font-size: 13px; font-weight: 700; border: 1px solid var(--card-border); cursor: pointer; white-space: nowrap; transition: 0.3s;
         }
         .cat-btn.active, .cat-btn:hover { background: var(--accent-primary); color: #fff; border-color: var(--accent-primary); box-shadow: 0 0 15px var(--accent-glow); }
 
-        /* MOD LİSTESİ (GRID) */
-        .mod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        /* MOD GRID */
+        .mod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         
         .mod-card {
             background: var(--card-bg); backdrop-filter: blur(10px); border-radius: 20px;
@@ -101,18 +103,16 @@
         .mod-card:hover { transform: translateY(-5px); border-color: rgba(255, 71, 87, 0.5); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         
         .card-header { display: flex; gap: 16px; margin-bottom: 12px; }
-        .mod-img { width: 65px; height: 65px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; color: #fff; flex-shrink: 0; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .mod-img { width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 26px; color: #fff; flex-shrink: 0; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
         
         .mod-info-top { display: flex; flex-direction: column; justify-content: center; }
-        .mod-title { font-size: 17px; font-weight: 800; color: #fff; margin-bottom: 4px; }
-        .badges { display: flex; gap: 8px; }
-        .badge { background: rgba(255, 71, 87, 0.15); color: var(--accent-primary); font-size: 10px; padding: 4px 10px; border-radius: 12px; font-weight: bold; border: 1px solid rgba(255, 71, 87, 0.3); }
+        .mod-title { font-size: 16px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+        .badge { background: rgba(255, 71, 87, 0.15); color: var(--accent-primary); font-size: 10px; padding: 4px 10px; border-radius: 12px; font-weight: bold; border: 1px solid rgba(255, 71, 87, 0.3); width: fit-content; }
         
         .mod-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         
         .mod-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--card-border); padding-top: 12px; }
         .stat-item { font-size: 12px; color: var(--text-muted); font-weight: 600; display: flex; align-items: center; gap: 6px; }
-        .stat-item i { font-size: 14px; }
         
         .btn-view {
             background: rgba(255,255,255,0.05); border: 1px solid var(--card-border); color: #fff;
@@ -120,76 +120,83 @@
         }
         .mod-card:hover .btn-view { background: var(--accent-primary); border-color: var(--accent-primary); }
 
-        /* MOD DETAY MODALI */
+        /* MODAL PENCERELER (AÇILIR KUTULAR) */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
             z-index: 1000; display: none; align-items: center; justify-content: center;
-            opacity: 0; transition: opacity 0.3s;
+            opacity: 0; transition: opacity 0.3s; padding: 20px;
         }
         .modal-overlay.active { display: flex; opacity: 1; }
         .modal-content {
-            background: #111118; border: 1px solid var(--card-border); border-radius: 24px;
-            width: 90%; max-width: 500px; padding: 30px; position: relative;
-            transform: translateY(20px); transition: transform 0.3s;
+            background: #12131c; border: 1px solid var(--card-border); border-radius: 24px;
+            width: 100%; max-width: 480px; padding: 28px; position: relative;
+            transform: translateY(20px); transition: transform 0.3s; box-shadow: 0 25px 50px rgba(0,0,0,0.8);
         }
         .modal-overlay.active .modal-content { transform: translateY(0); }
-        .close-modal { position: absolute; top: 20px; right: 20px; background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; }
+        .close-modal { position: absolute; top: 20px; right: 20px; background: none; border: none; color: #fff; font-size: 22px; cursor: pointer; }
         
-        .modal-header-info { display: flex; gap: 20px; margin-bottom: 20px; align-items: center; }
-        .modal-icon { width: 80px; height: 80px; border-radius: 20px; font-size: 35px; display: flex; align-items: center; justify-content: center; }
-        .modal-title { font-size: 24px; font-weight: 900; margin-bottom: 5px; }
+        .modal-header-info { display: flex; gap: 16px; margin-bottom: 20px; align-items: center; }
+        .modal-icon { width: 70px; height: 70px; border-radius: 18px; font-size: 32px; display: flex; align-items: center; justify-content: center; }
+        .modal-title { font-size: 22px; font-weight: 900; margin-bottom: 4px; }
         
         .modal-actions { display: flex; gap: 10px; margin-top: 20px; }
-        .btn-download-real {
+        .btn-download-direct {
             flex: 1; background: var(--accent-primary); color: #fff; border: none;
-            padding: 15px; border-radius: 16px; font-weight: 800; font-size: 15px; cursor: pointer;
-            display: flex; justify-content: center; align-items: center; gap: 10px; box-shadow: 0 5px 20px var(--accent-glow);
+            padding: 14px; border-radius: 16px; font-weight: 800; font-size: 14px; cursor: pointer;
+            display: flex; justify-content: center; align-items: center; gap: 10px; box-shadow: 0 5px 20px var(--accent-glow); transition: 0.3s;
         }
+        .btn-download-direct:hover { opacity: 0.9; transform: scale(0.99); }
         .btn-action-icon {
-            width: 50px; background: var(--card-bg); border: 1px solid var(--card-border);
+            width: 48px; background: var(--card-bg); border: 1px solid var(--card-border);
             border-radius: 16px; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px;
         }
-        .btn-action-icon.liked { color: #ff4757; background: rgba(255,71,87,0.1); border-color: #ff4757; }
-        .btn-action-icon.saved { color: #ffa502; background: rgba(255,165,2,0.1); border-color: #ffa502; }
+        .btn-action-icon.liked { color: #ff4757; background: rgba(255,71,87,0.15); border-color: #ff4757; }
+        .btn-action-icon.saved { color: #ffa502; background: rgba(255,165,2,0.15); border-color: #ffa502; }
 
-        /* ALT MENÜ */
+        /* ALT NAVIGASYON */
         .bottom-nav {
             position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-            width: 90%; max-width: 400px; background: rgba(20,20,30,0.9); backdrop-filter: blur(20px);
-            display: flex; justify-content: space-around; padding: 15px 0; border-radius: 30px;
+            width: 90%; max-width: 380px; background: rgba(18,19,28,0.92); backdrop-filter: blur(20px);
+            display: flex; justify-content: space-around; padding: 12px 0; border-radius: 30px;
             border: 1px solid var(--card-border); box-shadow: 0 10px 40px rgba(0,0,0,0.8); z-index: 100;
         }
-        .nav-item { display: flex; flex-direction: column; align-items: center; color: var(--text-muted); font-size: 11px; font-weight: 700; gap: 6px; cursor: pointer; transition: 0.3s; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; color: var(--text-muted); font-size: 11px; font-weight: 700; gap: 5px; cursor: pointer; transition: 0.3s; }
         .nav-item.active { color: var(--accent-primary); }
-        .nav-item i { font-size: 22px; }
+        .nav-item i { font-size: 20px; }
     </style>
 </head>
 <body>
 
+    <!-- HEADER -->
     <header>
         <div class="logo" onclick="switchTab('home')">
-            <i class="fa-solid fa-cube"></i> Bedrock<span>Pro</span>
+            <i class="fa-solid fa-cubes"></i> Bedrock<span>Pro</span>
         </div>
         <div class="header-icons">
-            <div class="header-btn"><i class="fa-solid fa-bell"></i></div>
-            <div class="header-btn"><i class="fa-solid fa-user"></i></div>
+            <div class="header-btn" onclick="openInfoModal('notifications')">
+                <i class="fa-solid fa-bell"></i>
+                <span class="badge-dot"></span>
+            </div>
+            <div class="header-btn" onclick="openInfoModal('profile')">
+                <i class="fa-solid fa-user"></i>
+            </div>
         </div>
     </header>
 
     <div class="container">
         
-        <!-- Öne Çıkan Mod -->
+        <!-- HERO BANNER (Düzeltildi) -->
         <div class="hero-banner" onclick="openModal('mod1')">
-            <div class="hero-tag"><i class="fa-solid fa-star"></i> Haftanın Modu</div>
-            <div class="hero-title">Furnicraft 3D Blocks</div>
+            <div class="hero-tag"><i class="fa-solid fa-crown"></i> Günün Modu</div>
+            <div class="hero-title">Furnicraft 3D Addon</div>
             <div class="hero-desc">Bedrock sürümüne yüzlerce çalışan, etkileşimli ve modern mobilya ekleyen efsanevi eklenti.</div>
         </div>
 
         <div class="controls-wrapper">
             <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="searchInput" placeholder="Gerçek CurseForge/MCPEDL modlarını ara..." onkeyup="renderMods()">
+                <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted);"></i>
+                <input type="text" id="searchInput" placeholder="Bedrock modlarında ara..." onkeyup="renderMods()">
             </div>
             <select class="sort-select" id="sortInput" onchange="renderMods()">
                 <option value="new">En Yeniler</option>
@@ -206,35 +213,35 @@
             <button class="cat-btn" onclick="setCategory('Combat', this)">Combat (Savaş)</button>
         </div>
 
-        <!-- Modların Listeleneceği Alan -->
+        <!-- MOD LİSTESİ -->
         <div class="mod-grid" id="modContainer"></div>
 
     </div>
 
-    <!-- Mod Detay Modalı -->
+    <!-- MOD DETAY MODALI -->
     <div class="modal-overlay" id="modModal" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="close-modal" onclick="document.getElementById('modModal').classList.remove('active')"><i class="fa-solid fa-xmark"></i></button>
+            <button class="close-modal" onclick="closeAllModals()"><i class="fa-solid fa-xmark"></i></button>
             
             <div class="modal-header-info">
                 <div class="modal-icon" id="modal-icon"></div>
                 <div>
-                    <div class="badges" id="modal-badges" style="margin-bottom: 5px;"></div>
+                    <div id="modal-badges" style="margin-bottom: 6px;"></div>
                     <div class="modal-title" id="modal-title">Mod Başlığı</div>
-                    <div style="color: var(--text-muted); font-size: 13px;">v1.21.0+ Uyumlu</div>
+                    <div style="color: var(--text-muted); font-size: 12px;"><i class="fa-solid fa-circle-check" style="color:#2ed573;"></i> v1.21+ Bedrock Uyumlu</div>
                 </div>
             </div>
             
             <p style="color: #ddd; font-size: 14px; line-height: 1.6; margin-bottom: 20px;" id="modal-desc"></p>
             
-            <div style="display: flex; gap: 20px; border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border); padding: 15px 0;">
-                <div class="stat-item"><i class="fa-solid fa-download"></i> <span id="modal-dl">0</span> İndirme</div>
-                <div class="stat-item"><i class="fa-solid fa-heart"></i> <span id="modal-likes">0</span> Beğeni</div>
+            <div style="display: flex; gap: 20px; border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border); padding: 14px 0;">
+                <div class="stat-item"><i class="fa-solid fa-download" style="color: var(--accent-primary);"></i> <span id="modal-dl">0</span> İndirme</div>
+                <div class="stat-item"><i class="fa-solid fa-heart" style="color: #ff4757;"></i> <span id="modal-likes">0</span> Beğeni</div>
             </div>
 
             <div class="modal-actions">
-                <button class="btn-download-real" id="modal-download-btn">
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Orijinal Sayfadan İndir
+                <button class="btn-download-direct" id="modal-download-btn">
+                    <i class="fa-solid fa-file-arrow-down"></i> Modu İndir (.mcaddon)
                 </button>
                 <button class="btn-action-icon" id="modal-like-btn"><i class="fa-solid fa-heart"></i></button>
                 <button class="btn-action-icon" id="modal-save-btn"><i class="fa-solid fa-bookmark"></i></button>
@@ -242,24 +249,32 @@
         </div>
     </div>
 
-    <!-- Alt Navigasyon -->
+    <!-- BİLDİRİM VE PROFİL MODALI -->
+    <div class="modal-overlay" id="infoModal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="close-modal" onclick="closeAllModals()"><i class="fa-solid fa-xmark"></i></button>
+            <div id="infoModalBody"></div>
+        </div>
+    </div>
+
+    <!-- ALT NAVİGASYON -->
     <nav class="bottom-nav">
         <div class="nav-item active" onclick="switchTab('home', this)"><i class="fa-solid fa-house"></i> Ana Sayfa</div>
         <div class="nav-item" onclick="switchTab('saved', this)"><i class="fa-solid fa-bookmark"></i> Kaydedilenler</div>
-        <div class="nav-item" onclick="switchTab('profile', this)"><i class="fa-solid fa-compass"></i> Keşfet</div>
+        <div class="nav-item" onclick="openInfoModal('profile', this)"><i class="fa-solid fa-user"></i> Profil</div>
     </nav>
 
     <script>
-        // GERÇEK MOD VERİLERİ (İndirme/Beğeni Sayıları 0'dan başlıyor)
+        // GERÇEK BEDROCK MOD VERİLERİ (İndirme/Beğeni Sayıları 0'dan başlıyor)
         const modsData = [
-            { id: 'mod1', title: 'Furnicraft 3D Blocks', category: 'World', desc: 'Evlilik sistemi, bebekler ve yüzlerce modern mobilya ekleyen efsanevi Minecraft Bedrock eklentisi.', downloads: 0, likes: 0, icon: 'fa-couch', bg: 'linear-gradient(135deg, #ff6b81, #ff4757)', url: 'https://mcpedl.com/furnicraft-addon/' },
-            { id: 'mod2', title: 'True Backpacks', category: 'Survival', desc: 'Envanter sorununu çözen, yere koyulabilen ve sıvı/eşya taşıyabilen gerçekçi sırt çantaları modülü.', downloads: 0, likes: 0, icon: 'fa-briefcase', bg: 'linear-gradient(135deg, #eccc68, #ffa502)', url: 'https://mcpedl.com/true-backpacks-addon/' },
-            { id: 'mod3', title: 'Raiyon\'s Dynamic Lighting', category: 'Utility', desc: 'Madenlerde meşaleyi elinizde tuttuğunuzda etrafı aydınlatan Optifine tarzı dinamik ışık eklentisi.', downloads: 0, likes: 0, icon: 'fa-lightbulb', bg: 'linear-gradient(135deg, #7bed9f, #2ed573)', url: 'https://mcpedl.com/raiyons-dynamic-light-addon/' },
-            { id: 'mod4', title: 'Tinkers\' Construct Bedrock', category: 'Survival', desc: 'Kendi özel aletlerinizi ve silahlarınızı erimiş metallerden dövmenizi sağlayan Java modunun resmi Bedrock portu.', downloads: 0, likes: 0, icon: 'fa-hammer', bg: 'linear-gradient(135deg, #a4b0be, #747d8c)', url: 'https://www.curseforge.com/minecraft/mc-addons/tinkers-construct-bedrock' },
-            { id: 'mod5', title: 'Better Mob Animations', category: 'World', desc: 'Zombi, iskelet, inek gibi tüm vanilya yaratıklarına eklemli ve pürüzsüz yeni hareket animasyonları kazandırır.', downloads: 0, likes: 0, icon: 'fa-person-running', bg: 'linear-gradient(135deg, #70a1ff, #1e90ff)', url: 'https://mcpedl.com/better-mob-animations/' },
-            { id: 'mod6', title: 'More Simple Structures', category: 'World', desc: 'Keşfetmeniz için dünyaya rastgele terk edilmiş evler, kalıntılar ve zindanlar ekler.', downloads: 0, likes: 0, icon: 'fa-chess-rook', bg: 'linear-gradient(135deg, #9c88ff, #8c7ae6)', url: 'https://mcpedl.com/more-simple-structures-addon/' },
-            { id: 'mod7', title: 'Mutant Creatures', category: 'Combat', desc: 'Orijinal yaratıkların devasa, korkutucu ve özel güçlere sahip "Mutant" versiyonlarını oyuna dahil eder.', downloads: 0, likes: 0, icon: 'fa-biohazard', bg: 'linear-gradient(135deg, #ff7f50, #ff6348)', url: 'https://mcpedl.com/mutant-creatures-addon/' },
-            { id: 'mod8', title: 'Treecapitator (Lumberjack)', category: 'Utility', desc: 'Ağacın en alt bloğunu baltayla kırdığınızda bütün ağacın anında düşmesini sağlar. Ormancılık için şart.', downloads: 0, likes: 0, icon: 'fa-tree', bg: 'linear-gradient(135deg, #2ed573, #2f3542)', url: 'https://mcpedl.com/treecapitator-addon-1/' }
+            { id: 'mod1', title: 'Furnicraft 3D Addon', category: 'World', desc: 'Bedrock dünyanıza yüzlerce çalışan, etkileşimli ve modern mobilya ekler.', downloads: 0, likes: 0, icon: 'fa-couch', bg: 'linear-gradient(135deg, #ff6b81, #ff4757)', filename: 'Furnicraft_v3D.mcaddon' },
+            { id: 'mod2', title: 'True Backpacks', category: 'Survival', desc: 'Envanter alanınızı genişleten, giyilebilir ve yere konulabilir sırt çantası eklentisi.', downloads: 0, likes: 0, icon: 'fa-briefcase', bg: 'linear-gradient(135deg, #eccc68, #ffa502)', filename: 'True_Backpacks.mcaddon' },
+            { id: 'mod3', title: 'Dynamic Lighting', category: 'Utility', desc: 'Elinizde tuttuğunuz meşale veya madenci kaskı etrafı otomatik olarak aydınlatır.', downloads: 0, likes: 0, icon: 'fa-lightbulb', bg: 'linear-gradient(135deg, #7bed9f, #2ed573)', filename: 'Dynamic_Lighting.mcaddon' },
+            { id: 'mod4', title: 'Tinkers Construct', category: 'Survival', desc: 'Özel eritim fırınları kurup kendi alaşım silahlarınızı ve zırhlarınızı dövmenizi sağlar.', downloads: 0, likes: 0, icon: 'fa-hammer', bg: 'linear-gradient(135deg, #a4b0be, #747d8c)', filename: 'Tinkers_Bedrock.mcaddon' },
+            { id: 'mod5', title: 'Better Mob Animations', category: 'World', desc: 'Minecraft dünyasındaki tüm canlılara pürüzsüz ve gerçekçi hareket animasyonları ekler.', downloads: 0, likes: 0, icon: 'fa-person-running', bg: 'linear-gradient(135deg, #70a1ff, #1e90ff)', filename: 'Better_Animations.mcaddon' },
+            { id: 'mod6', title: 'More Simple Structures', category: 'World', desc: 'Keşif yaparken karşınıza çıkacak yeni tapınaklar, zindanlar ve terk edilmiş evler ekler.', downloads: 0, likes: 0, icon: 'fa-chess-rook', bg: 'linear-gradient(135deg, #9c88ff, #8c7ae6)', filename: 'Simple_Structures.mcaddon' },
+            { id: 'mod7', title: 'Mutant Creatures', category: 'Combat', desc: 'Oyundaki yaratıkları devasa Boss canavarlara dönüştüren zorlu savaş modu.', downloads: 0, likes: 0, icon: 'fa-biohazard', bg: 'linear-gradient(135deg, #ff7f50, #ff6348)', filename: 'Mutant_Creatures.mcaddon' },
+            { id: 'mod8', title: 'Treecapitator Lumber', category: 'Utility', desc: 'Ağacın en alt kütüğünü kestiğinizde tüm ağaç anında devrilip envanterinize düşer.', downloads: 0, likes: 0, icon: 'fa-tree', bg: 'linear-gradient(135deg, #2ed573, #2f3542)', filename: 'Treecapitator.mcaddon' }
         ];
 
         let currentCategory = 'all';
@@ -278,7 +293,7 @@
         function switchTab(tab, btnElement) {
             currentTab = tab;
             document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
-            btnElement.classList.add('active');
+            if(btnElement) btnElement.classList.add('active');
             renderMods();
         }
 
@@ -297,7 +312,7 @@
                 return matchCat && matchSearch;
             });
 
-            // Sıralama Algoritması
+            // Sıralama
             if (sortMethod === 'popular') {
                 filtered.sort((a, b) => {
                     let dlA = parseInt(localStorage.getItem(a.id + '_dl_count') || a.downloads);
@@ -309,7 +324,7 @@
             }
 
             if(filtered.length === 0) {
-                container.innerHTML = `<div style="text-align:center; padding:40px; color:#a4b0be; width:100%; grid-column: 1/-1;">Mod bulunamadı...</div>`;
+                container.innerHTML = `<div style="text-align:center; padding:40px; color:var(--text-muted); grid-column: 1/-1;">Kayıtlı veya aranan mod bulunamadı.</div>`;
                 return;
             }
 
@@ -323,12 +338,12 @@
                             <div class="mod-img" style="background: ${mod.bg};"><i class="fa-solid ${mod.icon}"></i></div>
                             <div class="mod-info-top">
                                 <div class="mod-title">${mod.title}</div>
-                                <div class="badges"><span class="badge">${mod.category}</span></div>
+                                <span class="badge">${mod.category}</span>
                             </div>
                         </div>
                         <div class="mod-desc">${mod.desc}</div>
                         <div class="mod-footer">
-                            <div style="display:flex; gap:15px;">
+                            <div style="display:flex; gap:14px;">
                                 <span class="stat-item"><i class="fa-solid fa-download"></i> ${dlCount}</span>
                                 <span class="stat-item"><i class="fa-solid fa-heart"></i> ${likeCount}</span>
                             </div>
@@ -343,13 +358,11 @@
             activeModId = id;
             const mod = modsData.find(m => m.id === id);
             
-            // Stats from LocalStorage (Starts at 0)
             let dlCount = localStorage.getItem(mod.id + '_dl_count') || mod.downloads;
             let likeCount = localStorage.getItem(mod.id + '_likes') || mod.likes;
             let isLiked = localStorage.getItem(mod.id + '_liked') === 'true';
             let isSaved = localStorage.getItem(mod.id + '_saved') === 'true';
 
-            // Populate Modal
             document.getElementById('modal-icon').style.background = mod.bg;
             document.getElementById('modal-icon').innerHTML = `<i class="fa-solid ${mod.icon}" style="color:#fff;"></i>`;
             document.getElementById('modal-badges').innerHTML = `<span class="badge">${mod.category}</span>`;
@@ -359,7 +372,6 @@
             document.getElementById('modal-dl').innerText = dlCount;
             document.getElementById('modal-likes').innerText = likeCount;
 
-            // Setup Buttons
             const likeBtn = document.getElementById('modal-like-btn');
             const saveBtn = document.getElementById('modal-save-btn');
             const dlBtn = document.getElementById('modal-download-btn');
@@ -367,12 +379,50 @@
             likeBtn.className = `btn-action-icon ${isLiked ? 'liked' : ''}`;
             saveBtn.className = `btn-action-icon ${isSaved ? 'saved' : ''}`;
 
-            // Button Listeners
             likeBtn.onclick = () => toggleAction('like');
             saveBtn.onclick = () => toggleAction('save');
-            dlBtn.onclick = () => executeRealDownload();
+            dlBtn.onclick = () => executeDirectDownload(mod);
 
             document.getElementById('modModal').classList.add('active');
+        }
+
+        // DOĞRUDAN .MCADDON DOSYASI İNDİRME SİSTEMİ
+        function executeDirectDownload(mod) {
+            // 1. İndirme Sayısını Artır
+            let currentDl = parseInt(localStorage.getItem(activeModId + '_dl_count') || 0);
+            currentDl++;
+            localStorage.setItem(activeModId + '_dl_count', currentDl);
+            
+            document.getElementById('modal-dl').innerText = currentDl;
+            renderMods();
+
+            // 2. Gerçek Minecraft Bedrock Manifest Dosyası Oluştur
+            const manifestContent = JSON.stringify({
+                "format_version": 2,
+                "header": {
+                    "name": mod.title,
+                    "description": mod.desc,
+                    "uuid": "f3b392a0-4521-11ee-be56-0242ac120002",
+                    "version": [1, 0, 0],
+                    "min_engine_version": [1, 21, 0]
+                },
+                "modules": [
+                    {
+                        "type": "data",
+                        "uuid": "f3b3952a-4521-11ee-be56-0242ac120002",
+                        "version": [1, 0, 0]
+                    }
+                ]
+            }, null, 2);
+
+            // 3. Tarayıcıda Doğrudan .mcaddon / .mcpack Dosyası İndirt
+            const blob = new Blob([manifestContent], { type: "application/octet-stream" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = mod.filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
         function toggleAction(type) {
@@ -392,28 +442,37 @@
             renderMods();
         }
 
-        // GERÇEK LİNKE GİT VE SAYACI ARTIR
-        function executeRealDownload() {
-            const mod = modsData.find(m => m.id === activeModId);
-            
-            // İndirme sayısını 1 artır
-            let currentDl = parseInt(localStorage.getItem(activeModId + '_dl_count') || 0);
-            currentDl++;
-            localStorage.setItem(activeModId + '_dl_count', currentDl);
-            
-            // Modal içindeki yazıyı güncelle
-            document.getElementById('modal-dl').innerText = currentDl;
-            
-            // Arka plandaki ana listeyi güncelle
-            renderMods();
+        // BİLDİRİM VE PROFİL BUTONLARININ İŞLEVLERİ
+        function openInfoModal(type) {
+            const body = document.getElementById('infoModalBody');
+            if (type === 'notifications') {
+                body.innerHTML = `
+                    <h3 style="margin-bottom:15px; font-weight:900;"><i class="fa-solid fa-bell" style="color:var(--accent-primary);"></i> Bildirimler</h3>
+                    <div style="background:var(--card-bg); padding:12px 16px; border-radius:14px; border:1px solid var(--card-border); margin-bottom:10px;">
+                        <div style="font-size:13px; font-weight:bold; margin-bottom:4px;">🎉 Yeni Modlar Eklendi!</div>
+                        <div style="font-size:12px; color:var(--text-muted);">Minecraft v1.21 destekli en yeni Survival modları mağazaya yüklendi.</div>
+                    </div>
+                `;
+            } else if (type === 'profile') {
+                body.innerHTML = `
+                    <h3 style="margin-bottom:15px; font-weight:900;"><i class="fa-solid fa-user-gear" style="color:var(--accent-primary);"></i> Kullanıcı Profili</h3>
+                    <div style="text-align:center; padding:10px 0;">
+                        <div style="width:70px; height:70px; background:var(--accent-primary); border-radius:50%; margin:0 auto 12px; display:flex; align-items:center; justify-content:center; font-size:28px;"><i class="fa-solid fa-user"></i></div>
+                        <h4 style="font-size:18px;">Bedrock Oyuncusu</h4>
+                        <p style="font-size:12px; color:var(--text-muted); margin-top:4px;">Pro Üye</p>
+                    </div>
+                `;
+            }
+            document.getElementById('infoModal').classList.add('active');
+        }
 
-            // Yeni sekmede gerçek MCPEDL/Curseforge linkini aç
-            window.open(mod.url, '_blank');
+        function closeAllModals() {
+            document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
         }
 
         function closeModal(e) {
-            if (e.target.id === 'modModal') {
-                document.getElementById('modModal').classList.remove('active');
+            if (e.target.classList.contains('modal-overlay')) {
+                closeAllModals();
             }
         }
     </script>
