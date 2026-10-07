@@ -10,9 +10,15 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:#fff;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden;min-height:100vh}
 #bar{position:fixed;top:0;left:0;height:3px;width:0;z-index:99;background:linear-gradient(90deg,var(--a),var(--b));box-shadow:0 0 12px var(--a)}
-.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;background:radial-gradient(600px 400px at 15% 10%,rgba(var(--rgb),.18),transparent),radial-gradient(500px 400px at 85% 30%,rgba(116,84,255,.16),transparent),radial-gradient(500px 400px at 50% 100%,rgba(var(--rgb),.1),transparent)}
-.cube{position:absolute;border-radius:4px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);animation:up linear infinite}
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden}
+.bg i{position:absolute;width:45vw;height:45vw;border-radius:50%;filter:blur(90px);opacity:.28;animation:dr 18s ease-in-out infinite alternate}
+.bg i:nth-child(1){background:var(--a);top:-15%;left:-10%}
+.bg i:nth-child(2){background:#6c5ce7;top:20%;right:-15%;animation-delay:-6s}
+.bg i:nth-child(3){background:var(--b);bottom:-25%;left:30%;animation-delay:-12s}
+@keyframes dr{to{transform:translate(8vw,6vh) scale(1.2)}}
+.cube{position:absolute;border-radius:4px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);animation:up linear infinite}
 @keyframes up{from{transform:translateY(0) rotate(0);opacity:0}10%{opacity:1}to{transform:translateY(-110vh) rotate(180deg);opacity:0}}
+#cg{position:fixed;left:0;top:0;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(var(--rgb),.13),transparent 65%);pointer-events:none;z-index:-1;transition:transform .15s ease-out}
 nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 5%;backdrop-filter:blur(14px);background:rgba(10,11,16,.65);border-bottom:1px solid var(--line)}
 .logo{font-weight:800;font-size:1.2rem;display:flex;gap:10px;align-items:center}
 .logo b{width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,var(--a),var(--b));display:grid;place-items:center;box-shadow:0 0 20px var(--glow)}
@@ -22,21 +28,21 @@ nav a:hover{color:#fff}
 .dot{width:18px;height:18px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:.2s}
 .dot.on{border-color:#fff;transform:scale(1.2)}
 #rnd{margin-left:8px;background:var(--card);border:1px solid var(--line);color:#fff;border-radius:10px;padding:7px 11px;cursor:pointer;font-size:1rem;transition:.2s}
-#rnd:hover{border-color:var(--a);transform:rotate(20deg)}
+#rnd:hover{border-color:var(--a);transform:rotate(25deg)}
 .hero{text-align:center;padding:80px 5% 40px;max-width:900px;margin:auto}
 .pill{display:inline-block;padding:6px 14px;border:1px solid var(--line);border-radius:99px;background:rgba(255,255,255,.04);color:var(--mut);font-size:.82rem;margin-bottom:22px}
 .pill em{color:var(--a);font-style:normal}
 h1{font-size:clamp(2.2rem,6vw,4.2rem);line-height:1.08;font-weight:900;letter-spacing:-1.5px}
-.grad{background:linear-gradient(90deg,var(--a),var(--b),#a78bfa,var(--a));background-size:300%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 6s linear infinite}
+.grad{display:inline-block;transition:opacity .3s;background:linear-gradient(90deg,var(--a),var(--b),#a78bfa,var(--a));background-size:300%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 6s linear infinite}
 @keyframes sh{to{background-position:300%}}
 .hero p{color:var(--mut);margin:20px auto 28px;max-width:560px;line-height:1.6}
 .search{display:flex;align-items:center;gap:10px;max-width:520px;margin:auto;padding:6px 14px;border-radius:16px;background:var(--card);border:1px solid var(--line);transition:.25s}
 .search:focus-within{border-color:var(--a);box-shadow:0 0 0 4px var(--glow)}
 .search input{flex:1;min-width:0;background:none;border:0;outline:0;color:#fff;font-size:1rem;padding:13px 0}
 .search kbd{border:1px solid var(--line);border-radius:6px;padding:2px 8px;color:var(--mut);font-size:.8rem}
-.stats{display:flex;justify-content:center;gap:clamp(22px,6vw,64px);margin-top:40px}
-.stats b{display:block;font-size:2rem;font-weight:800}
-.stats span{color:var(--mut);font-size:.8rem}
+.stats{display:flex;justify-content:center;gap:clamp(16px,5vw,56px);margin-top:40px}
+.stats b{display:block;font-size:1.9rem;font-weight:800}
+.stats span{color:var(--mut);font-size:.78rem}
 main{max-width:1180px;margin:auto;padding:30px 5% 50px}
 h2{text-align:center;font-size:1.8rem;margin-bottom:22px}
 .tb{display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap;margin-bottom:28px}
@@ -48,11 +54,13 @@ select{background:var(--card);color:#fff;border:1px solid var(--line);border-rad
 select:focus{border-color:var(--a)}
 option{background:#14162a}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px}
-.card{position:relative;border-radius:20px;background:var(--card);border:1px solid var(--line);overflow:hidden;backdrop-filter:blur(10px);animation:in .5s backwards;animation-delay:calc(var(--i)*60ms);transition:transform .3s,border-color .3s,box-shadow .3s}
+.card{position:relative;border-radius:20px;background:var(--card);border:1px solid var(--line);overflow:hidden;backdrop-filter:blur(10px);transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--ty,0));animation:in .5s backwards;animation-delay:calc(var(--i)*60ms);transition:transform .15s,border-color .3s,box-shadow .3s}
 @keyframes in{from{opacity:0;transform:translateY(24px)}}
-.card:hover{transform:translateY(-6px);border-color:rgba(var(--rgb),.5);box-shadow:0 20px 50px rgba(0,0,0,.5),0 0 40px var(--glow)}
-.card::before{content:"";position:absolute;inset:0;z-index:3;background:radial-gradient(300px circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,.08),transparent 60%);opacity:0;transition:.3s;pointer-events:none}
+.card:hover{--ty:-6px;border-color:rgba(var(--rgb),.55);box-shadow:0 20px 50px rgba(0,0,0,.5),0 0 40px var(--glow)}
+.card::before{content:"";position:absolute;inset:0;z-index:3;background:radial-gradient(300px circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,.09),transparent 60%);opacity:0;transition:.3s;pointer-events:none}
 .card:hover::before{opacity:1}
+.sk{height:350px;background:linear-gradient(100deg,var(--card) 30%,rgba(255,255,255,.07) 50%,var(--card) 70%);background-size:300%;animation:sk 1.3s infinite}
+@keyframes sk{to{background-position:-300%}}
 .flash{animation:f2 1s 2}
 @keyframes f2{50%{box-shadow:0 0 0 3px var(--a),0 0 60px var(--glow)}}
 .ban{height:130px;display:grid;place-items:center;font-size:3.6rem;position:relative}
@@ -65,16 +73,20 @@ option{background:#14162a}
 .ic button:hover{transform:scale(1.15)}
 .ic button.on{background:rgba(var(--rgb),.25);border-color:var(--a);animation:pop .35s}
 @keyframes pop{50%{transform:scale(1.35)}}
+.ht{position:fixed;z-index:60;pointer-events:none;animation:ht .9s ease-out forwards}
+@keyframes ht{to{transform:translate(var(--x),-90px) scale(.4);opacity:0}}
 .body{padding:4px 20px 20px}
 .body h3{font-size:1.12rem}
 .by{color:var(--mut);font-size:.8rem;margin-top:3px}
 .body p{color:#c3c7d6;font-size:.88rem;line-height:1.55;margin:10px 0;min-height:54px}
 .tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
 .tags i{font-style:normal;font-size:.72rem;padding:4px 10px;border-radius:8px;background:rgba(255,255,255,.06);color:var(--mut)}
+.tags .sz{color:var(--b);background:rgba(var(--rgb),.12)}
 .row{display:flex;gap:10px}
 .row select{flex:0 0 36%}
-.btn{flex:1;text-align:center;color:#fff;font-weight:700;padding:11px;border-radius:12px;background:linear-gradient(135deg,var(--a),var(--b));box-shadow:0 8px 24px var(--glow);text-decoration:none;transition:.2s;font-size:.92rem}
+.btn{flex:1;border:0;cursor:pointer;color:#fff;font-weight:700;padding:11px;border-radius:12px;background:linear-gradient(135deg,var(--a),var(--b));box-shadow:0 8px 24px var(--glow);transition:.2s;font-size:.92rem}
 .btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px var(--glow)}
+.btn.busy{pointer-events:none;background:linear-gradient(90deg,var(--a) var(--p,0%),rgba(255,255,255,.12) var(--p,0%))}
 .none{grid-column:1/-1;text-align:center;color:var(--mut);padding:50px;font-size:1.1rem}
 .how{max-width:1000px;margin:auto;padding:10px 5% 70px}
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
@@ -82,17 +94,18 @@ option{background:#14162a}
 .step b{display:grid;place-items:center;width:42px;height:42px;margin:0 auto 14px;border-radius:12px;background:linear-gradient(135deg,var(--a),var(--b))}
 .step p{color:var(--mut);font-size:.9rem;margin-top:6px;line-height:1.5}
 footer{text-align:center;padding:30px;color:var(--mut);font-size:.85rem;border-top:1px solid var(--line)}
-.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,140px);padding:14px 22px 16px;border-radius:14px;background:#161827;border:1px solid var(--a);box-shadow:0 10px 40px var(--glow);transition:.4s;z-index:50;font-weight:600;overflow:hidden;white-space:nowrap}
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,140px);max-width:92vw;padding:14px 22px 16px;border-radius:14px;background:#161827;border:1px solid var(--a);box-shadow:0 10px 40px var(--glow);transition:.4s;z-index:50;font-weight:600;overflow:hidden}
 .toast.show{transform:translate(-50%,0)}
 .toast::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--a);transform-origin:left}
-.toast.show::after{animation:tb 2.4s linear}
+.toast.show::after{animation:tb 2.6s linear}
 @keyframes tb{from{transform:scaleX(0)}}
 @media(max-width:640px){nav a{display:none}.hero{padding-top:50px}.search kbd{display:none}}
 </style>
 </head>
 <body>
 <div id="bar"></div>
-<div class="bg" id="bg"></div>
+<div class="bg" id="bg"><i></i><i></i><i></i></div>
+<div id="cg"></div>
 
 <nav>
   <div class="logo"><b>▣</b><span>Mcbe<span style="color:var(--a)">Hub</span></span></div>
@@ -101,13 +114,14 @@ footer{text-align:center;padding:30px;color:var(--mut);font-size:.85rem;border-t
 
 <header class="hero">
   <div class="pill"><em>●</em> Minecraft Bedrock • 1.21+</div>
-  <h1>En iyi <span class="grad">Bedrock modları</span> tek yerde</h1>
-  <p>Beğen, kaydet, sürümünü seç ve tek tıkla indir. .mcaddon dosyasına dokun, Minecraft otomatik kursun.</p>
+  <h1>En iyi <span class="grad" id="w">Bedrock</span> modları tek yerde</h1>
+  <p>Beğen, kaydet, sürümünü seç ve tek tıkla indir. İnen .mcaddon dosyasına dokun, Minecraft otomatik kursun.</p>
   <div class="search"><span>🔍</span><input id="q" placeholder="Mod ara... (ör. fizik, ağaç, ışık)"><kbd>/</kbd></div>
   <div class="stats">
     <div><b id="s1">0</b><span>Mod</span></div>
-    <div><b id="s2">0</b><span>Beğendiğin</span></div>
-    <div><b id="s3">0</b><span>Kaydettiğin</span></div>
+    <div><b id="s2">0</b><span>Sürüm</span></div>
+    <div><b id="s3">0</b><span>Beğendiğin</span></div>
+    <div><b id="s4">0</b><span>Kaydettiğin</span></div>
   </div>
 </header>
 
@@ -123,7 +137,7 @@ footer{text-align:center;padding:30px;color:var(--mut);font-size:.85rem;border-t
 <section class="how" id="kurulum">
   <h2>⚡ Nasıl kurulur?</h2>
   <div class="steps">
-    <div class="step"><b>1</b><h3>Sürümü seç</h3><p>Kartın üstündeki listeden istediğin sürümü seç, İndir'e bas.</p></div>
+    <div class="step"><b>1</b><h3>Sürümü seç</h3><p>Kartın üstündeki listeden sürümü seç, İndir'e bas.</p></div>
     <div class="step"><b>2</b><h3>Aç</h3><p>İnen .mcaddon dosyasına dokun ve Minecraft ile aç.</p></div>
     <div class="step"><b>3</b><h3>Oyna</h3><p>Dünyanı düzenle, Eklentiler bölümünden modu etkinleştir.</p></div>
   </div>
@@ -133,41 +147,85 @@ footer{text-align:center;padding:30px;color:var(--mut);font-size:.85rem;border-t
 <div class="toast" id="toast"></div>
 
 <script>
-// vs: [[sürüm adı, dosya adı], ...]  → yeni sürüm eklemek için listeye bir çift daha ekle
-const MODS=[
- {id:'bmc',n:'BMC Add-On',by:'',c:'Eklenti',e:'🧩',g:['#9b59b6','#6c3483'],nw:1,d:'Oyuna yeni içerik ve mekanikler getiren kapsamlı eklenti.',t:['eklenti','içerik'],vs:[['4-25','BMC_Add-On_4-25.mcaddon']]},
- {id:'dav',n:'Durability Armor Viewer',by:'',c:'Araç',e:'🛡️',g:['#3498db','#1f618d'],nw:1,d:'Zırh ve eşyalarının dayanıklılığını ekranda canlı olarak gösterir.',t:['zırh','hud'],vs:[['v2.1','Durability Armor Viewer v2.1.mcaddon']]},
- {id:'eb',n:'Effortless Building',by:'',c:'Araç',e:'🏗️',g:['#f39c12','#d35400'],nw:1,d:'Tek hamlede çizgi, duvar ve alan inşa et. Yapı yapmak çok daha hızlı.',t:['inşa','yapı'],vs:[['v5.0','Effortless Building v5.0.mcaddon']]},
- {id:'trees',n:'Better Trees',by:'Daniye',c:'Görsel',e:'🌳',g:['#2ecc71','#16a085'],d:'Ağaçları daha dolgun, gerçekçi ve güzel hale getirir.',t:['doğa','ağaç'],vs:[['v1.4','Better Trees by Daniye - v1.4.mcaddon']]},
- {id:'ip',n:'Item Physics',by:'',c:'Fizik',e:'🎒',g:['#5dade2','#8e44ad'],d:'Yere düşen eşyalar gerçekçi şekilde yere yatar, döner ve durur.',t:['fizik','eşya'],vs:[['V2.9','Item Physics [V2.9] Behavior.mcaddon']]},
- {id:'rr',n:'RealRagdoll',by:'',c:'Fizik',e:'🧟',g:['#e74c3c','#922b21'],d:'Mob ve oyuncular ölünce gerçekçi ragdoll fiziğiyle yere yıkılır.',t:['fizik','mob'],vs:[['1.3.0','RealRagdoll-1.3.0.mcaddon']]},
- {id:'rf',n:'Rustic Furniture',by:'',c:'Dekor',e:'🪑',g:['#d68910','#935116'],d:'Köy tarzı rustik mobilyalar: masa, sandalye, dolap ve daha fazlası.',t:['mobilya','dekor'],vs:[['Son','Rustic Furnture.mcaddon']]},
- {id:'sdl',n:'System Dynamic Lights',by:'',c:'Görsel',e:'🔦',g:['#f1c40f','#e67e22'],d:'Elindeki meşale ve parlayan eşyalar etrafı dinamik olarak aydınlatır.',t:['ışık','görsel'],vs:[['V3.3','System Dynamic Lights V3.3.mcaddon']]},
- {id:'vm',n:'Vein Miner',by:'',c:'Araç',e:'⛏️',g:['#1abc9c','#2c3e50'],d:'Cevher damarını tek vuruşta kır, bağlı tüm bloklar topluca kazılır.',t:['madenci','araç'],vs:[['v5.5','Utilities_Vein_Miner_v5.5.mcaddon']]}
+const USER='Eymen6129',REPO='Mcbehub',BR='main';
+const API=`https://api.github.com/repos/${USER}/${REPO}/contents/`;
+const RAW=`https://raw.githubusercontent.com/${USER}/${REPO}/${BR}/`;
+const EXT=/\.(mcaddon|mcpack)$/i;
+// Dosya adını anahtar kelimeyle eşleştirir (k). Listede olmayan yeni dosyalar otomatik kart olur.
+const META=[
+ {id:'bmc',k:'bmcaddon',n:'BMC Add-On',c:'Eklenti',e:'🧩',g:['#9b59b6','#6c3483'],nw:1,d:'Oyuna yeni içerik ve mekanikler getiren kapsamlı eklenti.',t:['eklenti','içerik']},
+ {id:'dav',k:'durability',n:'Durability Armor Viewer',c:'Araç',e:'🛡️',g:['#3498db','#1f618d'],nw:1,d:'Zırh ve eşyalarının dayanıklılığını ekranda canlı gösterir.',t:['zırh','hud']},
+ {id:'eb',k:'effortless',n:'Effortless Building',c:'Araç',e:'🏗️',g:['#f39c12','#d35400'],nw:1,d:'Tek hamlede çizgi, duvar ve alan inşa et. Yapı yapmak çok hızlanır.',t:['inşa','yapı']},
+ {id:'trees',k:'bettertrees',n:'Better Trees',by:'Daniye',c:'Görsel',e:'🌳',g:['#2ecc71','#16a085'],d:'Ağaçları daha dolgun, gerçekçi ve güzel hale getirir.',t:['doğa','ağaç']},
+ {id:'ip',k:'itemphysics',n:'Item Physics',c:'Fizik',e:'🎒',g:['#5dade2','#8e44ad'],d:'Yere düşen eşyalar gerçekçi şekilde yere yatar, döner ve durur.',t:['fizik','eşya']},
+ {id:'rr',k:'realragdoll',n:'RealRagdoll',c:'Fizik',e:'🧟',g:['#e74c3c','#922b21'],d:'Mob ve oyuncular ölünce gerçekçi ragdoll fiziğiyle yıkılır.',t:['fizik','mob']},
+ {id:'rf',k:'rustic',n:'Rustic Furniture',c:'Dekor',e:'🪑',g:['#d68910','#935116'],d:'Köy tarzı rustik mobilyalar: masa, sandalye, dolap ve fazlası.',t:['mobilya','dekor']},
+ {id:'sdl',k:'dynamiclights',n:'System Dynamic Lights',c:'Görsel',e:'🔦',g:['#f1c40f','#e67e22'],d:'Elindeki meşale ve parlayan eşyalar etrafı dinamik aydınlatır.',t:['ışık','görsel']},
+ {id:'vm',k:'veinminer',n:'Vein Miner',c:'Araç',e:'⛏️',g:['#1abc9c','#2c3e50'],d:'Cevher damarını tek vuruşta kır, bağlı tüm bloklar topluca kazılır.',t:['madenci','araç']}
 ];
+// GitHub API çalışmazsa kullanılan yedek liste
+const FALLBACK=['BMC_Add-On_4-25.mcaddon','Durability Armor Viewer v2.1.mcaddon','Effortless Building v5.0.mcaddon','Better Trees by Daniye - v1.4.mcaddon','Item Physics [V2.9] Behavior.mcaddon','RealRagdoll-1.3.0.mcaddon','Rustic Furnture.mcaddon','System Dynamic Lights V3.3.mcaddon','Utilities_Vein_Miner_v5.5.mcaddon'];
+META.push({id:'vm',k:'veinminer',n:'Vein Miner',c:'Araç',e:'⛏️',g:['#1abc9c','#2c3e50'],d:'',t:[]});META.pop();
+
 const $=s=>document.querySelector(s),G=$('#grid');
-let S={like:[],save:[],ver:{},ac:0};
+let S={like:[],save:[],ver:{},ac:0},MODS=[],cat='Hepsi',q='',so='def';
 try{Object.assign(S,JSON.parse(localStorage.getItem('mcb')))}catch(e){}
 const persist=()=>{try{localStorage.setItem('mcb',JSON.stringify(S))}catch(e){}};
-const cats=['Hepsi','❤ Beğendiklerim','🔖 Kaydettiklerim',...new Set(MODS.map(m=>m.c))];
-let cat='Hepsi',q='',so='def';
-const M=id=>MODS.find(m=>m.id===id);
-const href=(m,i)=>'./'+encodeURIComponent(m.vs[i][1]);
+const cats=['Hepsi','❤ Beğendiklerim','🔖 Kaydettiklerim'];
+const norm=s=>s.toLowerCase().replace(/[^a-z0-9]/g,'');
+const fmt=b=>!b?'':b>=1048576?(b/1048576).toFixed(1)+' MB':Math.round(b/1024)+' KB';
+const nums=s=>(s.match(/\d+/g)||[]).map(Number);
+const ver=n=>{const m=n.replace(EXT,'').match(/v?\d+(?:[._-]\d+)*/i);return m?(/^v/i.test(m[0])?m[0]:'v'+m[0]):'Son'};
+const clean=n=>n.replace(EXT,'').replace(/v?\d+(?:[._-]\d+)*/i,'').replace(/[_\-\[\]()]+/g,' ').replace(/\s+/g,' ').trim()||n;
 
-const card=(m,n)=>{const i=S.ver[m.id]||0,l=S.like.includes(m.id),s=S.save.includes(m.id);
+function build(files){
+ const out=[];
+ files.forEach(f=>{
+  const n=norm(f.name);let m=out.find(x=>n.includes(x.k));
+  if(!m){const meta=META.find(x=>n.includes(x.k));
+   if(meta)m={...meta,vs:[]};
+   else{const nm=clean(f.name);m={id:'x'+norm(nm),k:norm(nm),n:nm,by:'',c:'Eklenti',e:'📦',g:['#6c5ce7','#341f97'],nw:1,d:'Yeni eklenen mod. Açıklaması yakında eklenecek.',t:['yeni'],vs:[]}}
+   out.push(m)}
+  m.vs.push([ver(f.name),f.name,f.size]);
+ });
+ out.forEach(m=>m.vs.sort((a,b)=>{const x=nums(b[0]),y=nums(a[0]);for(let i=0;i<Math.max(x.length,y.length);i++){const d=(x[i]||0)-(y[i]||0);if(d)return d}return 0}));
+ const ix=m=>META.findIndex(x=>x.id===m.id);
+ return out.sort((a,b)=>ix(a)-ix(b)); // yeni/bilinmeyen dosyalar en başta
+}
+
+async function load(){
+ let files;
+ try{const c=JSON.parse(localStorage.getItem('mcbf')||'null');if(c&&Date.now()-c.t<12e4)files=c.f}catch(e){}
+ if(!files)try{
+  const r=await fetch(API);
+  if(r.ok){files=(await r.json()).filter(x=>x.type==='file'&&EXT.test(x.name)).map(x=>({name:x.name,size:x.size}));
+   try{localStorage.setItem('mcbf',JSON.stringify({t:Date.now(),f:files}))}catch(e){}}
+ }catch(e){}
+ if(!files||!files.length)files=FALLBACK.map(name=>({name,size:0}));
+ return build(files);
+}
+
+const M=id=>MODS.find(m=>m.id===id);
+const cur=m=>m.vs[Math.min(S.ver[m.id]||0,m.vs.length-1)];
+
+const card=(m,n)=>{const i=Math.min(S.ver[m.id]||0,m.vs.length-1),v=m.vs[i],l=S.like.includes(m.id),s=S.save.includes(m.id);
 return `<article class="card" id="c-${m.id}" data-id="${m.id}" style="--i:${n}">
  <div class="ban" style="background:linear-gradient(135deg,${m.g[0]}66,${m.g[1]}22)"><span>${m.e}</span>${m.nw?'<em class="new">YENİ</em>':''}
   <div class="ic"><button data-act="like" class="${l?'on':''}" title="Beğen">${l?'❤️':'🤍'}</button><button data-act="save" class="${s?'on':''}" title="Kaydet">${s?'🔖':'📑'}</button></div></div>
  <div class="body"><h3>${m.n}</h3>${m.by?`<div class="by">by ${m.by}</div>`:''}<p>${m.d}</p>
-  <div class="tags"><i>${m.c}</i>${m.t.map(t=>`<i>#${t}</i>`).join('')}</div>
-  <div class="row"><select>${m.vs.map((v,k)=>`<option value="${k}"${k==i?' selected':''}>${v[0]}</option>`).join('')}</select>
-  <a class="btn dl" href="${href(m,i)}" download="${m.vs[i][1]}">⬇ İndir</a></div></div></article>`};
+  <div class="tags"><i>${m.c}</i>${m.t.map(t=>`<i>#${t}</i>`).join('')}${v[2]?`<i class="sz">${fmt(v[2])}</i>`:''}</div>
+  <div class="row"><select>${m.vs.map((x,k)=>`<option value="${k}"${k==i?' selected':''}>${x[0]}</option>`).join('')}</select>
+  <button class="btn dl">⬇ İndir</button></div></div></article>`};
 
-function stats(){$('#s2').textContent=S.like.length;$('#s3').textContent=S.save.length;
- document.querySelectorAll('.chip').forEach(c=>{const k=c.dataset.c;if(k===cats[1])c.textContent=k+' '+S.like.length;if(k===cats[2])c.textContent=k+' '+S.save.length})}
+function stats(){
+ $('#s1').textContent=MODS.length;$('#s2').textContent=MODS.reduce((a,m)=>a+m.vs.length,0);
+ $('#s3').textContent=S.like.length;$('#s4').textContent=S.save.length;
+ document.querySelectorAll('.chip').forEach(c=>{const k=c.dataset.c;if(k===cats[1])c.textContent=k+' '+S.like.length;if(k===cats[2])c.textContent=k+' '+S.save.length});
+}
 
 function render(){
- $('#chips').innerHTML=cats.map(c=>`<button class="chip${c===cat?' on':''}" data-c="${c}">${c}</button>`).join('');
+ const all=[...cats,...new Set(MODS.map(m=>m.c))];
+ $('#chips').innerHTML=all.map(c=>`<button class="chip${c===cat?' on':''}" data-c="${c}">${c}</button>`).join('');
  let l=MODS.filter(m=>(cat==='Hepsi'||(cat===cats[1]?S.like.includes(m.id):cat===cats[2]?S.save.includes(m.id):m.c===cat))&&(m.n+m.by+m.d+m.t).toLowerCase().includes(q));
  if(so==='az')l.sort((a,b)=>a.n.localeCompare(b.n));
  if(so==='new')l.sort((a,b)=>(b.nw||0)-(a.nw||0));
@@ -180,27 +238,54 @@ $('#chips').onclick=e=>{const c=e.target.closest('.chip');if(c){cat=c.dataset.c;
 $('#sort').onchange=e=>{so=e.target.value;render()};
 $('#q').oninput=e=>{q=e.target.value.toLowerCase();render()};
 
+// Gerçek dosya indirme: ilerleme çubuğu + yedek kaynak (Vercel → GitHub raw)
+async function dl(m,btn){
+ const v=cur(m),e=encodeURIComponent(v[1]);
+ btn.classList.add('busy');btn.style.setProperty('--p','4%');btn.textContent='⏳ İndiriliyor';
+ for(const u of ['./'+e,RAW+e]){
+  try{
+   const r=await fetch(u);
+   if(!r.ok||(r.headers.get('content-type')||'').includes('text/html'))continue;
+   const T=+r.headers.get('content-length')||v[2]||0,rd=r.body.getReader(),ch=[];let L=0;
+   for(;;){const{done,value}=await rd.read();if(done)break;ch.push(value);L+=value.length;btn.style.setProperty('--p',(T?Math.min(100,L/T*100):60)+'%')}
+   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(ch));a.download=v[1];document.body.appendChild(a);a.click();a.remove();
+   btn.classList.remove('busy');btn.textContent='✅ İndirildi';setTimeout(()=>btn.textContent='⬇ İndir',2500);
+   toast('✅ '+m.n+' '+v[0]+' indirildi, dosyaya dokunarak aç');return;
+  }catch(x){}
+ }
+ btn.classList.remove('busy');btn.textContent='⬇ İndir';
+ toast('❌ Dosya bulunamadı: '+v[1]);
+}
+
+function burst(b){const r=b.getBoundingClientRect();
+ for(let i=0;i<7;i++){const s=document.createElement('span');s.className='ht';s.textContent='❤';
+  s.style.cssText=`left:${r.left+14}px;top:${r.top}px;--x:${(Math.random()-.5)*90}px`;document.body.appendChild(s);setTimeout(()=>s.remove(),900)}}
+
 G.onclick=e=>{
- const b=e.target.closest('[data-act],.dl'),c=e.target.closest('.card');if(!b||!c)return;
- const id=c.dataset.id,m=M(id);
- if(b.classList.contains('dl')){toast('⬇ '+m.n+' '+m.vs[S.ver[id]||0][0]+' indiriliyor...');return}
- const k=b.dataset.act,a=S[k],x=a.indexOf(id);
- x<0?a.push(id):a.splice(x,1);persist();
- const on=x<0;
+   const b=e.target.closest('[data-act],.dl'),c=e.target.closest('.card');if(!b||!c)return;
+ const m=M(c.dataset.id);if(!m)return;
+ if(b.classList.contains('dl'))return dl(m,b);
+ const k=b.dataset.act,a=S[k],x=a.indexOf(m.id),on=x<0;
+ on?a.push(m.id):a.splice(x,1);persist();
  toast(k==='like'?(on?'❤️ Beğenildi: ':'💔 Beğeni kaldırıldı: ')+m.n:(on?'🔖 Kaydedildi: ':'Kayıttan çıkarıldı: ')+m.n);
+ if(k==='like'&&on)burst(b);
  if((k==='like'&&cat===cats[1])||(k==='save'&&cat===cats[2]))render();
  else{b.classList.toggle('on',on);b.textContent=k==='like'?(on?'❤️':'🤍'):(on?'🔖':'📑');stats()}
 };
 G.onchange=e=>{
  const c=e.target.closest('.card');if(!c||e.target.tagName!=='SELECT')return;
  const m=M(c.dataset.id),i=+e.target.value;S.ver[m.id]=i;persist();
- const d=c.querySelector('.dl');d.href=href(m,i);d.download=m.vs[i][1];
+ const z=c.querySelector('.sz');if(z)z.textContent=fmt(m.vs[i][2]);
  toast('Sürüm seçildi: '+m.n+' '+m.vs[i][0]);
 };
-G.onmousemove=e=>{const c=e.target.closest('.card');if(!c)return;const r=c.getBoundingClientRect();
- c.style.setProperty('--mx',e.clientX-r.left+'px');c.style.setProperty('--my',e.clientY-r.top+'px')};
+G.onmousemove=e=>{const c=e.target.closest('.card');if(!c||c.classList.contains('sk'))return;
+ const r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top,s=c.style;
+ s.setProperty('--mx',x+'px');s.setProperty('--my',y+'px');
+ s.setProperty('--rx',((y/r.height)-.5)*-7+'deg');s.setProperty('--ry',((x/r.width)-.5)*7+'deg')};
+G.onmouseout=e=>{const c=e.target.closest('.card');
+ if(c&&!c.contains(e.relatedTarget)){c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg')}};
 
-function toast(t){const e=$('#toast');e.classList.remove('show');void e.offsetWidth;e.textContent=t;e.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('show'),2400)}
+function toast(t){const e=$('#toast');e.classList.remove('show');void e.offsetWidth;e.textContent=t;e.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('show'),2600)}
 
 // Tema rengi
 const TH=[['#ff4757','255,71,87'],['#3b82f6','59,130,246'],['#10b981','16,185,129'],['#a855f7','168,85,247']];
@@ -210,21 +295,26 @@ function theme(i){S.ac=i;const r=document.documentElement.style;r.setProperty('-
 $('#dots').onclick=e=>{if(e.target.dataset.i)theme(+e.target.dataset.i)};
 
 // Rastgele mod
-$('#rnd').onclick=()=>{cat='Hepsi';q='';$('#q').value='';render();
+$('#rnd').onclick=()=>{if(!MODS.length)return;cat='Hepsi';q='';$('#q').value='';render();
  const m=MODS[Math.random()*MODS.length|0],c=$('#c-'+m.id);
  c.scrollIntoView({behavior:'smooth',block:'center'});c.classList.add('flash');setTimeout(()=>c.classList.remove('flash'),2200)};
 
-// Kısayol: / ile aramaya git
+// Kısayol, kaydırma çubuğu, fare ışığı
 addEventListener('keydown',e=>{if(e.key==='/'&&document.activeElement.tagName!=='INPUT'){e.preventDefault();$('#q').focus()}});
-// Kaydırma çubuğu
 addEventListener('scroll',()=>{$('#bar').style.width=scrollY/(document.body.scrollHeight-innerHeight)*100+'%'});
+addEventListener('pointermove',e=>{$('#cg').style.transform=`translate(${e.clientX-250}px,${e.clientY-250}px)`});
 
-// Sayaç + arka plan küpleri
-(function(el,to){let i=0;const t=setInterval(()=>{el.textContent=++i;if(i>=to)clearInterval(t)},120)})($('#s1'),MODS.length);
-for(let i=0;i<16;i++){const c=document.createElement('div'),s=14+Math.random()*34;c.className='cube';
+// Dönen başlık kelimesi
+const W=['Bedrock','Fizik','Görsel','Dekor','Araç'];let wi=0;
+setInterval(()=>{const w=$('#w');w.style.opacity=0;setTimeout(()=>{w.textContent=W[++wi%W.length];w.style.opacity=1},300)},2300);
+
+// Arka plan küpleri
+for(let i=0;i<12;i++){const c=document.createElement('div'),s=14+Math.random()*34;c.className='cube';
  c.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;top:${60+Math.random()*50}%;animation-duration:${12+Math.random()*16}s;animation-delay:-${Math.random()*20}s`;$('#bg').appendChild(c)}
 
-theme(S.ac);render();
+theme(S.ac);
+G.innerHTML='<div class="card sk"></div>'.repeat(6);
+load().then(m=>{MODS=m;render()});
 </script>
 </body>
 </html>
