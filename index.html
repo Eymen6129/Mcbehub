@@ -11,6 +11,7 @@
 <meta name="theme-color" content="#0a0b10">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⛏️%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0a0b10;--card:rgba(20,22,36,.82);--line:rgba(255,255,255,.08);--a:#ff4757;--rgb:255,71,87;--b:color-mix(in srgb,var(--a),#fff 30%);--glow:rgba(var(--rgb),.4);--mut:#9aa0b4}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -18,6 +19,7 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:#fff;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden;min-height:100vh}
 button,select,input{font-family:inherit}
 u{text-decoration:none}
+.px{font-family:'Press Start 2P',monospace;line-height:1.5}
 #bar{position:fixed;top:0;left:0;height:3px;width:0;z-index:99;background:linear-gradient(90deg,var(--a),var(--b));box-shadow:0 0 12px var(--a)}
 .bg{position:fixed;inset:0;z-index:-1;overflow:hidden}
 .bg i{position:absolute;width:45vw;height:45vw;border-radius:50%;filter:blur(90px);opacity:.28;animation:dr 18s ease-in-out infinite alternate}
@@ -26,8 +28,9 @@ u{text-decoration:none}
 .bg i:nth-child(3){background:var(--b);bottom:-25%;left:30%;animation-delay:-12s}
 @keyframes dr{to{transform:translate(8vw,6vh) scale(1.2)}}
 #cg{position:fixed;left:0;top:0;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(var(--rgb),.13),transparent 65%);pointer-events:none;z-index:-1;transition:transform .15s ease-out}
-nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 5%;backdrop-filter:blur(14px);background:rgba(10,11,16,.65);border-bottom:1px solid var(--line)}
-.logo{font-weight:800;font-size:1.2rem;display:flex;gap:10px;align-items:center}
+nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 5%;backdrop-filter:blur(14px);background:rgba(10,11,16,.65);border-bottom:1px solid var(--line)}
+.logo{font-weight:800;display:flex;gap:10px;align-items:center}
+.logo .px{font-size:.7rem}
 .logo b{width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,var(--a),var(--b));display:grid;place-items:center;box-shadow:0 0 20px var(--glow)}
 .nr{display:flex;align-items:center;gap:6px}
 nav a{color:var(--mut);text-decoration:none;margin-right:12px;font-weight:600;font-size:.9rem;transition:.2s}
@@ -36,6 +39,10 @@ nav a:hover{color:#fff}
 .dot.on{border-color:#fff;transform:scale(1.2)}
 .nb{background:var(--card);border:1px solid var(--line);color:#fff;border-radius:10px;padding:7px 11px;cursor:pointer;font-size:.9rem;transition:.2s}
 .nb:hover{border-color:var(--a)}
+.xp{display:flex;align-items:center;gap:8px;cursor:pointer;margin:0 4px}
+.xp small{font-size:.55rem;color:#b6ff6b}
+.xpb{width:64px;height:8px;border-radius:4px;background:rgba(255,255,255,.12);overflow:hidden}
+.xpb i{display:block;height:100%;width:var(--w,0%);background:linear-gradient(90deg,#5dff3a,#d4ff3a);transition:width .6s}
 .hero{text-align:center;padding:80px 5% 40px;max-width:900px;margin:auto}
 .pill{display:inline-block;padding:6px 14px;border:1px solid var(--line);border-radius:99px;background:rgba(255,255,255,.04);color:var(--mut);font-size:.82rem;margin-bottom:22px}
 .pill em{color:var(--a);font-style:normal}
@@ -52,6 +59,16 @@ h1{font-size:clamp(2.2rem,6vw,4.2rem);line-height:1.08;font-weight:900;letter-sp
 .stats span{color:var(--mut);font-size:.78rem}
 main{max-width:1180px;margin:auto;padding:30px 5% 90px}
 h2{text-align:center;font-size:1.8rem;margin-bottom:22px}
+h2.px{font-size:1.05rem;margin-bottom:24px}
+.dm{margin-bottom:34px}
+.dmi{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:18px;border:1px solid var(--a);background:linear-gradient(120deg,rgba(var(--rgb),.2),var(--card));cursor:pointer;box-shadow:0 0 30px var(--glow);transition:.2s}
+.dmi:hover{transform:translateY(-2px)}
+.dmi small{font-size:.55rem;color:var(--a)}
+.packs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:38px}
+.pk{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:16px;background:var(--card);border:1px solid var(--line);cursor:pointer;transition:.2s}
+.pk:hover{border-color:var(--a);transform:translateY(-3px);box-shadow:0 10px 30px var(--glow)}
+.pk span{font-size:1.8rem}
+.pk small{display:block;color:var(--mut);font-size:.75rem;margin-top:3px}
 .tb{display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap;margin-bottom:28px}
 .chips{display:flex;gap:8px;flex-wrap:wrap}
 .chip{padding:8px 16px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--mut);cursor:pointer;font-weight:600;font-size:.85rem;transition:.2s}
@@ -127,18 +144,20 @@ option{background:#14162a}
 .dock{position:fixed;left:50%;bottom:20px;transform:translate(-50%,160px);z-index:40;display:flex;align-items:center;gap:12px;padding:10px 12px 10px 18px;border-radius:16px;background:#161827;border:1px solid var(--a);box-shadow:0 10px 40px var(--glow);transition:.4s;white-space:nowrap;max-width:94vw}
 .dock.show{transform:translate(-50%,0)}
 .how{max-width:1000px;margin:auto;padding:10px 5% 70px}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-.step{padding:24px;border-radius:18px;background:var(--card);border:1px solid var(--line);text-align:center}
-.step b{display:grid;place-items:center;width:42px;height:42px;margin:0 auto 14px;border-radius:12px;background:linear-gradient(135deg,var(--a),var(--b))}
-.step p{color:var(--mut);font-size:.9rem;margin-top:6px;line-height:1.5}
+.tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+.gd{max-width:640px;margin:auto;padding:20px 22px;border-radius:18px;background:var(--card);border:1px solid var(--line);color:#c3c7d6;line-height:1.9;font-size:.92rem}
 footer{text-align:center;padding:30px;color:var(--mut);font-size:.85rem;border-top:1px solid var(--line)}
-footer a{color:var(--a);text-decoration:none}
+footer a{color:var(--a);text-decoration:none;margin:0 4px}
 .toast{position:fixed;left:50%;top:76px;transform:translate(-50%,-180px);max-width:92vw;padding:14px 22px 16px;border-radius:14px;background:#161827;border:1px solid var(--a);box-shadow:0 10px 40px var(--glow);transition:.4s;z-index:95;font-weight:600;overflow:hidden}
 .toast.show{transform:translate(-50%,0)}
 .toast::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--a);transform-origin:left}
 .toast.show::after{animation:tb 2.6s linear}
 @keyframes tb{from{transform:scaleX(0)}}
-@media(max-width:640px){nav a{display:none}.hero{padding-top:50px}.search kbd{display:none}}
+.ach{position:fixed;top:76px;right:12px;z-index:96;display:flex;gap:12px;align-items:center;padding:12px 16px;border-radius:6px;background:#1c1c1c;border:3px solid #6b6b6b;box-shadow:0 8px 30px rgba(0,0,0,.6);transform:translateX(130%);transition:.5s;max-width:88vw}
+.ach.show{transform:none}
+.ach em{font-style:normal;font-size:1.8rem}
+.ach b{display:block;color:#ffe14d;font-size:.78rem}
+@media(max-width:640px){nav a,#dots{display:none}.xpb{width:40px}.hero{padding-top:50px}.search kbd{display:none}}
 </style>
 </head>
 <body>
@@ -147,15 +166,16 @@ footer a{color:var(--a);text-decoration:none}
 <div id="cg"></div>
 
 <nav>
-  <div class="logo"><b>▣</b><span>Mcbe<span style="color:var(--a)">Hub</span></span></div>
+  <div class="logo"><b>▣</b><span class="px">Mcbe<span style="color:var(--a)">Hub</span></span></div>
   <div class="nr"><a href="#modlar">Modlar</a><a href="#kurulum">Kurulum</a><a id="rq" target="_blank" rel="noopener">📝 Mod iste</a><span id="dots" class="nr"></span>
+   <span class="xp" id="xp" title="Başarımlar"><small class="px" id="lv">Sv 1</small><span class="xpb"><i id="xpi"></i></span></span>
    <button class="nb" id="ins" style="display:none">📲</button><button class="nb" id="kb">⌘K</button><button class="nb" id="rnd">🎲</button></div>
 </nav>
 
 <header class="hero">
   <div class="pill"><em>●</em> Minecraft Bedrock • 1.21+</div>
   <h1>En iyi <span class="grad" id="w">Bedrock</span> modları tek yerde</h1>
-  <p>Beğen, kaydet, sürümünü seç, koleksiyon yap ve tek tıkla indir. İnen .mcaddon dosyasına dokun, Minecraft otomatik kursun.</p>
+  <p>Beğen, kaydet, sürümünü seç, paket yap ve tek tıkla indir. İndirdikçe XP kazan, başarımları aç!</p>
   <div class="search"><span>🔍</span><input id="q" placeholder="Mod ara... (ör. fizik, ağaç, ışık)"><kbd>/</kbd></div>
   <div class="stats">
     <div><b id="s1">0</b><span>Mod</span></div><div><b id="s2">0</b><span>Sürüm</span></div>
@@ -164,34 +184,34 @@ footer a{color:var(--a);text-decoration:none}
 </header>
 
 <main id="modlar">
-  <h2>🔥 Modlar</h2>
+  <div class="dm" id="dm"></div>
+  <h2 class="px">📦 Hazır Paketler</h2><div class="packs" id="packs"></div>
+  <h2 class="px" id="mh">🔥 Modlar</h2>
   <div class="tb"><div class="chips" id="chips"></div>
    <select id="sort"><option value="def">Önerilen</option><option value="az">A → Z</option><option value="new">Son güncellenen</option><option value="fav">Beğendiklerim önce</option></select></div>
   <div class="grid" id="grid"></div>
 </main>
 
 <section class="how" id="kurulum">
-  <h2>⚡ Nasıl kurulur?</h2>
-  <div class="steps">
-    <div class="step"><b>1</b><h3>Sürümü seç</h3><p>Karttaki listeden sürümü seç, İndir'e bas.</p></div>
-    <div class="step"><b>2</b><h3>Aç</h3><p>İnen .mcaddon dosyasına dokun, Minecraft ile aç.</p></div>
-    <div class="step"><b>3</b><h3>Oyna</h3><p>Dünyanı düzenle, Eklentiler bölümünden etkinleştir.</p></div>
-  </div>
+  <h2 class="px">⚡ Kurulum Rehberi</h2>
+  <div class="tabs" id="gt"></div><div class="gd" id="gd"></div>
 </section>
-<footer>© 2026 Mcbehub • Modların hakları yapımcılarına aittir • Mojang AB ile bağlantılı değildir • <a id="rq2" target="_blank" rel="noopener">Mod iste</a></footer>
+<footer>© 2026 Mcbehub • Modların hakları yapımcılarına aittir • Mojang AB ile bağlantılı değildir<br><a id="rq2" target="_blank" rel="noopener">📝 Mod iste</a><a id="dc" target="_blank" rel="noopener" style="display:none">💬 Discord</a></footer>
 
 <div class="ov" id="ov"><div class="md" id="md"></div></div>
 <div class="ov" id="pv"><div class="pal"><input id="pi" placeholder="Mod veya komut ara..." autocomplete="off"><div id="pl"></div></div></div>
 <div class="dock" id="dock"></div>
 <div class="toast" id="toast"></div>
+<div class="ach" id="ach"></div>
 
 <script>
 const USER='Eymen6129',REPO='Mcbehub',BR='main';
 const API=`https://api.github.com/repos/${USER}/${REPO}/`,RAW=`https://raw.githubusercontent.com/${USER}/${REPO}/${BR}/`;
 const GH=`https://github.com/${USER}/${REPO}/issues/new`;
 const REQ=GH+'?title='+encodeURIComponent('Mod isteği: ')+'&body='+encodeURIComponent('Mod adı:\nYapımcı:\nİndirme linki:\n');
-const SB={u:'',k:''};                       // Supabase URL ve anon key (ortak beğeni/sayaç için, boşsa kapalı)
-const GC={repo:'',rid:'',cat:'',cid:''};   // giscus ayarları (yorumlar için, boşsa kapalı)
+const SB={u:'',k:''};                       // Supabase URL ve anon key (ortak beğeni/sayaç, boşsa kapalı)
+const GC={repo:'',rid:'',cat:'',cid:''};   // giscus (yorumlar, boşsa kapalı)
+const DISCORD='';                           // Discord davet linkini yaz (boşsa buton gizli)
 const EXT=/\.(mcaddon|mcpack)$/i;
 // k: dosya adı anahtarı • u: uyumlu sürüm • x:1 → "Deneysel özellik gerekir" • nt: ek not
 const META=[
@@ -208,7 +228,7 @@ const META=[
 const FALLBACK=['BMC_Add-On_4-25.mcaddon','Durability Armor Viewer v2.1.mcaddon','Effortless Building v5.0.mcaddon','Better Trees by Daniye - v1.4.mcaddon','Item Physics [V2.9] Behavior.mcaddon','RealRagdoll-1.3.0.mcaddon','Rustic Furnture.mcaddon','System Dynamic Lights V3.3.mcaddon','Utilities_Vein_Miner_v5.5.mcaddon'];
 
 const $=s=>document.querySelector(s),G=$('#grid');
-let S={like:[],save:[],ver:{},ac:0},MODS=[],C={},P=[],cat='Hepsi',q='',so='def',pk=0,pitems=[];
+let S={like:[],save:[],ver:{},ac:0,xp:0,dl:0,zip:0,pkc:0,pal:0,thc:0,snd:1,last:0,seen:[],ach:[]},MODS=[],C={},P=[],cat='Hepsi',q='',so='def',pk=0,pitems=[];
 try{Object.assign(S,JSON.parse(localStorage.getItem('mcb')))}catch(e){}
 const persist=()=>{try{localStorage.setItem('mcb',JSON.stringify(S))}catch(e){}};
 const cats=['Hepsi','❤ Beğendiklerim','🔖 Kaydettiklerim'];
@@ -274,6 +294,7 @@ function stats(){
  $('#s1').textContent=MODS.length;$('#s2').textContent=MODS.reduce((a,m)=>a+m.vs.length,0);
  $('#s3').textContent=S.like.length;$('#s4').textContent=S.save.length;
  document.querySelectorAll('.chip').forEach(c=>{const k=c.dataset.c;if(k===cats[1])c.textContent=k+' '+S.like.length;if(k===cats[2])c.textContent=k+' '+S.save.length});
+ if(MODS.length)chk();
 }
 function render(na){
  G.classList.toggle('na',!!na);
@@ -286,9 +307,8 @@ function render(na){
  G.innerHTML=l.length?l.map(card).join(''):`<div class="none">${cat===cats[1]?'Henüz beğendiğin mod yok 🤍':cat===cats[2]?'Kaydettiğin mod yok 📑':`Mod bulunamadı 😢<br><a href="${REQ}" target="_blank" rel="noopener">İstediğin modu iste →</a>`}</div>`;
  stats();
 }
-const go=c=>{cat=c;q='';$('#q').value='';render();$('#modlar').scrollIntoView()};
-
-// İndirme + ZIP
+const go=c=>{cat=c;q='';$('#q').value='';render();$('#mh').scrollIntoView()};
+  // İndirme + ZIP
 async function get(v,cb){const e=encodeURIComponent(v[1]);
  for(const u of ['./'+e,RAW+e]){try{const r=await fetch(u);
   if(!r.ok||(r.headers.get('content-type')||'').includes('text/html'))continue;
@@ -301,7 +321,8 @@ async function dl(m,v,b){const o=b.innerHTML;b.classList.add('busy');b.style.set
  const bl=await get(v,p=>b.style.setProperty('--p',p*100+'%'));
  b.classList.remove('busy');b.innerHTML=o;
  if(!bl)return toast('❌ Dosya bulunamadı: '+v[1]);
- saveAs(bl,v[1]);bump(m.id,'downloads',1);toast('✅ '+m.n+' '+v[0]+' indirildi, dosyaya dokunarak aç')}
+ saveAs(bl,v[1]);bump(m.id,'downloads',1);S.dl++;gain(10);chk();
+ toast('✅ '+m.n+' '+v[0]+' indirildi, dosyaya dokunarak aç')}
 const crcT=(()=>{let t=[],c;for(let n=0;n<256;n++){c=n;for(let k=0;k<8;k++)c=c&1?3988292384^(c>>>1):c>>>1;t[n]=c}return t})();
 const crc=u=>{let c=-1;for(let i=0;i<u.length;i++)c=crcT[(c^u[i])&255]^(c>>>8);return(c^-1)>>>0};
 function zip(fs){const A=[],B=[],en=new TextEncoder();let o=0;
@@ -317,11 +338,11 @@ async function zipAll(){const b=$('#zb'),fs=[];b.classList.add('busy');
   const bl=await get(v);if(bl){fs.push({n:v[1],d:new Uint8Array(await bl.arrayBuffer())});bump(m.id,'downloads',1)}}
  b.classList.remove('busy');b.textContent='⬇ ZIP indir';
  if(!fs.length)return toast('❌ Dosyalar bulunamadı');
- saveAs(zip(fs),'Mcbehub-koleksiyon.zip');toast('✅ '+fs.length+' mod zip olarak indirildi')}
+ saveAs(zip(fs),'Mcbehub-koleksiyon.zip');S.zip++;S.dl+=fs.length;gain(10*fs.length);chk();
+ toast('✅ '+fs.length+' mod zip olarak indirildi')}
 function dock(){const d=$('#dock');d.classList.toggle('show',P.length>0);if(P.length)d.innerHTML=`🧺 <b>${P.length}</b> mod seçildi <button class="btn sm" id="zb">⬇ ZIP indir</button><button class="b2" id="zc">✕</button>`}
-$('#dock').onclick=e=>{
- if(e.target.id==='zc'){P=[];document.querySelectorAll('[data-act=pick]').forEach(b=>{b.classList.remove('on');b.querySelector('u').textContent='➕'});dock()}
- if(e.target.id==='zb')zipAll()};
+function setPick(ids){P=ids;document.querySelectorAll('[data-act=pick]').forEach(b=>{const w=b.closest('[data-id]'),on=P.includes(w&&w.dataset.id);b.classList.toggle('on',on);b.querySelector('u').textContent=IC.pick[+on]});dock()}
+$('#dock').onclick=e=>{if(e.target.id==='zc')setPick([]);if(e.target.id==='zb')zipAll()};
 
 // Beğen / kaydet / koleksiyon
 function tog(k,id){const a=k==='pick'?P:S[k],x=a.indexOf(id),on=x<0;on?a.push(id):a.splice(x,1);
@@ -339,6 +360,7 @@ function act(k,m,b){if(k==='share')return share(m);const on=tog(k,m.id);toast(MS
 
 // Detay penceresi
 function openM(id){const m=M(id);if(!m)return;const v=cur(m);
+ if(!S.seen.includes(id)){S.seen.push(id);gain(2);chk()}
  $('#md').innerHTML=`<button class="x" data-x>✕</button>
 <div class="mh" style="background:linear-gradient(135deg,${m.g[0]}88,${m.g[1]}33)"><span>${m.e}</span></div>
 <div class="mb" data-id="${m.id}"><h2>${m.n}</h2><div class="by">${m.by?'by '+m.by:''}</div>
@@ -355,6 +377,7 @@ function close_(){$('#ov').classList.remove('show');$('#md').innerHTML='';docume
 $('#ov').onclick=e=>{if(e.target.id==='ov')close_()};
 $('#md').onclick=e=>{
  if(e.target.closest('[data-x]'))return close_();
+ if(e.target.closest('[data-snd]')){S.snd=+!S.snd;persist();return openA()}
  const mb=$('#md .mb'),m=mb&&M(mb.dataset.id);if(!m)return;
  const a=e.target.closest('[data-act]');if(a)return act(a.dataset.act,m,a);
  const d=e.target.closest('.dlv');if(d)dl(m,m.vs[+d.dataset.k],d)};
@@ -375,6 +398,59 @@ $('#chips').onclick=e=>{const c=e.target.closest('.chip');if(c){cat=c.dataset.c;
 $('#sort').onchange=e=>{so=e.target.value;render()};
 $('#q').oninput=e=>{q=e.target.value.toLowerCase();render()};
 
+// XP, seviye, başarımlar, ses
+const LV=x=>Math.floor(Math.sqrt(x/20))+1;
+const ACH=[
+ {id:'dl1',e:'⬇️',n:'İlk İndirme',d:'İlk modunu indir',f:()=>S.dl>=1},
+ {id:'dl5',e:'📦',n:'Koleksiyoncu',d:'Toplam 5 mod indir',f:()=>S.dl>=5},
+ {id:'lk3',e:'❤️',n:'Hayran',d:'3 mod beğen',f:()=>S.like.length>=3},
+ {id:'sv3',e:'🔖',n:'Kitapçı',d:'3 mod kaydet',f:()=>S.save.length>=3},
+ {id:'zip',e:'🧺',n:'Paketçi',d:'ZIP koleksiyon indir',f:()=>S.zip>=1},
+ {id:'pk',e:'🎁',n:'Paket Avcısı',d:'Hazır paket seç',f:()=>S.pkc>=1},
+ {id:'vw5',e:'🔍',n:'Meraklı',d:'5 farklı modu incele',f:()=>S.seen.length>=5},
+ {id:'pal',e:'⌨️',n:'Güçlü Kullanıcı',d:'Komut paletini aç',f:()=>S.pal>=1},
+ {id:'th',e:'🎨',n:'Stilist',d:'Tema rengini değiştir',f:()=>S.thc>=1}
+];
+let AC;
+function snd(t){if(!S.snd)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();
+ const o=AC.createOscillator(),g=AC.createGain(),T={xp:[880,1320,.08],lv:[523,1046,.35],ach:[660,990,.3],tap:[400,300,.04]}[t]||[500,500,.05],n=AC.currentTime;
+ o.type=t==='tap'?'square':'sine';o.frequency.setValueAtTime(T[0],n);o.frequency.exponentialRampToValueAtTime(T[1],n+T[2]);
+ g.gain.setValueAtTime(.05,n);g.gain.exponentialRampToValueAtTime(.001,n+T[2]+.05);o.connect(g);g.connect(AC.destination);o.start();o.stop(n+T[2]+.06)}catch(e){}}
+function xpUI(){const x=S.xp,l=LV(x),a=20*(l-1)**2,b=20*l*l;$('#lv').textContent='Sv '+l;$('#xpi').style.setProperty('--w',(x-a)/(b-a)*100+'%')}
+function gain(n){const o=LV(S.xp);S.xp+=n;persist();xpUI();if(LV(S.xp)>o){snd('lv');toast('⬆️ Seviye atladın! Sv '+LV(S.xp))}else snd('xp')}
+function chk(){ACH.forEach(a=>{if(!S.ach.includes(a.id)&&a.f()){S.ach.push(a.id);persist();gain(25);
+ const h=$('#ach');h.innerHTML=`<em>${a.e}</em><div><b>Başarım kilidi açıldı!</b>${a.n}</div>`;h.classList.add('show');snd('ach');
+ clearTimeout(chk.t);chk.t=setTimeout(()=>h.classList.remove('show'),3600)}})}
+function openA(){const x=S.xp,l=LV(x);
+ $('#md').innerHTML=`<button class="x" data-x>✕</button><div class="mb"><h2 class="px" style="font-size:1rem;padding-right:40px">Seviye ${l}</h2><div class="by">${x} XP • sonraki seviye ${20*l*l} XP</div>
+function openA(){const x=S.xp,l=LV(x);
+ $('#md').innerHTML=`<button class="x" data-x>✕</button><div class="mb"><h2 class="px" style="font-size:1rem;padding-right:40px">Seviye ${l}</h2><div class="by">${x} XP • sonraki seviye ${20*l*l} XP</div>
+<h4>Başarımlar (${S.ach.length}/${ACH.length})</h4><div class="vl">${ACH.map(a=>{const u=S.ach.includes(a.id);return `<div style="opacity:${u?1:.45}"><b style="min-width:34px;font-size:1.4rem">${u?a.e:'🔒'}</b><span><b style="color:#fff;min-width:0">${a.n}</b><br>${a.d}</span></div>`}).join('')}</div>
+<div class="act"><button class="b2" data-snd>${S.snd?'🔊 Ses: Açık':'🔇 Ses: Kapalı'}</button></div></div>`;
+ $('#ov').classList.add('show');document.body.style.overflow='hidden'}
+$('#xp').onclick=openA;
+
+// Günün modu, hazır paketler, kurulum rehberi
+const PACKS=[
+ {n:'Fizik Paketi',e:'🌀',d:'Gerçekçi fizik',ids:['ip','rr']},
+ {n:'Güzellik Paketi',e:'✨',d:'Daha güzel dünya',ids:['trees','sdl']},
+ {n:'Mühendis Paketi',e:'🛠️',d:'Hızlı inşa ve madencilik',ids:['eb','vm','dav']},
+ {n:'Köy Paketi',e:'🏡',d:'Dekor, ışık ve ağaç',ids:['rf','sdl','trees']}
+];
+function packs(){const l=PACKS.map((k,i)=>({k,i})).filter(x=>x.k.ids.filter(M).length>1);
+ $('#packs').innerHTML=l.map(x=>`<div class="pk" data-p="${x.i}"><span>${x.k.e}</span><div><b>${x.k.n}</b><small>${x.k.d} • ${x.k.ids.filter(M).length} mod</small></div></div>`).join('')}
+$('#packs').onclick=e=>{const p=e.target.closest('.pk');if(!p)return;const k=PACKS[+p.dataset.p],ids=k.ids.filter(M);
+ setPick(ids);S.pkc++;gain(5);chk();toast(`${k.e} ${k.n}: ${ids.length} mod koleksiyona eklendi`)};
+function daily(){const d=new Date(),m=MODS[(d.getFullYear()*400+d.getMonth()*31+d.getDate())%MODS.length];if(!m)return;
+ $('#dm').innerHTML=`<div class="dmi" data-id="${m.id}"><span style="font-size:2.2rem">${m.e}</span><div style="flex:1"><small class="px">GÜNÜN MODU</small><div style="margin-top:6px"><b>${m.n}</b> <span style="color:var(--mut);font-size:.85rem">${m.d}</span></div></div><button class="btn sm">İncele</button></div>`}
+$('#dm').onclick=e=>{const d=e.target.closest('.dmi');if(d)openM(d.dataset.id)};
+const GUIDE={'📱 Android':'1. Modu indir.<br>2. Bildirimden veya Dosyalar uygulamasından <b>.mcaddon</b> dosyasına dokun.<br>3. <b>Minecraft ile aç</b>\'ı seç, içe aktarma bitince oyunu aç.',
+ '🍎 iPhone / iPad':'1. Safari ile indir (dosya Dosyalar uygulamasına düşer).<br>2. Dosyalar\'da .mcaddon dosyasına uzun bas → <b>Paylaş → Minecraft</b>.<br>3. İçe aktarma bitince dünyanda etkinleştir.',
+ '🖥️ Windows':'1. Modu indir.<br>2. .mcaddon dosyasına <b>çift tıkla</b>, Minecraft kendiliğinden açılıp kurar.<br>3. Dünya ayarları → <b>Eklentiler</b>\'den etkinleştir.'};
+let gk='📱 Android';
+function guide(){$('#gt').innerHTML=Object.keys(GUIDE).map(k=>`<button class="chip${k===gk?' on':''}">${k}</button>`).join('');$('#gd').innerHTML=GUIDE[gk]}
+$('#gt').onclick=e=>{const c=e.target.closest('.chip');if(c){gk=c.textContent;guide()}};
+
 // Komut paleti (Ctrl/⌘+K)
 const rnd=()=>{if(!MODS.length)return;cat='Hepsi';q='';$('#q').value='';render();
  const m=MODS[Math.random()*MODS.length|0],c=$('#c-'+m.id);c.scrollIntoView({behavior:'smooth',block:'center'});c.classList.add('flash');setTimeout(()=>c.classList.remove('flash'),2200)};
@@ -382,12 +458,15 @@ let ip;addEventListener('beforeinstallprompt',e=>{e.preventDefault();ip=e;$('#in
 const install=()=>ip?ip.prompt():toast('📲 Tarayıcı menüsünden "Ana ekrana ekle"yi seç');
 function pal(t=''){t=t.toLowerCase();
  pitems=[...MODS.map(m=>({t:m.e+' '+m.n,s:m.c,f:()=>openM(m.id)})),
-  {t:'🎲 Rastgele mod',f:rnd},{t:'❤ Beğendiklerim',f:()=>go(cats[1])},{t:'🔖 Kaydettiklerim',f:()=>go(cats[2])},
-  {t:'🎨 Tema rengini değiştir',f:()=>theme((S.ac+1)%TH.length)},{t:'📝 Mod iste',f:()=>window.open(REQ)},{t:'📲 Uygulamayı yükle',f:install}
+  {t:'🎲 Rastgele mod',f:rnd},{t:'🏆 Başarımlarım',f:openA},{t:'❤ Beğendiklerim',f:()=>go(cats[1])},{t:'🔖 Kaydettiklerim',f:()=>go(cats[2])},
+  {t:'🎨 Tema rengini değiştir',f:()=>theme((S.ac+1)%TH.length,1)},
+  {t:'🔊 Sesi aç / kapat',f:()=>{S.snd=+!S.snd;persist();toast(S.snd?'🔊 Ses açık':'🔇 Ses kapalı')}},
+  {t:'📝 Mod iste',f:()=>window.open(REQ)},{t:'📲 Uygulamayı yükle',f:install}
  ].filter(x=>x.t.toLowerCase().includes(t));pk=0;prn()}
 const prn=()=>{$('#pl').innerHTML=pitems.map((x,i)=>`<div class="pi${i===pk?' on':''}" data-i="${i}">${x.t}<small>${x.s||''}</small></div>`).join('')||'<div class="pi">Sonuç yok</div>'};
 const runP=i=>{const x=pitems[i];if(x){$('#pv').classList.remove('show');x.f()}};
-function togPal(){const p=$('#pv');p.classList.toggle('show');if(p.classList.contains('show')){$('#pi').value='';pal();$('#pi').focus()}}
+function togPal(){const p=$('#pv');p.classList.toggle('show');
+ if(p.classList.contains('show')){$('#pi').value='';pal();$('#pi').focus();if(!S.pal){S.pal=1;persist();chk()}}}
 $('#kb').onclick=togPal;$('#rnd').onclick=rnd;$('#ins').onclick=install;
 $('#pi').oninput=e=>pal(e.target.value);
 $('#pl').onclick=e=>{const p=e.target.closest('.pi[data-i]');if(p)runP(+p.dataset.i)};
@@ -400,25 +479,30 @@ addEventListener('keydown',e=>{
   if(e.key==='ArrowUp'){pk=(pk-1+pitems.length)%(pitems.length||1);prn();e.preventDefault()}
   if(e.key==='Enter')runP(pk);return}
  if(e.key==='/'&&document.activeElement.tagName!=='INPUT'){e.preventDefault();$('#q').focus()}});
+addEventListener('click',e=>{if(e.target.closest('button,.chip,.card,.pk,.dmi'))snd('tap')});
 
 // Tema, toast, efektler
 function toast(t){const e=$('#toast');e.classList.remove('show');void e.offsetWidth;e.textContent=t;e.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('show'),2600)}
 const TH=[['#ff4757','255,71,87'],['#3b82f6','59,130,246'],['#10b981','16,185,129'],['#a855f7','168,85,247']];
 $('#dots').innerHTML=TH.map((t,i)=>`<span class="dot" data-i="${i}" style="background:${t[0]}"></span>`).join('');
-function theme(i){S.ac=i;const r=document.documentElement.style;r.setProperty('--a',TH[i][0]);r.setProperty('--rgb',TH[i][1]);persist();
- document.querySelectorAll('.dot').forEach((d,k)=>d.classList.toggle('on',k===i))}
-$('#dots').onclick=e=>{if(e.target.dataset.i)theme(+e.target.dataset.i)};
+function theme(i,u){S.ac=i;const r=document.documentElement.style;r.setProperty('--a',TH[i][0]);r.setProperty('--rgb',TH[i][1]);persist();
+ document.querySelectorAll('.dot').forEach((d,k)=>d.classList.toggle('on',k===i));if(u){S.thc++;persist();chk()}}
+$('#dots').onclick=e=>{if(e.target.dataset.i)theme(+e.target.dataset.i,1)};
 addEventListener('scroll',()=>{$('#bar').style.width=scrollY/(document.body.scrollHeight-innerHeight)*100+'%'});
 addEventListener('pointermove',e=>{$('#cg').style.transform=`translate(${e.clientX-250}px,${e.clientY-250}px)`});
 const W=['Bedrock','Fizik','Görsel','Dekor','Araç'];let wi=0;
 setInterval(()=>{const w=$('#w');w.style.opacity=0;setTimeout(()=>{w.textContent=W[++wi%W.length];w.style.opacity=1},300)},2300);
 $('#rq').href=$('#rq2').href=REQ;
+if(DISCORD){$('#dc').href=DISCORD;$('#dc').style.display=''}
 if(SB.u)$('#sort').insertAdjacentHTML('beforeend','<option value="pop">En çok indirilen</option>');
 if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 
 // Başlat
-theme(S.ac);G.innerHTML='<div class="card sk"></div>'.repeat(6);
-Promise.all([load(),loadC()]).then(([m])=>{MODS=m;render();dates();if(location.hash.length>1)openM(decodeURIComponent(location.hash.slice(1)))});
+theme(S.ac);xpUI();guide();G.innerHTML='<div class="card sk"></div>'.repeat(6);
+Promise.all([load(),loadC()]).then(([m])=>{MODS=m;render();packs();daily();
+ dates().then(()=>{const n=MODS.filter(m=>new Date(m.vs[0][3]||0)>S.last).length;
+  if(S.last&&n)toast('🆕 Son ziyaretinden beri '+n+' yeni/güncel mod var!');S.last=Date.now();persist()});
+ if(location.hash.length>1)openM(decodeURIComponent(location.hash.slice(1)))});
 </script>
 </body>
 </html>
