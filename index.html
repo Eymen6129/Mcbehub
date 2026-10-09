@@ -1,387 +1,117 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BedrockCraft | Minecraft Bedrock</title>
-
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background: #101810;
-    color: white;
-}
-
-header {
-    background: #18251a;
-    padding: 18px 8%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    border-bottom: 2px solid #4caf50;
-}
-
-.logo {
-    font-size: 25px;
-    font-weight: bold;
-    color: #70ff70;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    margin: 8px;
-    font-weight: bold;
-}
-
-nav a:hover {
-    color: #70ff70;
-}
-
-.hero {
-    min-height: 450px;
-    padding: 80px 20px;
-    text-align: center;
-    background:
-      linear-gradient(#071107b8, #071107e8),
-      repeating-linear-gradient(
-        45deg,
-        #234c27 0px,
-        #234c27 35px,
-        #326c34 35px,
-        #326c34 70px
-      );
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.hero h1 {
-    font-size: clamp(35px, 7vw, 65px);
-    margin-bottom: 20px;
-    text-shadow: 4px 4px #172517;
-}
-
-.hero h1 span {
-    color: #72ff72;
-}
-
-.hero p {
-    max-width: 600px;
-    line-height: 1.7;
-    color: #e0e9e0;
-    margin-bottom: 25px;
-}
-
-.btn {
-    display: inline-block;
-    padding: 14px 23px;
-    background: #4caf50;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.2s;
-    margin: 5px;
-}
-
-.btn:hover {
-    background: #67d96b;
-    color: #102010;
-    transform: translateY(-3px);
-}
-
-.btn-dark {
-    background: #29392b;
-    border: 1px solid #4caf50;
-}
-
-section {
-    padding: 55px 8%;
-}
-
-.section-title {
-    text-align: center;
-    color: #78f578;
-    font-size: 32px;
-    margin-bottom: 12px;
-}
-
-.section-desc {
-    text-align: center;
-    color: #b7c7b7;
-    margin-bottom: 35px;
-}
-
-.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 22px;
-}
-
-.card {
-    background: #1b291d;
-    padding: 25px;
-    border: 1px solid #344a36;
-    border-radius: 10px;
-    transition: 0.2s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    border-color: #70ff70;
-}
-
-.card .emoji {
-    font-size: 45px;
-    margin-bottom: 15px;
-}
-
-.card h3 {
-    margin-bottom: 12px;
-    color: #85ff85;
-}
-
-.card p {
-    color: #c3d0c3;
-    line-height: 1.6;
-    margin-bottom: 18px;
-}
-
-.tag {
-    display: inline-block;
-    background: #304c32;
-    color: #a6ffa6;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 12px;
-    margin-bottom: 12px;
-}
-
-.servers {
-    background: #172219;
-}
-
-.server-ip {
-    background: #0d150e;
-    padding: 10px;
-    border-radius: 5px;
-    color: #9cff9c;
-    overflow-wrap: anywhere;
-    margin: 12px 0;
-}
-
-.about {
-    text-align: center;
-    max-width: 750px;
-    margin: auto;
-    line-height: 1.8;
-    color: #cfdbcf;
-}
-
-footer {
-    background: #080d09;
-    text-align: center;
-    padding: 25px 15px;
-    color: #9aaa9a;
-    line-height: 1.8;
-}
-
-footer span {
-    color: #72ff72;
-}
-
-@media (max-width: 600px) {
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bedrock Minecraft Sitesi</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #222;
+      color: #eee;
+      margin: 0;
+      padding: 0;
+    }
     header {
-        justify-content: center;
-        text-align: center;
+      background: #2e7d32;
+      padding: 20px;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: #fff;
     }
-
     nav {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+      background: #1b5e20;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px 0;
     }
-
     nav a {
-        margin: 7px;
-        font-size: 14px;
+      color: #a5d6a7;
+      text-decoration: none;
+      font-weight: 600;
     }
-
+    nav a:hover {
+      color: #c8e6c9;
+    }
+    main {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
     section {
-        padding: 40px 6%;
+      margin-bottom: 30px;
     }
-}
-</style>
+    h2 {
+      border-bottom: 3px solid #2e7d32;
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+    }
+    .server-info {
+      background: #333;
+      padding: 15px;
+      border-radius: 8px;
+    }
+    footer {
+      background: #1b5e20;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9rem;
+      color: #a5d6a7;
+      margin-top: 50px;
+    }
+  </style>
 </head>
-
 <body>
+  <header>Bedrock Minecraft</header>
+  <nav>
+    <a href="#server">Sunucu</a>
+    <a href="#downloads">İndirmeler</a>
+    <a href="#rules">Kurallar</a>
+    <a href="#contact">İletişim</a>
+  </nav>
 
-<header>
-    <div class="logo">⛏ BedrockCraft</div>
+  <main>
+    <section id="server">
+      <h2>Sunucu Bilgileri</h2>
+      <div class="server-info">
+        <p><strong>Sunucu Adı:</strong> Bedrock Dünyası</p>
+        <p><strong>IP Adresi:</strong> bedrock.minecraft.net</p>
+        <p><strong>Sürüm:</strong> 1.20.x</p>
+        <p><strong>Oyuncu Sayısı:</strong> 100/200</p>
+        <p>Hadi katıl ve maceranı başlat!</p>
+      </div>
+    </section>
 
-    <nav>
-        <a href="#anasayfa">Ana Sayfa</a>
-        <a href="#modlar">Modlar</a>
-        <a href="#sunucular">Sunucular</a>
-        <a href="#hakkimizda">Hakkımızda</a>
-    </nav>
-</header>
+    <section id="downloads">
+      <h2>İndir</h2>
+      <p>Bedrock Minecraft için en son sürümü buradan indir:</p>
+      <ul>
+        <li><a href="https://www.minecraft.net/tr-tr/download" target="_blank" rel="noopener">Resmi Minecraft İndirme Sayfası</a></li>
+      </ul>
+    </section>
 
-<div class="hero" id="anasayfa">
-    <h1>MINECRAFT <span>BEDROCK</span></h1>
+    <section id="rules">
+      <h2>Sunucu Kuralları</h2>
+      <ul>
+        <li>Taciz, hakaret ve küfür yasaktır.</li>
+        <li>Hile ve exploit kullanmak yasaktır.</li>
+        <li>Oyunculara saygılı olun.</li>
+        <li>Mantıklı oyun ve iş birliği teşvik edilir.</li>
+      </ul>
+    </section>
 
-    <p>
-        Minecraft Bedrock dünyasına hoş geldin!
-        Yeni maceraları keşfet, modlarını bul ve
-        arkadaşlarınla birlikte blok dünyasını fethet.
-    </p>
+    <section id="contact">
+      <h2>İletişim</h2>
+      <p>Herhangi bir sorunuz veya öneriniz için bize ulaşın:</p>
+      <p>Email: destek@bedrockminecraft.com</p>
+    </section>
+  </main>
 
-    <div>
-        <a href="#modlar" class="btn">Modları Keşfet</a>
-        <a href="#sunucular" class="btn btn-dark">Sunucular</a>
-    </div>
-</div>
-
-<section id="modlar">
-    <h2 class="section-title">🧱 Modlar & Kaynak Paketleri</h2>
-    <p class="section-desc">
-        Minecraft deneyimini yeni içeriklerle zenginleştir.
-    </p>
-
-    <div class="cards">
-
-        <div class="card">
-            <div class="emoji">🐉</div>
-            <span class="tag">MACERA</span>
-            <h3>Ejderha Dünyası</h3>
-            <p>
-                Fantastik yaratıklar ve yeni maceralar
-                için hazırlanmış mod fikri.
-            </p>
-            <a class="btn"
-               href="https://www.minecraft.net/en-us/marketplace"
-               target="_blank" rel="noopener noreferrer">
-               İçerikleri Keşfet
-            </a>
-        </div>
-
-        <div class="card">
-            <div class="emoji">⚔️</div>
-            <span class="tag">SAVAŞ</span>
-            <h3>Savaş Ekipmanları</h3>
-            <p>
-                Yeni ekipmanlar ve savaş temalı
-                içerikler keşfet.
-            </p>
-            <a class="btn"
-               href="https://www.minecraft.net/en-us/marketplace"
-               target="_blank" rel="noopener noreferrer">
-               İçerikleri Keşfet
-            </a>
-        </div>
-
-        <div class="card">
-            <div class="emoji">🌌</div>
-            <span class="tag">GÖRSEL</span>
-            <h3>Görsel Paketler</h3>
-            <p>
-                Dünyanın görünümünü değiştiren
-                doku ve kaynak paketlerini incele.
-            </p>
-            <a class="btn"
-               href="https://www.minecraft.net/en-us/marketplace"
-               target="_blank" rel="noopener noreferrer">
-               Paketleri Keşfet
-            </a>
-        </div>
-
-    </div>
-</section>
-
-<section class="servers" id="sunucular">
-    <h2 class="section-title">🌐 Bedrock Sunucuları</h2>
-    <p class="section-desc">
-        Kendi sunucu bilgilerini buraya ekleyebilirsin.
-    </p>
-
-    <div class="cards">
-
-        <div class="card">
-            <div class="emoji">🏝️</div>
-            <h3>Survival Sunucusu</h3>
-            <p>Hayatta kal, evini kur ve arkadaşlarınla oyna.</p>
-            <div class="server-ip">IP: kendi-sunucun.com</div>
-            <p>Port: 19132</p>
-            <button class="btn"
-                onclick="copyIP('kendi-sunucun.com')">
-                IP'yi Kopyala
-            </button>
-        </div>
-
-        <div class="card">
-            <div class="emoji">🛏️</div>
-            <h3>BedWars Sunucusu</h3>
-            <p>Takımını kur, yatağını koru ve mücadele et.</p>
-            <div class="server-ip">IP: sunucu-ip-adresi</div>
-            <p>Port: 19132</p>
-            <button class="btn"
-                onclick="copyIP('sunucu-ip-adresi')">
-                IP'yi Kopyala
-            </button>
-        </div>
-
-    </div>
-</section>
-
-<section id="hakkimizda">
-    <h2 class="section-title">💚 Hakkımızda</h2>
-    <div class="about">
-        <p>
-            BedrockCraft, Minecraft Bedrock oyuncuları için
-            hazırlanmış bir topluluk sitesi tasarımıdır.
-            Modlarını keşfet, sunucu bilgilerini paylaş
-            ve kendi Minecraft topluluğunu oluştur!
-        </p>
-
-        <br>
-
-        <a class="btn"
-           href="https://www.minecraft.net/"
-           target="_blank" rel="noopener noreferrer">
-           Minecraft Resmî Sitesi
-        </a>
-    </div>
-</section>
-
-<footer>
-    <p>⛏ <span>BedrockCraft</span> © 2026</p>
-    <p>Topluluk tarafından hazırlanan bağımsız bir fan sitesi.</p>
-    <p>Minecraft, Mojang ve Microsoft'un ticari markasıdır.</p>
-</footer>
-
-<script>
-async function copyIP(ip) {
-    try {
-        await navigator.clipboard.writeText(ip);
-        alert("Sunucu adresi kopyalandı: " + ip);
-    } catch (error) {
-        prompt("Sunucu adresini kopyala:", ip);
-    }
-}
-</script>
-
+  <footer>
+    © 2026 Bedrock Minecraft Sitesi - Tüm Hakları Saklıdır
+  </footer>
 </body>
 </html>
