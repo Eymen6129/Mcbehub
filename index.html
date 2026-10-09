@@ -2,507 +2,624 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Mcbehub | Bedrock Mod Merkezi</title>
-<meta name="description" content="Minecraft Bedrock için en iyi modlar. Beğen, kaydet, sürümünü seç, tek tıkla indir.">
-<meta property="og:title" content="Mcbehub | Bedrock Mod Merkezi">
-<meta property="og:description" content="Minecraft Bedrock modları tek yerde. Hemen indir!">
-<meta property="og:type" content="website">
-<meta name="theme-color" content="#0a0b10">
-<link rel="manifest" href="manifest.json">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⛏️%3C/text%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⛏️ Minecraft Bedrock Türkiye</title>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a0b10;--card:rgba(20,22,36,.82);--line:rgba(255,255,255,.08);--a:#ff4757;--rgb:255,71,87;--b:color-mix(in srgb,var(--a),#fff 30%);--glow:rgba(var(--rgb),.4);--mut:#9aa0b4}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:#fff;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden;min-height:100vh}
-button,select,input{font-family:inherit}
-u{text-decoration:none}
-.px{font-family:'Press Start 2P',monospace;line-height:1.5}
-#bar{position:fixed;top:0;left:0;height:3px;width:0;z-index:99;background:linear-gradient(90deg,var(--a),var(--b));box-shadow:0 0 12px var(--a)}
-.bg{position:fixed;inset:0;z-index:-1;overflow:hidden}
-.bg i{position:absolute;width:45vw;height:45vw;border-radius:50%;filter:blur(90px);opacity:.28;animation:dr 18s ease-in-out infinite alternate}
-.bg i:nth-child(1){background:var(--a);top:-15%;left:-10%}
-.bg i:nth-child(2){background:#6c5ce7;top:20%;right:-15%;animation-delay:-6s}
-.bg i:nth-child(3){background:var(--b);bottom:-25%;left:30%;animation-delay:-12s}
-@keyframes dr{to{transform:translate(8vw,6vh) scale(1.2)}}
-#cg{position:fixed;left:0;top:0;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(var(--rgb),.13),transparent 65%);pointer-events:none;z-index:-1;transition:transform .15s ease-out}
-nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 5%;backdrop-filter:blur(14px);background:rgba(10,11,16,.65);border-bottom:1px solid var(--line)}
-.logo{font-weight:800;display:flex;gap:10px;align-items:center}
-.logo .px{font-size:.7rem}
-.logo b{width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,var(--a),var(--b));display:grid;place-items:center;box-shadow:0 0 20px var(--glow)}
-.nr{display:flex;align-items:center;gap:6px}
-nav a{color:var(--mut);text-decoration:none;margin-right:12px;font-weight:600;font-size:.9rem;transition:.2s}
-nav a:hover{color:#fff}
-.dot{width:18px;height:18px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:.2s}
-.dot.on{border-color:#fff;transform:scale(1.2)}
-.nb{background:var(--card);border:1px solid var(--line);color:#fff;border-radius:10px;padding:7px 11px;cursor:pointer;font-size:.9rem;transition:.2s}
-.nb:hover{border-color:var(--a)}
-.xp{display:flex;align-items:center;gap:8px;cursor:pointer;margin:0 4px}
-.xp small{font-size:.55rem;color:#b6ff6b}
-.xpb{width:64px;height:8px;border-radius:4px;background:rgba(255,255,255,.12);overflow:hidden}
-.xpb i{display:block;height:100%;width:var(--w,0%);background:linear-gradient(90deg,#5dff3a,#d4ff3a);transition:width .6s}
-.hero{text-align:center;padding:80px 5% 40px;max-width:900px;margin:auto}
-.pill{display:inline-block;padding:6px 14px;border:1px solid var(--line);border-radius:99px;background:rgba(255,255,255,.04);color:var(--mut);font-size:.82rem;margin-bottom:22px}
-.pill em{color:var(--a);font-style:normal}
-h1{font-size:clamp(2.2rem,6vw,4.2rem);line-height:1.08;font-weight:900;letter-spacing:-1.5px}
-.grad{display:inline-block;transition:opacity .3s;background:linear-gradient(90deg,var(--a),var(--b),#a78bfa,var(--a));background-size:300%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 6s linear infinite}
-@keyframes sh{to{background-position:300%}}
-.hero p{color:var(--mut);margin:20px auto 28px;max-width:560px;line-height:1.6}
-.search{display:flex;align-items:center;gap:10px;max-width:520px;margin:auto;padding:6px 14px;border-radius:16px;background:var(--card);border:1px solid var(--line);transition:.25s}
-.search:focus-within{border-color:var(--a);box-shadow:0 0 0 4px var(--glow)}
-.search input{flex:1;min-width:0;background:none;border:0;outline:0;color:#fff;font-size:1rem;padding:13px 0}
-.search kbd{border:1px solid var(--line);border-radius:6px;padding:2px 8px;color:var(--mut);font-size:.8rem}
-.stats{display:flex;justify-content:center;gap:clamp(16px,5vw,56px);margin-top:40px}
-.stats b{display:block;font-size:1.9rem;font-weight:800}
-.stats span{color:var(--mut);font-size:.78rem}
-main{max-width:1180px;margin:auto;padding:30px 5% 90px}
-h2{text-align:center;font-size:1.8rem;margin-bottom:22px}
-h2.px{font-size:1.05rem;margin-bottom:24px}
-.dm{margin-bottom:34px}
-.dmi{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:18px;border:1px solid var(--a);background:linear-gradient(120deg,rgba(var(--rgb),.2),var(--card));cursor:pointer;box-shadow:0 0 30px var(--glow);transition:.2s}
-.dmi:hover{transform:translateY(-2px)}
-.dmi small{font-size:.55rem;color:var(--a)}
-.packs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:38px}
-.pk{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:16px;background:var(--card);border:1px solid var(--line);cursor:pointer;transition:.2s}
-.pk:hover{border-color:var(--a);transform:translateY(-3px);box-shadow:0 10px 30px var(--glow)}
-.pk span{font-size:1.8rem}
-.pk small{display:block;color:var(--mut);font-size:.75rem;margin-top:3px}
-.tb{display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap;margin-bottom:28px}
-.chips{display:flex;gap:8px;flex-wrap:wrap}
-.chip{padding:8px 16px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--mut);cursor:pointer;font-weight:600;font-size:.85rem;transition:.2s}
-.chip:hover{color:#fff}
-.chip.on{background:linear-gradient(135deg,var(--a),var(--b));color:#fff;border-color:transparent;box-shadow:0 6px 20px var(--glow)}
-select{background:var(--card);color:#fff;border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:.88rem;outline:0;cursor:pointer;font-weight:600}
-select:focus{border-color:var(--a)}
-option{background:#14162a}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px}
-.card{position:relative;border-radius:20px;background:var(--card);border:1px solid var(--line);overflow:hidden;cursor:pointer;backdrop-filter:blur(10px);transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--ty,0px));animation:in .5s backwards;animation-delay:calc(var(--i)*60ms);transition:transform .15s,border-color .3s,box-shadow .3s}
-.na .card{animation:none}
-@keyframes in{from{opacity:0;transform:translateY(24px)}}
-.card:hover{--ty:-6px;border-color:rgba(var(--rgb),.55);box-shadow:0 20px 50px rgba(0,0,0,.5),0 0 40px var(--glow)}
-.card::before{content:"";position:absolute;inset:0;z-index:3;background:radial-gradient(300px circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,.09),transparent 60%);opacity:0;transition:.3s;pointer-events:none}
-.card:hover::before{opacity:1}
-.sk{height:350px;cursor:default;background:linear-gradient(100deg,var(--card) 30%,rgba(255,255,255,.07) 50%,var(--card) 70%);background-size:300%;animation:sk 1.3s infinite}
-@keyframes sk{to{background-position:-300%}}
-.flash{animation:f2 1s 2}
-@keyframes f2{50%{box-shadow:0 0 0 3px var(--a),0 0 60px var(--glow)}}
-.ban{height:130px;display:grid;place-items:center;font-size:3.6rem;position:relative}
-.ban::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,#14162a)}
-.ban>span,.mh span{z-index:1;filter:drop-shadow(0 8px 16px rgba(0,0,0,.5));animation:fl 3.5s ease-in-out infinite}
-@keyframes fl{50%{transform:translateY(-8px) rotate(4deg)}}
-.new{position:absolute;top:12px;left:12px;z-index:2;font-style:normal;font-size:.68rem;font-weight:800;padding:4px 9px;border-radius:8px;background:var(--a);box-shadow:0 0 14px var(--glow)}
-.ic{position:absolute;top:10px;right:10px;z-index:4;display:flex;gap:6px}
-.ic button{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:rgba(0,0,0,.45);backdrop-filter:blur(6px);cursor:pointer;font-size:1rem;transition:.2s}
-.ic button:hover{transform:scale(1.15)}
-.ic button.on{background:rgba(var(--rgb),.25);border-color:var(--a);animation:pop .35s}
-@keyframes pop{50%{transform:scale(1.35)}}
-.ht{position:fixed;z-index:90;pointer-events:none;animation:ht .9s ease-out forwards}
-@keyframes ht{to{transform:translate(var(--x),-90px) scale(.4);opacity:0}}
-.body{padding:4px 20px 20px}
-.body h3{font-size:1.12rem}
-.by{color:var(--mut);font-size:.8rem;margin-top:3px;min-height:1em}
-.body p{color:#c3c7d6;font-size:.88rem;line-height:1.55;margin:10px 0;min-height:54px}
-.tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
-.tags i{font-style:normal;font-size:.72rem;padding:4px 10px;border-radius:8px;background:rgba(255,255,255,.06);color:var(--mut)}
-.tags .ok{color:#4ade80;background:rgba(74,222,128,.1)}
-.tags .wr{color:#fbbf24;background:rgba(251,191,36,.1)}
-.tags .sz{color:var(--b);background:rgba(var(--rgb),.12)}
-.row{display:flex;gap:10px}
-.row select{flex:0 0 36%}
-.btn{flex:1;border:0;cursor:pointer;color:#fff;font-weight:700;padding:11px;border-radius:12px;background:linear-gradient(135deg,var(--a),var(--b));box-shadow:0 8px 24px var(--glow);transition:.2s;font-size:.92rem}
-.btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px var(--glow)}
-.btn.sm{padding:8px 14px;flex:none}
-.btn.busy{pointer-events:none;background:linear-gradient(90deg,var(--a) var(--p,0%),rgba(255,255,255,.12) var(--p,0%))}
-.b2{display:inline-flex;gap:6px;align-items:center;padding:9px 14px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:#fff;font-weight:600;font-size:.85rem;cursor:pointer;text-decoration:none;transition:.2s}
-.b2:hover,.b2.on{border-color:var(--a);background:rgba(var(--rgb),.15)}
-.none{grid-column:1/-1;text-align:center;color:var(--mut);padding:50px;font-size:1.1rem}
-.none a{color:var(--a)}
-.ov{position:fixed;inset:0;z-index:70;background:rgba(5,6,12,.72);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:14px}
-.ov.show{display:flex;animation:fd .2s}
-@keyframes fd{from{opacity:0}}
-.md{position:relative;width:min(640px,100%);max-height:92vh;overflow:auto;border-radius:22px;background:#12142a;border:1px solid var(--line);box-shadow:0 30px 90px rgba(0,0,0,.6),0 0 60px var(--glow);animation:pp .3s}
-@keyframes pp{from{transform:scale(.92) translateY(20px);opacity:0}}
-.mh{height:150px;display:grid;place-items:center;font-size:4.5rem}
-.x{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:rgba(0,0,0,.5);color:#fff;cursor:pointer;z-index:2}
-.mb{padding:20px 22px 24px}
-.mb h2{text-align:left;margin:0;font-size:1.5rem}
-.ds{color:#c3c7d6;line-height:1.65;margin:4px 0 14px}
-.mb h4{margin:18px 0 8px;color:var(--mut);font-size:.75rem;letter-spacing:1px;text-transform:uppercase}
-.vl>div{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:12px;background:rgba(255,255,255,.04);margin-bottom:6px}
-.vl b{min-width:64px}
-.vl span{flex:1;color:var(--mut);font-size:.82rem}
-.mb ul{padding-left:18px;color:#c3c7d6;font-size:.88rem;line-height:1.8}
-.act{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
-.pal{width:min(560px,100%);align-self:flex-start;margin-top:12vh;border-radius:18px;background:#12142a;border:1px solid var(--line);box-shadow:0 30px 90px rgba(0,0,0,.6),0 0 50px var(--glow);overflow:hidden;animation:pp .25s}
-.pal input{width:100%;padding:18px;background:none;border:0;border-bottom:1px solid var(--line);outline:0;color:#fff;font-size:1.05rem}
-#pl{max-height:50vh;overflow:auto;padding:6px}
-.pi{display:flex;justify-content:space-between;padding:11px 14px;border-radius:10px;cursor:pointer}
-.pi small{color:var(--mut)}
-.pi.on,.pi:hover{background:rgba(var(--rgb),.18)}
-.dock{position:fixed;left:50%;bottom:20px;transform:translate(-50%,160px);z-index:40;display:flex;align-items:center;gap:12px;padding:10px 12px 10px 18px;border-radius:16px;background:#161827;border:1px solid var(--a);box-shadow:0 10px 40px var(--glow);transition:.4s;white-space:nowrap;max-width:94vw}
-.dock.show{transform:translate(-50%,0)}
-.how{max-width:1000px;margin:auto;padding:10px 5% 70px}
-.tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
-.gd{max-width:640px;margin:auto;padding:20px 22px;border-radius:18px;background:var(--card);border:1px solid var(--line);color:#c3c7d6;line-height:1.9;font-size:.92rem}
-footer{text-align:center;padding:30px;color:var(--mut);font-size:.85rem;border-top:1px solid var(--line)}
-footer a{color:var(--a);text-decoration:none;margin:0 4px}
-.toast{position:fixed;left:50%;top:76px;transform:translate(-50%,-180px);max-width:92vw;padding:14px 22px 16px;border-radius:14px;background:#161827;border:1px solid var(--a);box-shadow:0 10px 40px var(--glow);transition:.4s;z-index:95;font-weight:600;overflow:hidden}
-.toast.show{transform:translate(-50%,0)}
-.toast::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--a);transform-origin:left}
-.toast.show::after{animation:tb 2.6s linear}
-@keyframes tb{from{transform:scaleX(0)}}
-.ach{position:fixed;top:76px;right:12px;z-index:96;display:flex;gap:12px;align-items:center;padding:12px 16px;border-radius:6px;background:#1c1c1c;border:3px solid #6b6b6b;box-shadow:0 8px 30px rgba(0,0,0,.6);transform:translateX(130%);transition:.5s;max-width:88vw}
-.ach.show{transform:none}
-.ach em{font-style:normal;font-size:1.8rem}
-.ach b{display:block;color:#ffe14d;font-size:.78rem}
-@media(max-width:640px){nav a,#dots{display:none}.xpb{width:40px}.hero{padding-top:50px}.search kbd{display:none}}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Press Start 2P', cursive;
+    background: #1a1a1a;
+    color: #fff;
+    overflow-x: hidden;
+    cursor: crosshair;
+  }
+
+  /* Arka plan - bloklu gökyüzü */
+  .hero {
+    position: relative;
+    height: 100vh;
+    background: linear-gradient(180deg, #87CEEB 0%, #87CEEB 60%, #5a3a1a 60%, #3d2610 100%);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* Piksel bulutlar */
+  .cloud {
+    position: absolute;
+    background: #fff;
+    box-shadow: 
+      30px 0 0 #fff, 60px 0 0 #fff, 90px 0 0 #fff,
+      30px -30px 0 #fff, 60px -30px 0 #fff,
+      -30px 0 0 #fff;
+    width: 30px; height: 30px;
+    animation: float 40s linear infinite;
+  }
+  .cloud1 { top: 15%; left: -150px; animation-duration: 50s; }
+  .cloud2 { top: 30%; left: -300px; animation-duration: 70s; animation-delay: -20s; }
+  .cloud3 { top: 8%; left: -500px; animation-duration: 90s; animation-delay: -40s; }
+
+  @keyframes float {
+    from { transform: translateX(0); }
+    to { transform: translateX(120vw); }
+  }
+
+  /* Güneş */
+  .sun {
+    position: absolute;
+    top: 8%; right: 10%;
+    width: 80px; height: 80px;
+    background: #FFD700;
+    box-shadow: 0 0 40px #FFD700, 0 0 80px #FFA500;
+    animation: sunPulse 3s ease-in-out infinite;
+  }
+  @keyframes sunPulse {
+    0%, 100% { box-shadow: 0 0 40px #FFD700, 0 0 80px #FFA500; }
+    50% { box-shadow: 0 0 60px #FFD700, 0 0 120px #FFA500; }
+  }
+
+  /* Zemin çim */
+  .ground {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40%;
+    background: 
+      repeating-linear-gradient(90deg, #5a3a1a 0px, #5a3a1a 40px, #4a2e12 40px, #4a2e12 80px),
+      repeating-linear-gradient(0deg, #5a3a1a 0px, #5a3a1a 40px, #4a2e12 40px, #4a2e12 80px);
+    background-blend-mode: multiply;
+  }
+
+  /* Çim üst şerit */
+  .grass-top {
+    position: absolute;
+    bottom: calc(40% - 20px);
+    width: 100%;
+    height: 20px;
+    background: 
+      repeating-linear-gradient(90deg, #5cb85c 0px, #5cb85c 20px, #4a9d4a 20px, #4a9d4a 40px),
+      repeating-linear-gradient(0deg, #5cb85c 0px, #5cb85c 20px, #4a9d4a 20px, #4a9d4a 40px);
+    box-shadow: 0 -4px 0 #3d8a3d;
+  }
+
+  /* Karakter */
+  .character {
+    position: absolute;
+    bottom: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 1s ease-in-out infinite;
+    z-index: 10;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-8px); }
+  }
+
+  /* Başlık */
+  .hero-content {
+    position: relative;
+    z-index: 5;
+    padding: 20px;
+  }
+
+  .logo {
+    font-size: clamp(20px, 5vw, 48px);
+    color: #fff;
+    text-shadow: 
+      4px 4px 0 #3d3d3d,
+      8px 8px 0 #000;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+    animation: logoFloat 2s ease-in-out infinite;
+  }
+  @keyframes logoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .subtitle {
+    font-size: clamp(8px, 1.5vw, 14px);
+    color: #FFD700;
+    text-shadow: 2px 2px 0 #000;
+    margin-bottom: 40px;
+    line-height: 2;
+  }
+
+  /* Butonlar */
+  .btn {
+    display: inline-block;
+    padding: 20px 40px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: clamp(10px, 1.5vw, 14px);
+    background: linear-gradient(180deg, #7ec850 0%, #5a9e2f 100%);
+    color: #fff;
+    text-shadow: 2px 2px 0 #2d4a1a;
+    border: 4px solid #2d4a1a;
+    box-shadow: 
+      inset -4px -4px 0 rgba(0,0,0,0.3),
+      inset 4px 4px 0 rgba(255,255,255,0.2),
+      6px 6px 0 #000;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.1s;
+    margin: 10px;
+    image-rendering: pixelated;
+  }
+  .btn:hover {
+    background: linear-gradient(180deg, #8ed860 0%, #6aae3f 100%);
+    transform: translate(-2px, -2px);
+    box-shadow: 
+      inset -4px -4px 0 rgba(0,0,0,0.3),
+      inset 4px 4px 0 rgba(255,255,255,0.2),
+      8px 8px 0 #000;
+  }
+  .btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: 
+      inset 4px 4px 0 rgba(0,0,0,0.3),
+      2px 2px 0 #000;
+  }
+  .btn.red {
+    background: linear-gradient(180deg, #e74c3c 0%, #a93226 100%);
+    text-shadow: 2px 2px 0 #5a1810;
+    border-color: #5a1810;
+  }
+
+  /* Navbar */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(0,0,0,0.85);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    border-bottom: 4px solid #5cb85c;
+    backdrop-filter: blur(10px);
+  }
+  .nav-logo {
+    font-size: 14px;
+    color: #5cb85c;
+    text-shadow: 2px 2px 0 #000;
+  }
+  .nav-links { display: flex; gap: 30px; }
+  .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 10px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: #FFD700; }
+
+  /* Bölümler */
+  section {
+    padding: 100px 40px;
+    position: relative;
+    background: #2a2a2a;
+  }
+  section:nth-child(even) { background: #1f1f1f; }
+
+  .section-title {
+    font-size: clamp(16px, 3vw, 28px);
+    text-align: center;
+    margin-bottom: 60px;
+    color: #5cb85c;
+    text-shadow: 3px 3px 0 #000;
+    letter-spacing: 2px;
+  }
+
+  /* Özellik kartları */
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .feature-card {
+    background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+    border: 4px solid #5a5a5a;
+    box-shadow: 
+      inset -4px -4px 0 rgba(0,0,0,0.4),
+      inset 4px 4px 0 rgba(255,255,255,0.1),
+      8px 8px 0 #000;
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.2s;
+  }
+  .feature-card:hover {
+    transform: translateY(-8px);
+    border-color: #7ec850;
+  }
+  .feature-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .feature-title {
+    font-size: 12px;
+    color: #FFD700;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 0 #000;
+  }
+  .feature-desc {
+    font-size: 9px;
+    line-height: 1.8;
+    color: #ccc;
+  }
+
+  /* Sunucu IP kutusu */
+  .ip-box {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #0a0a0a;
+    border: 4px solid #5cb85c;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(92, 184, 92, 0.5);
+    position: relative;
+    overflow: hidden;
+  }
+  .ip-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(92, 184, 92, 0.3), transparent);
+    animation: shine 3s infinite;
+  }
+  @keyframes shine {
+    to { left: 100%; }
+  }
+  .ip-label {
+    font-size: 10px;
+    color: #888;
+    margin-bottom: 15px;
+  }
+  .ip-value {
+    font-size: clamp(14px, 2.5vw, 22px);
+    color: #5cb85c;
+    text-shadow: 0 0 20px #5cb85c;
+    padding: 20px;
+    background: #1a1a1a;
+    border: 2px dashed #5cb85c;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    word-break: break-all;
+  }
+  .ip-value:hover {
+    background: #252525;
+    color: #7ec850;
+  }
+
+  /* Versiyon seçici */
+  .versions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .version-card {
+    background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+    border: 4px solid #5a5a5a;
+    box-shadow: 
+      inset -4px -4px 0 rgba(0,0,0,0.4),
+      inset 4px 4px 0 rgba(255,255,255,0.1),
+      6px 6px 0 #000;
+    padding: 25px;
+    width: 200px;
+    text-align: center;
+    transition: all 0.2s;
+  }
+  .version-card:hover {
+    border-color: #FFD700;
+    transform: scale(1.05);
+  }
+  .version-name {
+    font-size: 11px;
+    color: #FFD700;
+    margin-bottom: 10px;
+  }
+  .version-desc {
+    font-size: 8px;
+    color: #aaa;
+    line-height: 1.6;
+  }
+
+  /* Footer */
+  footer {
+    background: #0a0a0a;
+    padding: 40px;
+    text-align: center;
+    border-top: 4px solid #5cb85c;
+  }
+  footer p {
+    font-size: 9px;
+    color: #666;
+    line-height: 2;
+  }
+  footer .heart {
+    color: #e74c3c;
+    animation: heartbeat 1s infinite;
+    display: inline-block;
+  }
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+  }
+
+  /* Düşen bloklar */
+  .falling-block {
+    position: fixed;
+    top: -50px;
+    width: 30px;
+    height: 30px;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.6;
+  }
+
+  /* Bildirim */
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(200px);
+    background: #5cb85c;
+    color: #fff;
+    padding: 20px 30px;
+    font-size: 10px;
+    border: 4px solid #2d4a1a;
+    box-shadow: 6px 6px 0 #000;
+    transition: transform 0.3s;
+    z-index: 999;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 14px; }
+  ::-webkit-scrollbar-track { background: #1a1a1a; }
+  ::-webkit-scrollbar-thumb {
+    background: #5cb85c;
+    border: 2px solid #1a1a1a;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: #7ec850; }
+
+  @media (max-width: 768px) {
+    nav { padding: 15px 20px; }
+    .nav-links { gap: 15px; }
+    .nav-links a { font-size: 8px; }
+    section { padding: 60px 20px; }
+  }
 </style>
 </head>
 <body>
-<div id="bar"></div>
-<div class="bg"><i></i><i></i><i></i></div>
-<div id="cg"></div>
 
+<!-- Navbar -->
 <nav>
-  <div class="logo"><b>▣</b><span class="px">Mcbe<span style="color:var(--a)">Hub</span></span></div>
-  <div class="nr"><a href="#modlar">Modlar</a><a href="#kurulum">Kurulum</a><a id="rq" target="_blank" rel="noopener">📝 Mod iste</a><span id="dots" class="nr"></span>
-   <span class="xp" id="xp" title="Başarımlar"><small class="px" id="lv">Sv 1</small><span class="xpb"><i id="xpi"></i></span></span>
-   <button class="nb" id="ins" style="display:none">📲</button><button class="nb" id="kb">⌘K</button><button class="nb" id="rnd">🎲</button></div>
+  <div class="nav-logo">⛏️ MC BEDROCK</div>
+  <div class="nav-links">
+    <a href="#anasayfa">ANASAYFA</a>
+    <a href="#ozellikler">ÖZELLİKLER</a>
+    <a href="#sunucu">SUNUCU</a>
+    <a href="#indir">İNDİR</a>
+  </div>
 </nav>
 
-<header class="hero">
-  <div class="pill"><em>●</em> Minecraft Bedrock • 1.21+</div>
-  <h1>En iyi <span class="grad" id="w">Bedrock</span> modları tek yerde</h1>
-  <p>Beğen, kaydet, sürümünü seç, paket yap ve tek tıkla indir. İndirdikçe XP kazan, başarımları aç!</p>
-  <div class="search"><span>🔍</span><input id="q" placeholder="Mod ara... (ör. fizik, ağaç, ışık)"><kbd>/</kbd></div>
-  <div class="stats">
-    <div><b id="s1">0</b><span>Mod</span></div><div><b id="s2">0</b><span>Sürüm</span></div>
-    <div><b id="s3">0</b><span>Beğendiğin</span></div><div><b id="s4">0</b><span>Kaydettiğin</span></div>
+<!-- Hero -->
+<div class="hero" id="anasayfa">
+  <div class="sun"></div>
+  <div class="cloud cloud1"></div>
+  <div class="cloud cloud2"></div>
+  <div class="cloud cloud3"></div>
+
+  <div class="hero-content">
+    <div class="logo">MINECRAFT</div>
+    <div class="logo" style="color:#FFD700; text-shadow: 4px 4px 0 #8B6914, 8px 8px 0 #000;">BEDROCK</div>
+    <p class="subtitle">TÜRKİYE'NİN EN İYİ SUNUCUSU<br>JAVA & BEDROCK DESTEKLİ</p>
+    <div>
+      <a href="#sunucu" class="btn">🎮 OYNA</a>
+      <a href="#indir" class="btn red">📥 İNDİR</a>
+    </div>
   </div>
-</header>
 
-<main id="modlar">
-  <div class="dm" id="dm"></div>
-  <h2 class="px">📦 Hazır Paketler</h2><div class="packs" id="packs"></div>
-  <h2 class="px" id="mh">🔥 Modlar</h2>
-  <div class="tb"><div class="chips" id="chips"></div>
-   <select id="sort"><option value="def">Önerilen</option><option value="az">A → Z</option><option value="new">Son güncellenen</option><option value="fav">Beğendiklerim önce</option></select></div>
-  <div class="grid" id="grid"></div>
-</main>
+  <!-- Steve karakteri -->
+  <svg class="character" width="80" height="140" viewBox="0 0 80 140">
+    <!-- Kafa -->
+    <rect x="15" y="0" width="50" height="50" fill="#8B5A3C"/>
+    <rect x="15" y="0" width="50" height="15" fill="#4A2C17"/>
+    <rect x="22" y="20" width="10" height="10" fill="#fff"/>
+    <rect x="48" y="20" width="10" height="10" fill="#fff"/>
+    <rect x="25" y="23" width="6" height="6" fill="#3B82F6"/>
+    <rect x="51" y="23" width="6" height="6" fill="#3B82F6"/>
+    <rect x="35" y="38" width="10" height="4" fill="#5C3A20"/>
+    <!-- Gövde -->
+    <rect x="15" y="50" width="50" height="50" fill="#3B82F6"/>
+    <rect x="15" y="75" width="50" height="5" fill="#1E40AF"/>
+    <!-- Kollar -->
+    <rect x="0" y="50" width="15" height="50" fill="#8B5A3C"/>
+    <rect x="65" y="50" width="15" height="50" fill="#8B5A3C"/>
+    <!-- Bacaklar -->
+    <rect x="15" y="100" width="22" height="40" fill="#3B3B3B"/>
+    <rect x="43" y="100" width="22" height="40" fill="#3B3B3B"/>
+  </svg>
 
-<section class="how" id="kurulum">
-  <h2 class="px">⚡ Kurulum Rehberi</h2>
-  <div class="tabs" id="gt"></div><div class="gd" id="gd"></div>
+  <div class="ground"></div>
+  <div class="grass-top"></div>
+</div>
+
+<!-- Özellikler -->
+<section id="ozellikler">
+  <h2 class="section-title">✨ ÖZELLİKLER</h2>
+  <div class="features">
+    <div class="feature-card">
+      <span class="feature-icon">⚡</span>
+      <div class="feature-title">SIFIR LAG</div>
+      <div class="feature-desc">En güçlü sunucularla kesintisiz oyun deneyimi. 7/24 aktif!</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🎨</span>
+      <div class="feature-title">ÖZEL SKINLER</div>
+      <div class="feature-desc">Yüzlerce özel skin ve kostüm seçeneği ile karakterini özelleştir.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🏆</span>
+      <div class="feature-title">TURNUVA</div>
+      <div class="feature-desc">Haftalık turnuvalar ve büyük ödüller. Kendini kanıtla!</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🛡️</span>
+      <div class="feature-title">ANTI-CHEAT</div>
+      <div class="feature-desc">Gelişmiş anti-cheat sistemi ile adil oyun garantisi.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">💰</span>
+      <div class="feature-title">EKONOMİ</div>
+      <div class="feature-desc">Kendi pazarını kur, ticaret yap, zengin ol!</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">👥</span>
+      <div class="feature-title">KLANLAR</div>
+      <div class="feature-desc">Arkadaşlarınla klan kur, savaşlara katıl, dünyayı fethet!</div>
+    </div>
+  </div>
 </section>
-<footer>© 2026 Mcbehub • Modların hakları yapımcılarına aittir • Mojang AB ile bağlantılı değildir<br><a id="rq2" target="_blank" rel="noopener">📝 Mod iste</a><a id="dc" target="_blank" rel="noopener" style="display:none">💬 Discord</a></footer>
 
-<div class="ov" id="ov"><div class="md" id="md"></div></div>
-<div class="ov" id="pv"><div class="pal"><input id="pi" placeholder="Mod veya komut ara..." autocomplete="off"><div id="pl"></div></div></div>
-<div class="dock" id="dock"></div>
-<div class="toast" id="toast"></div>
-<div class="ach" id="ach"></div>
+<!-- Sunucu IP -->
+<section id="sunucu">
+  <h2 class="section-title">🌐 SUNUCU ADRESİ</h2>
+  <div class="ip-box">
+    <div class="ip-label">SUNUCU IP:</div>
+    <div class="ip-value" onclick="copyIP(this)" id="ipText">play.mcbedrock.com</div>
+    <div class="ip-label">Port: 19132 (Bedrock) / 25565 (Java)</div>
+    <div style="margin-top: 30px;">
+      <a href="#" class="btn" onclick="alert('Sunucuya bağlanmak için Minecraft\'ı aç ve Sunucu Ekle kısmına IP\'yi yaz!'); return false;">📋 NASIL BAĞLANIRIM?</a>
+    </div>
+  </div>
+</section>
+
+<!-- Versiyonlar -->
+<section id="indir">
+  <h2 class="section-title">📱 DESTEKLENEN VERSİYONLAR</h2>
+  <div class="versions">
+    <div class="version-card">
+      <div class="version-name">🖥️ PC / WINDOWS</div>
+      <div class="version-desc">Windows 10/11 Bedrock</div>
+    </div>
+    <div class="version-card">
+      <div class="version-name">📱 MOBİL</div>
+      <div class="version-desc">Android & iOS</div>
+    </div>
+    <div class="version-card">
+      <div class="version-name">🎮 KONSOL</div>
+      <div class="version-desc">Xbox, PlayStation, Switch</div>
+    </div>
+    <div class="version-card">
+      <div class="version-name">☕ JAVA</div>
+      <div class="version-desc">1.8 - 1.21+</div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 MINECRAFT BEDROCK TÜRKİYE</p>
+  <p>Bu site hayran yapımıdır ve Mojang ile bağlantılı değildir.</p>
+  <p>Yapıldı <span class="heart">❤</span> ile Türkiye'de</p>
+</footer>
+
+<!-- Bildirim -->
+<div class="toast" id="toast">IP KOPYALANDI! ✓</div>
 
 <script>
-const USER='Eymen6129',REPO='Mcbehub',BR='main';
-const API=`https://api.github.com/repos/${USER}/${REPO}/`,RAW=`https://raw.githubusercontent.com/${USER}/${REPO}/${BR}/`;
-const GH=`https://github.com/${USER}/${REPO}/issues/new`;
-const REQ=GH+'?title='+encodeURIComponent('Mod isteği: ')+'&body='+encodeURIComponent('Mod adı:\nYapımcı:\nİndirme linki:\n');
-const SB={u:'',k:''};                       // Supabase URL ve anon key (ortak beğeni/sayaç, boşsa kapalı)
-const GC={repo:'',rid:'',cat:'',cid:''};   // giscus (yorumlar, boşsa kapalı)
-const DISCORD='';                           // Discord davet linkini yaz (boşsa buton gizli)
-const EXT=/\.(mcaddon|mcpack)$/i;
-// k: dosya adı anahtarı • u: uyumlu sürüm • x:1 → "Deneysel özellik gerekir" • nt: ek not
-const META=[
- {id:'bmc',k:'bmcaddon',n:'BMC Add-On',c:'Eklenti',e:'🧩',g:['#9b59b6','#6c3483'],d:'Oyuna yeni içerik ve mekanikler getiren kapsamlı eklenti.',t:['eklenti','içerik']},
- {id:'dav',k:'durability',n:'Durability Armor Viewer',c:'Araç',e:'🛡️',g:['#3498db','#1f618d'],d:'Zırh ve eşyalarının dayanıklılığını ekranda canlı gösterir.',t:['zırh','hud']},
- {id:'eb',k:'effortless',n:'Effortless Building',c:'Araç',e:'🏗️',g:['#f39c12','#d35400'],d:'Tek hamlede çizgi, duvar ve alan inşa et. Yapı yapmak çok hızlanır.',t:['inşa','yapı']},
- {id:'trees',k:'bettertrees',n:'Better Trees',by:'Daniye',c:'Görsel',e:'🌳',g:['#2ecc71','#16a085'],d:'Ağaçları daha dolgun, gerçekçi ve güzel hale getirir.',t:['doğa','ağaç']},
- {id:'ip',k:'itemphysics',n:'Item Physics',c:'Fizik',e:'🎒',g:['#5dade2','#8e44ad'],d:'Yere düşen eşyalar gerçekçi şekilde yere yatar, döner ve durur.',t:['fizik','eşya']},
- {id:'rr',k:'realragdoll',n:'RealRagdoll',c:'Fizik',e:'🧟',g:['#e74c3c','#922b21'],d:'Mob ve oyuncular ölünce gerçekçi ragdoll fiziğiyle yıkılır.',t:['fizik','mob']},
- {id:'rf',k:'rustic',n:'Rustic Furniture',c:'Dekor',e:'🪑',g:['#d68910','#935116'],d:'Köy tarzı rustik mobilyalar: masa, sandalye, dolap ve fazlası.',t:['mobilya','dekor']},
- {id:'sdl',k:'dynamiclights',n:'System Dynamic Lights',c:'Görsel',e:'🔦',g:['#f1c40f','#e67e22'],d:'Elindeki meşale ve parlayan eşyalar etrafı dinamik aydınlatır.',t:['ışık','görsel']},
- {id:'vm',k:'veinminer',n:'Vein Miner',c:'Araç',e:'⛏️',g:['#1abc9c','#2c3e50'],d:'Cevher damarını tek vuruşta kır, bağlı tüm bloklar topluca kazılır.',t:['madenci','araç']}
-];
-const FALLBACK=['BMC_Add-On_4-25.mcaddon','Durability Armor Viewer v2.1.mcaddon','Effortless Building v5.0.mcaddon','Better Trees by Daniye - v1.4.mcaddon','Item Physics [V2.9] Behavior.mcaddon','RealRagdoll-1.3.0.mcaddon','Rustic Furnture.mcaddon','System Dynamic Lights V3.3.mcaddon','Utilities_Vein_Miner_v5.5.mcaddon'];
+  // IP kopyalama
+  function copyIP(el) {
+    const ip = el.textContent;
+    navigator.clipboard.writeText(ip).then(() => {
+      showToast();
+    }).catch(() => {
+      // Fallback
+      const ta = document.createElement('textarea');
+      ta.value = ip;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast();
+    });
+  }
 
-const $=s=>document.querySelector(s),G=$('#grid');
-let S={like:[],save:[],ver:{},ac:0,xp:0,dl:0,zip:0,pkc:0,pal:0,thc:0,snd:1,last:0,seen:[],ach:[]},MODS=[],C={},P=[],cat='Hepsi',q='',so='def',pk=0,pitems=[];
-try{Object.assign(S,JSON.parse(localStorage.getItem('mcb')))}catch(e){}
-const persist=()=>{try{localStorage.setItem('mcb',JSON.stringify(S))}catch(e){}};
-const cats=['Hepsi','❤ Beğendiklerim','🔖 Kaydettiklerim'];
-const norm=s=>s.toLowerCase().replace(/[^a-z0-9]/g,'');
-const fmt=b=>!b?'':b>=1048576?(b/1048576).toFixed(1)+' MB':Math.round(b/1024)+' KB';
-const nums=s=>(s.match(/\d+/g)||[]).map(Number);
-const ver=n=>{const m=n.replace(EXT,'').match(/v?\d+(?:[._-]\d+)*/i);return m?(/^v/i.test(m[0])?m[0]:'v'+m[0]):'Son'};
-const clean=n=>n.replace(EXT,'').replace(/v?\d+(?:[._-]\d+)*/i,'').replace(/[_\-\[\]()]+/g,' ').replace(/\s+/g,' ').trim()||n;
-const ago=d=>{const s=(Date.now()-new Date(d))/864e5;return s<1?'bugün':s<2?'dün':s<30?Math.floor(s)+' gün önce':s<365?Math.floor(s/30)+' ay önce':Math.floor(s/365)+' yıl önce'};
-const M=id=>MODS.find(m=>m.id===id),vi=m=>Math.min(S.ver[m.id]||0,m.vs.length-1),cur=m=>m.vs[vi(m)];
-const isNew=m=>m.vs[0][3]&&Date.now()-new Date(m.vs[0][3])<6048e5;
+  function showToast() {
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+  }
 
-function build(files){
- const out=[];
- files.forEach(f=>{const n=norm(f.name);let m=out.find(x=>n.includes(x.k));
-  if(!m){const meta=META.find(x=>n.includes(x.k));
-   if(meta)m={...meta,vs:[]};
-   else{const nm=clean(f.name);m={id:'x'+norm(nm),k:norm(nm),n:nm,by:'',c:'Eklenti',e:'📦',g:['#6c5ce7','#341f97'],d:'Yeni eklenen mod. Açıklaması yakında eklenecek.',t:['yeni'],vs:[]}}
-   out.push(m)}
-  m.vs.push([ver(f.name),f.name,f.size]);});
- out.forEach(m=>m.vs.sort((a,b)=>{const x=nums(b[0]),y=nums(a[0]);for(let i=0;i<Math.max(x.length,y.length);i++){const d=(x[i]||0)-(y[i]||0);if(d)return d}return 0}));
- const ix=m=>META.findIndex(x=>x.id===m.id);
- return out.sort((a,b)=>ix(a)-ix(b));
-}
-async function load(){
- let files;
- try{const c=JSON.parse(localStorage.getItem('mcbf')||'null');if(c&&Date.now()-c.t<12e4)files=c.f}catch(e){}
- if(!files)try{const r=await fetch(API+'contents/');
-  if(r.ok){files=(await r.json()).filter(x=>x.type==='file'&&EXT.test(x.name)).map(x=>({name:x.name,size:x.size}));
-   try{localStorage.setItem('mcbf',JSON.stringify({t:Date.now(),f:files}))}catch(e){}}}catch(e){}
- if(!files||!files.length)files=FALLBACK.map(name=>({name,size:0}));
- return build(files);
-}
-// Commit tarihinden "yeni / X gün önce" bilgisi (6 saat önbellek)
-async function dates(){
- let c={};try{c=JSON.parse(localStorage.getItem('mcbd')||'{}')}catch(e){}
- const fresh=c.t&&Date.now()-c.t<216e5,d=fresh?c.d:{};
- if(!fresh){await Promise.all(MODS.map(async m=>{const f=m.vs[0][1];try{
-   const r=await fetch(API+'commits?per_page=1&path='+encodeURIComponent(f));
-   if(r.ok){const j=await r.json();if(j[0])d[f]=j[0].commit.committer.date}}catch(e){}}));
-  if(Object.keys(d).length)try{localStorage.setItem('mcbd',JSON.stringify({t:Date.now(),d}))}catch(e){}}
- MODS.forEach(m=>m.vs[0][3]=d[m.vs[0][1]]);render(1);
-}
-// Ortak sayaç (Supabase)
-const sbf=(p,o)=>fetch(SB.u+'/rest/v1/'+p,{...o,headers:{apikey:SB.k,Authorization:'Bearer '+SB.k,'Content-Type':'application/json'}});
-async function loadC(){if(!SB.u)return;try{(await(await sbf('stats?select=*')).json()).forEach(r=>C[r.id]=r)}catch(e){}}
-function bump(id,c,d){const r=C[id]=C[id]||{likes:0,downloads:0};r[c]=Math.max(0,(r[c]||0)+d);if(SB.u)sbf('rpc/bump',{method:'POST',body:JSON.stringify({m:id,c,d})}).catch(()=>{})}
+  // Düşen Minecraft blokları
+  const blocks = ['🟫', '🟩', '🟨', '⬛', '🟦', '🟥'];
+  function createFallingBlock() {
+    const block = document.createElement('div');
+    block.className = 'falling-block';
+    block.textContent = blocks[Math.floor(Math.random() * blocks.length)];
+    block.style.left = Math.random() * 100 + 'vw';
+    block.style.fontSize = (15 + Math.random() * 20) + 'px';
+    block.style.animationDuration = (5 + Math.random() * 5) + 's';
+    block.style.animation = `fall ${5 + Math.random() * 5}s linear forwards`;
+    document.body.appendChild(block);
+    setTimeout(() => block.remove(), 10000);
+  }
 
-const IC={like:['🤍','❤️'],save:['📑','🔖'],pick:['➕','✔️']},TT={like:'Beğen',save:'Kaydet',pick:'Koleksiyona ekle'};
-const MSG={like:['💔 Beğeni kaldırıldı: ','❤️ Beğenildi: '],save:['Kayıttan çıkarıldı: ','🔖 Kaydedildi: '],pick:['Koleksiyondan çıkarıldı: ','🧺 Koleksiyona eklendi: ']};
-const has=(k,id)=>(k==='pick'?P:S[k]).includes(id);
-const bt=(k,id,l)=>{const on=has(k,id);return `<button data-act="${k}" title="${TT[k]}" class="${l?'b2 ':''}${on?'on':''}"><u>${IC[k][+on]}</u>${l||''}</button>`};
-const tg=(m,v)=>{const r=C[m.id]||{};return `<i>${m.c}</i><i class="ok">✅ ${m.u||'1.21+'}</i>${m.x?'<i class="wr">🧪 Deneysel</i>':''}${v[2]?`<i class="sz">${fmt(v[2])}</i>`:''}${SB.u?`<i>❤ ${r.likes||0}</i><i>⬇ ${r.downloads||0}</i>`:''}`};
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
+  `;
+  document.head.appendChild(style);
 
-const card=(m,n)=>{const i=vi(m),v=m.vs[i],d=m.vs[0][3];
-return `<article class="card" id="c-${m.id}" data-id="${m.id}" style="--i:${n}">
-<div class="ban" style="background:linear-gradient(135deg,${m.g[0]}66,${m.g[1]}22)"><span>${m.e}</span>${isNew(m)?'<em class="new">YENİ</em>':''}<div class="ic">${bt('pick',m.id)}${bt('like',m.id)}${bt('save',m.id)}</div></div>
-<div class="body"><h3>${m.n}</h3><div class="by">${[m.by&&'by '+m.by,d&&'🕒 '+ago(d)].filter(Boolean).join(' • ')}</div><p>${m.d}</p>
-<div class="tags">${tg(m,v)}</div>
-<div class="row"><select>${m.vs.map((x,k)=>`<option value="${k}"${k==i?' selected':''}>${x[0]}</option>`).join('')}</select><button class="btn dl">⬇ İndir</button></div></div></article>`};
+  setInterval(createFallingBlock, 800);
 
-function stats(){
- $('#s1').textContent=MODS.length;$('#s2').textContent=MODS.reduce((a,m)=>a+m.vs.length,0);
- $('#s3').textContent=S.like.length;$('#s4').textContent=S.save.length;
- document.querySelectorAll('.chip').forEach(c=>{const k=c.dataset.c;if(k===cats[1])c.textContent=k+' '+S.like.length;if(k===cats[2])c.textContent=k+' '+S.save.length});
- if(MODS.length)chk();
-}
-function render(na){
- G.classList.toggle('na',!!na);
- $('#chips').innerHTML=[...cats,...new Set(MODS.map(m=>m.c))].map(c=>`<button class="chip${c===cat?' on':''}" data-c="${c}">${c}</button>`).join('');
- let l=MODS.filter(m=>(cat==='Hepsi'||(cat===cats[1]?S.like.includes(m.id):cat===cats[2]?S.save.includes(m.id):m.c===cat))&&(m.n+m.by+m.d+m.t).toLowerCase().includes(q));
- if(so==='az')l.sort((a,b)=>a.n.localeCompare(b.n));
- if(so==='new')l.sort((a,b)=>new Date(b.vs[0][3]||0)-new Date(a.vs[0][3]||0));
- if(so==='fav')l.sort((a,b)=>S.like.includes(b.id)-S.like.includes(a.id));
- if(so==='pop')l.sort((a,b)=>((C[b.id]||{}).downloads||0)-((C[a.id]||{}).downloads||0));
- G.innerHTML=l.length?l.map(card).join(''):`<div class="none">${cat===cats[1]?'Henüz beğendiğin mod yok 🤍':cat===cats[2]?'Kaydettiğin mod yok 📑':`Mod bulunamadı 😢<br><a href="${REQ}" target="_blank" rel="noopener">İstediğin modu iste →</a>`}</div>`;
- stats();
-}
-const go=c=>{cat=c;q='';$('#q').value='';render();$('#mh').scrollIntoView()};
-  // İndirme + ZIP
-async function get(v,cb){const e=encodeURIComponent(v[1]);
- for(const u of ['./'+e,RAW+e]){try{const r=await fetch(u);
-  if(!r.ok||(r.headers.get('content-type')||'').includes('text/html'))continue;
-  const T=+r.headers.get('content-length')||v[2]||0,rd=r.body.getReader(),ch=[];let L=0;
-  for(;;){const{done,value}=await rd.read();if(done)break;ch.push(value);L+=value.length;cb&&cb(T?Math.min(1,L/T):.6)}
-  return new Blob(ch)}catch(x){}}
- return null}
-const saveAs=(b,n)=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=n;document.body.appendChild(a);a.click();a.remove()};
-async function dl(m,v,b){const o=b.innerHTML;b.classList.add('busy');b.style.setProperty('--p','4%');b.textContent='⏳';
- const bl=await get(v,p=>b.style.setProperty('--p',p*100+'%'));
- b.classList.remove('busy');b.innerHTML=o;
- if(!bl)return toast('❌ Dosya bulunamadı: '+v[1]);
- saveAs(bl,v[1]);bump(m.id,'downloads',1);S.dl++;gain(10);chk();
- toast('✅ '+m.n+' '+v[0]+' indirildi, dosyaya dokunarak aç')}
-const crcT=(()=>{let t=[],c;for(let n=0;n<256;n++){c=n;for(let k=0;k<8;k++)c=c&1?3988292384^(c>>>1):c>>>1;t[n]=c}return t})();
-const crc=u=>{let c=-1;for(let i=0;i<u.length;i++)c=crcT[(c^u[i])&255]^(c>>>8);return(c^-1)>>>0};
-function zip(fs){const A=[],B=[],en=new TextEncoder();let o=0;
- fs.forEach(f=>{const nm=en.encode(f.n),c=crc(f.d),L=f.d.length,h=new DataView(new ArrayBuffer(30)),g=new DataView(new ArrayBuffer(46));
-  h.setUint32(0,0x04034b50,1);h.setUint16(4,20,1);h.setUint16(6,0x800,1);h.setUint32(14,c,1);h.setUint32(18,L,1);h.setUint32(22,L,1);h.setUint16(26,nm.length,1);
-  g.setUint32(0,0x02014b50,1);g.setUint16(4,20,1);g.setUint16(6,20,1);g.setUint16(8,0x800,1);g.setUint32(16,c,1);g.setUint32(20,L,1);g.setUint32(24,L,1);g.setUint16(28,nm.length,1);g.setUint32(42,o,1);
-  A.push(h,nm,f.d);B.push(g,nm);o+=30+nm.length+L});
- const e=new DataView(new ArrayBuffer(22));
- e.setUint32(0,0x06054b50,1);e.setUint16(8,fs.length,1);e.setUint16(10,fs.length,1);e.setUint32(12,B.reduce((a,b)=>a+b.byteLength,0),1);e.setUint32(16,o,1);
- return new Blob([...A,...B,e])}
-async function zipAll(){const b=$('#zb'),fs=[];b.classList.add('busy');
- for(let i=0;i<P.length;i++){const m=M(P[i]),v=cur(m);b.textContent=`⏳ ${i+1}/${P.length}`;
-  const bl=await get(v);if(bl){fs.push({n:v[1],d:new Uint8Array(await bl.arrayBuffer())});bump(m.id,'downloads',1)}}
- b.classList.remove('busy');b.textContent='⬇ ZIP indir';
- if(!fs.length)return toast('❌ Dosyalar bulunamadı');
- saveAs(zip(fs),'Mcbehub-koleksiyon.zip');S.zip++;S.dl+=fs.length;gain(10*fs.length);chk();
- toast('✅ '+fs.length+' mod zip olarak indirildi')}
-function dock(){const d=$('#dock');d.classList.toggle('show',P.length>0);if(P.length)d.innerHTML=`🧺 <b>${P.length}</b> mod seçildi <button class="btn sm" id="zb">⬇ ZIP indir</button><button class="b2" id="zc">✕</button>`}
-function setPick(ids){P=ids;document.querySelectorAll('[data-act=pick]').forEach(b=>{const w=b.closest('[data-id]'),on=P.includes(w&&w.dataset.id);b.classList.toggle('on',on);b.querySelector('u').textContent=IC.pick[+on]});dock()}
-$('#dock').onclick=e=>{if(e.target.id==='zc')setPick([]);if(e.target.id==='zb')zipAll()};
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
 
-// Beğen / kaydet / koleksiyon
-function tog(k,id){const a=k==='pick'?P:S[k],x=a.indexOf(id),on=x<0;on?a.push(id):a.splice(x,1);
- if(k!=='pick')persist();if(k==='like')bump(id,'likes',on?1:-1);
- document.querySelectorAll(`[data-id="${id}"] [data-act="${k}"]`).forEach(b=>{b.classList.toggle('on',on);b.querySelector('u').textContent=IC[k][+on]});
- if((k==='like'&&cat===cats[1]||k==='save'&&cat===cats[2])&&!$('#ov').classList.contains('show'))render();
- stats();dock();return on}
-function burst(b){const r=b.getBoundingClientRect();
- for(let i=0;i<7;i++){const s=document.createElement('span');s.className='ht';s.textContent='❤';
-  s.style.cssText=`left:${r.left+14}px;top:${r.top}px;--x:${(Math.random()-.5)*90}px`;document.body.appendChild(s);setTimeout(()=>s.remove(),900)}}
-function share(m){const url=location.origin+location.pathname+'#'+m.id;
- if(navigator.share)navigator.share({title:m.n+' • Mcbehub',url}).catch(()=>{});
- else navigator.clipboard&&navigator.clipboard.writeText(url).then(()=>toast('🔗 Link kopyalandı'))}
-function act(k,m,b){if(k==='share')return share(m);const on=tog(k,m.id);toast(MSG[k][+on]+m.n);if(k==='like'&&on)burst(b)}
-
-// Detay penceresi
-function openM(id){const m=M(id);if(!m)return;const v=cur(m);
- if(!S.seen.includes(id)){S.seen.push(id);gain(2);chk()}
- $('#md').innerHTML=`<button class="x" data-x>✕</button>
-<div class="mh" style="background:linear-gradient(135deg,${m.g[0]}88,${m.g[1]}33)"><span>${m.e}</span></div>
-<div class="mb" data-id="${m.id}"><h2>${m.n}</h2><div class="by">${m.by?'by '+m.by:''}</div>
-<div class="tags" style="margin:10px 0">${tg(m,v)}${m.t.map(t=>`<i>#${t}</i>`).join('')}</div>
-<p class="ds">${m.d}${m.nt?'<br><br>📝 '+m.nt:''}</p>
-<h4>Sürümler</h4><div class="vl">${m.vs.map((x,k)=>`<div><b>${x[0]}</b><span>${[fmt(x[2]),k==0&&x[3]?ago(x[3]):'',k==0?'en yeni':''].filter(Boolean).join(' • ')}</span><button class="btn sm dlv" data-k="${k}">⬇</button></div>`).join('')}</div>
-<h4>Kurulum ipuçları</h4><ul><li>İndirdiğin <b>.mcaddon</b> dosyasına dokun, Minecraft açılıp otomatik kurar.</li><li>Dünyanı düzenle → <b>Eklentiler</b>'den davranış ve kaynak paketini etkinleştir.</li>${m.x?'<li>🧪 Dünya ayarlarında <b>Deneysel Özellikler</b> açık olmalı.</li>':''}</ul>
-<div class="act">${bt('like',m.id,' Beğen')}${bt('save',m.id,' Kaydet')}${bt('pick',m.id,' Koleksiyon')}<button class="b2" data-act="share">🔗 Paylaş</button><a class="b2" target="_blank" rel="noopener" href="${GH}?title=${encodeURIComponent('Sorun: '+m.n+' '+v[0])}">🐞 Sorun bildir</a></div><div id="gc"></div></div>`;
- $('#ov').classList.add('show');document.body.style.overflow='hidden';history.replaceState(null,'','#'+id);
- if(GC.repo){const h=$('#gc'),s=document.createElement('script');h.innerHTML='<h4>💬 Yorumlar</h4>';
-  Object.entries({src:'https://giscus.app/client.js','data-repo':GC.repo,'data-repo-id':GC.rid,'data-category':GC.cat,'data-category-id':GC.cid,'data-mapping':'specific','data-term':m.n,'data-theme':'dark','data-lang':'tr','data-loading':'lazy',crossorigin:'anonymous'}).forEach(([a,b])=>s.setAttribute(a,b));
-  s.async=true;h.appendChild(s)}}
-function close_(){$('#ov').classList.remove('show');$('#md').innerHTML='';document.body.style.overflow='';history.replaceState(null,'',location.pathname+location.search)}
-$('#ov').onclick=e=>{if(e.target.id==='ov')close_()};
-$('#md').onclick=e=>{
- if(e.target.closest('[data-x]'))return close_();
- if(e.target.closest('[data-snd]')){S.snd=+!S.snd;persist();return openA()}
- const mb=$('#md .mb'),m=mb&&M(mb.dataset.id);if(!m)return;
- const a=e.target.closest('[data-act]');if(a)return act(a.dataset.act,m,a);
- const d=e.target.closest('.dlv');if(d)dl(m,m.vs[+d.dataset.k],d)};
-
-// Kart olayları
-G.onclick=e=>{const c=e.target.closest('.card'),m=c&&M(c.dataset.id);if(!m)return;
- const a=e.target.closest('[data-act]');if(a)return act(a.dataset.act,m,a);
- const d=e.target.closest('.dl');if(d)return dl(m,cur(m),d);
- if(!e.target.closest('select'))openM(m.id)};
-G.onchange=e=>{const c=e.target.closest('.card');if(!c||e.target.tagName!=='SELECT')return;
- const m=M(c.dataset.id),i=+e.target.value;S.ver[m.id]=i;persist();
- const z=c.querySelector('.sz');if(z)z.textContent=fmt(m.vs[i][2]);toast('Sürüm seçildi: '+m.n+' '+m.vs[i][0])};
-G.onmousemove=e=>{const c=e.target.closest('.card');if(!c||c.classList.contains('sk'))return;
- const r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top,s=c.style;
- s.setProperty('--mx',x+'px');s.setProperty('--my',y+'px');s.setProperty('--rx',((y/r.height)-.5)*-7+'deg');s.setProperty('--ry',((x/r.width)-.5)*7+'deg')};
-G.onmouseout=e=>{const c=e.target.closest('.card');if(c&&!c.contains(e.relatedTarget)){c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg')}};
-$('#chips').onclick=e=>{const c=e.target.closest('.chip');if(c){cat=c.dataset.c;render()}};
-$('#sort').onchange=e=>{so=e.target.value;render()};
-$('#q').oninput=e=>{q=e.target.value.toLowerCase();render()};
-
-// XP, seviye, başarımlar, ses
-const LV=x=>Math.floor(Math.sqrt(x/20))+1;
-const ACH=[
- {id:'dl1',e:'⬇️',n:'İlk İndirme',d:'İlk modunu indir',f:()=>S.dl>=1},
- {id:'dl5',e:'📦',n:'Koleksiyoncu',d:'Toplam 5 mod indir',f:()=>S.dl>=5},
- {id:'lk3',e:'❤️',n:'Hayran',d:'3 mod beğen',f:()=>S.like.length>=3},
- {id:'sv3',e:'🔖',n:'Kitapçı',d:'3 mod kaydet',f:()=>S.save.length>=3},
- {id:'zip',e:'🧺',n:'Paketçi',d:'ZIP koleksiyon indir',f:()=>S.zip>=1},
- {id:'pk',e:'🎁',n:'Paket Avcısı',d:'Hazır paket seç',f:()=>S.pkc>=1},
- {id:'vw5',e:'🔍',n:'Meraklı',d:'5 farklı modu incele',f:()=>S.seen.length>=5},
- {id:'pal',e:'⌨️',n:'Güçlü Kullanıcı',d:'Komut paletini aç',f:()=>S.pal>=1},
- {id:'th',e:'🎨',n:'Stilist',d:'Tema rengini değiştir',f:()=>S.thc>=1}
-];
-let AC;
-function snd(t){if(!S.snd)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();
- const o=AC.createOscillator(),g=AC.createGain(),T={xp:[880,1320,.08],lv:[523,1046,.35],ach:[660,990,.3],tap:[400,300,.04]}[t]||[500,500,.05],n=AC.currentTime;
- o.type=t==='tap'?'square':'sine';o.frequency.setValueAtTime(T[0],n);o.frequency.exponentialRampToValueAtTime(T[1],n+T[2]);
- g.gain.setValueAtTime(.05,n);g.gain.exponentialRampToValueAtTime(.001,n+T[2]+.05);o.connect(g);g.connect(AC.destination);o.start();o.stop(n+T[2]+.06)}catch(e){}}
-function xpUI(){const x=S.xp,l=LV(x),a=20*(l-1)**2,b=20*l*l;$('#lv').textContent='Sv '+l;$('#xpi').style.setProperty('--w',(x-a)/(b-a)*100+'%')}
-function gain(n){const o=LV(S.xp);S.xp+=n;persist();xpUI();if(LV(S.xp)>o){snd('lv');toast('⬆️ Seviye atladın! Sv '+LV(S.xp))}else snd('xp')}
-function chk(){ACH.forEach(a=>{if(!S.ach.includes(a.id)&&a.f()){S.ach.push(a.id);persist();gain(25);
- const h=$('#ach');h.innerHTML=`<em>${a.e}</em><div><b>Başarım kilidi açıldı!</b>${a.n}</div>`;h.classList.add('show');snd('ach');
- clearTimeout(chk.t);chk.t=setTimeout(()=>h.classList.remove('show'),3600)}})}
-function openA(){const x=S.xp,l=LV(x);
- $('#md').innerHTML=`<button class="x" data-x>✕</button><div class="mb"><h2 class="px" style="font-size:1rem;padding-right:40px">Seviye ${l}</h2><div class="by">${x} XP • sonraki seviye ${20*l*l} XP</div>
-function openA(){const x=S.xp,l=LV(x);
- $('#md').innerHTML=`<button class="x" data-x>✕</button><div class="mb"><h2 class="px" style="font-size:1rem;padding-right:40px">Seviye ${l}</h2><div class="by">${x} XP • sonraki seviye ${20*l*l} XP</div>
-<h4>Başarımlar (${S.ach.length}/${ACH.length})</h4><div class="vl">${ACH.map(a=>{const u=S.ach.includes(a.id);return `<div style="opacity:${u?1:.45}"><b style="min-width:34px;font-size:1.4rem">${u?a.e:'🔒'}</b><span><b style="color:#fff;min-width:0">${a.n}</b><br>${a.d}</span></div>`}).join('')}</div>
-<div class="act"><button class="b2" data-snd>${S.snd?'🔊 Ses: Açık':'🔇 Ses: Kapalı'}</button></div></div>`;
- $('#ov').classList.add('show');document.body.style.overflow='hidden'}
-$('#xp').onclick=openA;
-
-// Günün modu, hazır paketler, kurulum rehberi
-const PACKS=[
- {n:'Fizik Paketi',e:'🌀',d:'Gerçekçi fizik',ids:['ip','rr']},
- {n:'Güzellik Paketi',e:'✨',d:'Daha güzel dünya',ids:['trees','sdl']},
- {n:'Mühendis Paketi',e:'🛠️',d:'Hızlı inşa ve madencilik',ids:['eb','vm','dav']},
- {n:'Köy Paketi',e:'🏡',d:'Dekor, ışık ve ağaç',ids:['rf','sdl','trees']}
-];
-function packs(){const l=PACKS.map((k,i)=>({k,i})).filter(x=>x.k.ids.filter(M).length>1);
- $('#packs').innerHTML=l.map(x=>`<div class="pk" data-p="${x.i}"><span>${x.k.e}</span><div><b>${x.k.n}</b><small>${x.k.d} • ${x.k.ids.filter(M).length} mod</small></div></div>`).join('')}
-$('#packs').onclick=e=>{const p=e.target.closest('.pk');if(!p)return;const k=PACKS[+p.dataset.p],ids=k.ids.filter(M);
- setPick(ids);S.pkc++;gain(5);chk();toast(`${k.e} ${k.n}: ${ids.length} mod koleksiyona eklendi`)};
-function daily(){const d=new Date(),m=MODS[(d.getFullYear()*400+d.getMonth()*31+d.getDate())%MODS.length];if(!m)return;
- $('#dm').innerHTML=`<div class="dmi" data-id="${m.id}"><span style="font-size:2.2rem">${m.e}</span><div style="flex:1"><small class="px">GÜNÜN MODU</small><div style="margin-top:6px"><b>${m.n}</b> <span style="color:var(--mut);font-size:.85rem">${m.d}</span></div></div><button class="btn sm">İncele</button></div>`}
-$('#dm').onclick=e=>{const d=e.target.closest('.dmi');if(d)openM(d.dataset.id)};
-const GUIDE={'📱 Android':'1. Modu indir.<br>2. Bildirimden veya Dosyalar uygulamasından <b>.mcaddon</b> dosyasına dokun.<br>3. <b>Minecraft ile aç</b>\'ı seç, içe aktarma bitince oyunu aç.',
- '🍎 iPhone / iPad':'1. Safari ile indir (dosya Dosyalar uygulamasına düşer).<br>2. Dosyalar\'da .mcaddon dosyasına uzun bas → <b>Paylaş → Minecraft</b>.<br>3. İçe aktarma bitince dünyanda etkinleştir.',
- '🖥️ Windows':'1. Modu indir.<br>2. .mcaddon dosyasına <b>çift tıkla</b>, Minecraft kendiliğinden açılıp kurar.<br>3. Dünya ayarları → <b>Eklentiler</b>\'den etkinleştir.'};
-let gk='📱 Android';
-function guide(){$('#gt').innerHTML=Object.keys(GUIDE).map(k=>`<button class="chip${k===gk?' on':''}">${k}</button>`).join('');$('#gd').innerHTML=GUIDE[gk]}
-$('#gt').onclick=e=>{const c=e.target.closest('.chip');if(c){gk=c.textContent;guide()}};
-
-// Komut paleti (Ctrl/⌘+K)
-const rnd=()=>{if(!MODS.length)return;cat='Hepsi';q='';$('#q').value='';render();
- const m=MODS[Math.random()*MODS.length|0],c=$('#c-'+m.id);c.scrollIntoView({behavior:'smooth',block:'center'});c.classList.add('flash');setTimeout(()=>c.classList.remove('flash'),2200)};
-let ip;addEventListener('beforeinstallprompt',e=>{e.preventDefault();ip=e;$('#ins').style.display=''});
-const install=()=>ip?ip.prompt():toast('📲 Tarayıcı menüsünden "Ana ekrana ekle"yi seç');
-function pal(t=''){t=t.toLowerCase();
- pitems=[...MODS.map(m=>({t:m.e+' '+m.n,s:m.c,f:()=>openM(m.id)})),
-  {t:'🎲 Rastgele mod',f:rnd},{t:'🏆 Başarımlarım',f:openA},{t:'❤ Beğendiklerim',f:()=>go(cats[1])},{t:'🔖 Kaydettiklerim',f:()=>go(cats[2])},
-  {t:'🎨 Tema rengini değiştir',f:()=>theme((S.ac+1)%TH.length,1)},
-  {t:'🔊 Sesi aç / kapat',f:()=>{S.snd=+!S.snd;persist();toast(S.snd?'🔊 Ses açık':'🔇 Ses kapalı')}},
-  {t:'📝 Mod iste',f:()=>window.open(REQ)},{t:'📲 Uygulamayı yükle',f:install}
- ].filter(x=>x.t.toLowerCase().includes(t));pk=0;prn()}
-const prn=()=>{$('#pl').innerHTML=pitems.map((x,i)=>`<div class="pi${i===pk?' on':''}" data-i="${i}">${x.t}<small>${x.s||''}</small></div>`).join('')||'<div class="pi">Sonuç yok</div>'};
-const runP=i=>{const x=pitems[i];if(x){$('#pv').classList.remove('show');x.f()}};
-function togPal(){const p=$('#pv');p.classList.toggle('show');
- if(p.classList.contains('show')){$('#pi').value='';pal();$('#pi').focus();if(!S.pal){S.pal=1;persist();chk()}}}
-$('#kb').onclick=togPal;$('#rnd').onclick=rnd;$('#ins').onclick=install;
-$('#pi').oninput=e=>pal(e.target.value);
-$('#pl').onclick=e=>{const p=e.target.closest('.pi[data-i]');if(p)runP(+p.dataset.i)};
-$('#pv').onclick=e=>{if(e.target.id==='pv')e.target.classList.remove('show')};
-addEventListener('keydown',e=>{
- if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();return togPal()}
- if(e.key==='Escape'){close_();$('#pv').classList.remove('show');return}
- if($('#pv').classList.contains('show')){
-  if(e.key==='ArrowDown'){pk=(pk+1)%(pitems.length||1);prn();e.preventDefault()}
-  if(e.key==='ArrowUp'){pk=(pk-1+pitems.length)%(pitems.length||1);prn();e.preventDefault()}
-  if(e.key==='Enter')runP(pk);return}
- if(e.key==='/'&&document.activeElement.tagName!=='INPUT'){e.preventDefault();$('#q').focus()}});
-addEventListener('click',e=>{if(e.target.closest('button,.chip,.card,.pk,.dmi'))snd('tap')});
-
-// Tema, toast, efektler
-function toast(t){const e=$('#toast');e.classList.remove('show');void e.offsetWidth;e.textContent=t;e.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('show'),2600)}
-const TH=[['#ff4757','255,71,87'],['#3b82f6','59,130,246'],['#10b981','16,185,129'],['#a855f7','168,85,247']];
-$('#dots').innerHTML=TH.map((t,i)=>`<span class="dot" data-i="${i}" style="background:${t[0]}"></span>`).join('');
-function theme(i,u){S.ac=i;const r=document.documentElement.style;r.setProperty('--a',TH[i][0]);r.setProperty('--rgb',TH[i][1]);persist();
- document.querySelectorAll('.dot').forEach((d,k)=>d.classList.toggle('on',k===i));if(u){S.thc++;persist();chk()}}
-$('#dots').onclick=e=>{if(e.target.dataset.i)theme(+e.target.dataset.i,1)};
-addEventListener('scroll',()=>{$('#bar').style.width=scrollY/(document.body.scrollHeight-innerHeight)*100+'%'});
-addEventListener('pointermove',e=>{$('#cg').style.transform=`translate(${e.clientX-250}px,${e.clientY-250}px)`});
-const W=['Bedrock','Fizik','Görsel','Dekor','Araç'];let wi=0;
-setInterval(()=>{const w=$('#w');w.style.opacity=0;setTimeout(()=>{w.textContent=W[++wi%W.length];w.style.opacity=1},300)},2300);
-$('#rq').href=$('#rq2').href=REQ;
-if(DISCORD){$('#dc').href=DISCORD;$('#dc').style.display=''}
-if(SB.u)$('#sort').insertAdjacentHTML('beforeend','<option value="pop">En çok indirilen</option>');
-if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
-
-// Başlat
-theme(S.ac);xpUI();guide();G.innerHTML='<div class="card sk"></div>'.repeat(6);
-Promise.all([load(),loadC()]).then(([m])=>{MODS=m;render();packs();daily();
- dates().then(()=>{const n=MODS.filter(m=>new Date(m.vs[0][3]||0)>S.last).length;
-  if(S.last&&n)toast('🆕 Son ziyaretinden beri '+n+' yeni/güncel mod var!');S.last=Date.now();persist()});
- if(location.hash.length>1)openM(decodeURIComponent(location.hash.slice(1)))});
+  // Buton sesi (basit beep)
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.frequency.value = 800;
+        osc.type = 'square';
+        gain.gain.setValueAtTime(0.05, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.1);
+      } catch(e) {}
+    });
+  });
 </script>
+
 </body>
-</html>
+                                          </html>
