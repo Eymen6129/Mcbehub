@@ -1,117 +1,74 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bedrock Minecraft Sitesi</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #222;
-      color: #eee;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background: #2e7d32;
-      padding: 20px;
-      text-align: center;
-      font-size: 2rem;
-      font-weight: bold;
-      letter-spacing: 2px;
-      color: #fff;
-    }
-    nav {
-      background: #1b5e20;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 10px 0;
-    }
-    nav a {
-      color: #a5d6a7;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    nav a:hover {
-      color: #c8e6c9;
-    }
-    main {
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 0 20px;
-    }
-    section {
-      margin-bottom: 30px;
-    }
-    h2 {
-      border-bottom: 3px solid #2e7d32;
-      padding-bottom: 5px;
-      margin-bottom: 15px;
-    }
-    .server-info {
-      background: #333;
-      padding: 15px;
-      border-radius: 8px;
-    }
-    footer {
-      background: #1b5e20;
-      text-align: center;
-      padding: 15px;
-      font-size: 0.9rem;
-      color: #a5d6a7;
-      margin-top: 50px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mcbehub | Bedrock Mod Merkezi</title>
+<meta name="description" content="Minecraft Bedrock için en iyi modlar. Beğen, kaydet, sürümünü seç, tek tıkla indir.">
+<meta property="og:title" content="Mcbehub | Bedrock Mod Merkezi">
+<meta property="og:description" content="Minecraft Bedrock modları tek yerde. Hemen indir!">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0a0b10">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⛏️%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+addEventListener('error',function(e){
+ var t=e.target;if(t&&t!==window&&t.tagName!=='SCRIPT')return;
+ var d=document.createElement('div');
+ d.style.cssText='position:fixed;left:8px;right:8px;bottom:8px;z-index:999;background:#b00020;color:#fff;padding:12px;border-radius:10px;font:12px monospace;white-space:pre-wrap';
+ d.textContent='⚠️ Hata: '+(e.message||('Dosya yüklenemedi: '+(t&&t.src)))+'\n'+String(e.filename||'').split('/').pop()+(e.lineno?' satır '+e.lineno:'');
+ (document.body||document.documentElement).appendChild(d)},true);
+</script>
 </head>
 <body>
-  <header>Bedrock Minecraft</header>
-  <nav>
-    <a href="#server">Sunucu</a>
-    <a href="#downloads">İndirmeler</a>
-    <a href="#rules">Kurallar</a>
-    <a href="#contact">İletişim</a>
-  </nav>
+<noscript><p style="padding:20px">Bu site için JavaScript gerekli.</p></noscript>
+<div id="bar"></div>
+<div class="bg"><i></i><i></i><i></i></div>
+<div id="cg"></div>
 
-  <main>
-    <section id="server">
-      <h2>Sunucu Bilgileri</h2>
-      <div class="server-info">
-        <p><strong>Sunucu Adı:</strong> Bedrock Dünyası</p>
-        <p><strong>IP Adresi:</strong> bedrock.minecraft.net</p>
-        <p><strong>Sürüm:</strong> 1.20.x</p>
-        <p><strong>Oyuncu Sayısı:</strong> 100/200</p>
-        <p>Hadi katıl ve maceranı başlat!</p>
-      </div>
-    </section>
+<nav>
+  <div class="logo"><b>▣</b><span class="px">Mcbe<span style="color:var(--a)">Hub</span></span></div>
+  <div class="nr"><a href="#modlar">Modlar</a><a href="#kurulum">Kurulum</a><a id="rq" target="_blank" rel="noopener">📝 Mod iste</a><span id="dots" class="nr"></span>
+   <span class="xp" id="xp" title="Başarımlar"><small class="px" id="lv">Sv 1</small><span class="xpb"><i id="xpi"></i></span></span>
+   <button class="nb" id="ins" style="display:none">📲</button><button class="nb" id="kb">⌘K</button><button class="nb" id="rnd">🎲</button></div>
+</nav>
 
-    <section id="downloads">
-      <h2>İndir</h2>
-      <p>Bedrock Minecraft için en son sürümü buradan indir:</p>
-      <ul>
-        <li><a href="https://www.minecraft.net/tr-tr/download" target="_blank" rel="noopener">Resmi Minecraft İndirme Sayfası</a></li>
-      </ul>
-    </section>
+<header class="hero">
+  <div class="pill"><em>●</em> Minecraft Bedrock • 1.21+</div>
+  <h1>En iyi <span class="grad" id="w">Bedrock</span> modları tek yerde</h1>
+  <p>Beğen, kaydet, sürümünü seç, paket yap ve tek tıkla indir. İndirdikçe XP kazan, başarımları aç!</p>
+  <div class="search"><span>🔍</span><input id="q" placeholder="Mod ara... (ör. fizik, ağaç, ışık)"><kbd>/</kbd></div>
+  <div class="stats">
+    <div><b id="s1">0</b><span>Mod</span></div><div><b id="s2">0</b><span>Sürüm</span></div>
+    <div><b id="s3">0</b><span>Beğendiğin</span></div><div><b id="s4">0</b><span>Kaydettiğin</span></div>
+  </div>
+</header>
 
-    <section id="rules">
-      <h2>Sunucu Kuralları</h2>
-      <ul>
-        <li>Taciz, hakaret ve küfür yasaktır.</li>
-        <li>Hile ve exploit kullanmak yasaktır.</li>
-        <li>Oyunculara saygılı olun.</li>
-        <li>Mantıklı oyun ve iş birliği teşvik edilir.</li>
-      </ul>
-    </section>
+<main id="modlar">
+  <div class="dm" id="dm"></div>
+  <h2 class="px">📦 Hazır Paketler</h2><div class="packs" id="packs"></div>
+  <h2 class="px" id="mh">🔥 Modlar</h2>
+  <div class="tb"><div class="chips" id="chips"></div>
+   <select id="sort"><option value="def">Önerilen</option><option value="az">A → Z</option><option value="new">Son güncellenen</option><option value="fav">Beğendiklerim önce</option></select></div>
+  <div class="grid" id="grid"></div>
+</main>
 
-    <section id="contact">
-      <h2>İletişim</h2>
-      <p>Herhangi bir sorunuz veya öneriniz için bize ulaşın:</p>
-      <p>Email: destek@bedrockminecraft.com</p>
-    </section>
-  </main>
+<section class="how" id="kurulum">
+  <h2 class="px">⚡ Kurulum Rehberi</h2>
+  <div class="tabs" id="gt"></div><div class="gd" id="gd"></div>
+</section>
+<footer>© 2026 Mcbehub • Modların hakları yapımcılarına aittir • Mojang AB ile bağlantılı değildir<br><a id="rq2" target="_blank" rel="noopener">📝 Mod iste</a><a id="dc" target="_blank" rel="noopener" style="display:none">💬 Discord</a></footer>
 
-  <footer>
-    © 2026 Bedrock Minecraft Sitesi - Tüm Hakları Saklıdır
-  </footer>
+<div class="ov" id="ov"><div class="md" id="md"></div></div>
+<div class="ov" id="pv"><div class="pal"><input id="pi" placeholder="Mod veya komut ara..." autocomplete="off"><div id="pl"></div></div></div>
+<div class="dock" id="dock"></div>
+<div class="toast" id="toast"></div>
+<div class="ach" id="ach"></div>
+
+<script src="data.js"></script>
+<script src="core.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
