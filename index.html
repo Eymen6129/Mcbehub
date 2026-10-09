@@ -1,435 +1,387 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bedrock Mod Arşivi</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BedrockCraft | Minecraft Bedrock</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
 
-    body {
-      margin: 0;
-      background: #10140f;
-      color: #f5f7f2;
-      font-family: Arial, sans-serif;
-    }
+body {
+    font-family: Arial, sans-serif;
+    background: #101810;
+    color: white;
+}
 
+header {
+    background: #18251a;
+    padding: 18px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    border-bottom: 2px solid #4caf50;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: #70ff70;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 8px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #70ff70;
+}
+
+.hero {
+    min-height: 450px;
+    padding: 80px 20px;
+    text-align: center;
+    background:
+      linear-gradient(#071107b8, #071107e8),
+      repeating-linear-gradient(
+        45deg,
+        #234c27 0px,
+        #234c27 35px,
+        #326c34 35px,
+        #326c34 70px
+      );
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero h1 {
+    font-size: clamp(35px, 7vw, 65px);
+    margin-bottom: 20px;
+    text-shadow: 4px 4px #172517;
+}
+
+.hero h1 span {
+    color: #72ff72;
+}
+
+.hero p {
+    max-width: 600px;
+    line-height: 1.7;
+    color: #e0e9e0;
+    margin-bottom: 25px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 23px;
+    background: #4caf50;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin: 5px;
+}
+
+.btn:hover {
+    background: #67d96b;
+    color: #102010;
+    transform: translateY(-3px);
+}
+
+.btn-dark {
+    background: #29392b;
+    border: 1px solid #4caf50;
+}
+
+section {
+    padding: 55px 8%;
+}
+
+.section-title {
+    text-align: center;
+    color: #78f578;
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.section-desc {
+    text-align: center;
+    color: #b7c7b7;
+    margin-bottom: 35px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+}
+
+.card {
+    background: #1b291d;
+    padding: 25px;
+    border: 1px solid #344a36;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #70ff70;
+}
+
+.card .emoji {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    margin-bottom: 12px;
+    color: #85ff85;
+}
+
+.card p {
+    color: #c3d0c3;
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+
+.tag {
+    display: inline-block;
+    background: #304c32;
+    color: #a6ffa6;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+
+.servers {
+    background: #172219;
+}
+
+.server-ip {
+    background: #0d150e;
+    padding: 10px;
+    border-radius: 5px;
+    color: #9cff9c;
+    overflow-wrap: anywhere;
+    margin: 12px 0;
+}
+
+.about {
+    text-align: center;
+    max-width: 750px;
+    margin: auto;
+    line-height: 1.8;
+    color: #cfdbcf;
+}
+
+footer {
+    background: #080d09;
+    text-align: center;
+    padding: 25px 15px;
+    color: #9aaa9a;
+    line-height: 1.8;
+}
+
+footer span {
+    color: #72ff72;
+}
+
+@media (max-width: 600px) {
     header {
-      padding: 20px;
-      background: #192119;
-      border-bottom: 1px solid #394239;
+        justify-content: center;
+        text-align: center;
     }
 
-    .container {
-      width: 92%;
-      max-width: 1100px;
-      margin: auto;
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
-    .logo {
-      color: #a5ed69;
-      font-size: 22px;
-      font-weight: bold;
+    nav a {
+        margin: 7px;
+        font-size: 14px;
     }
 
-    .hero {
-      padding: 55px 0 30px;
+    section {
+        padding: 40px 6%;
     }
-
-    .hero small {
-      color: #a5ed69;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
-
-    h1 {
-      font-size: 48px;
-      margin: 12px 0;
-    }
-
-    h1 span {
-      color: #a5ed69;
-    }
-
-    .intro {
-      max-width: 700px;
-      color: #bbc4b8;
-      line-height: 1.7;
-    }
-
-    .notice {
-      margin: 22px 0;
-      padding: 15px;
-      color: #f4dfaa;
-      background: #edc66f16;
-      border: 1px solid #edc66f55;
-      border-radius: 10px;
-      line-height: 1.6;
-    }
-
-    .tools {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 25px 0 20px;
-    }
-
-    input {
-      flex: 1;
-      min-width: 200px;
-      padding: 13px;
-      color: white;
-      background: #171d16;
-      border: 1px solid #394239;
-      border-radius: 9px;
-      font-size: 16px;
-    }
-
-    .filter {
-      padding: 11px 15px;
-      color: white;
-      background: #171d16;
-      border: 1px solid #394239;
-      border-radius: 9px;
-      cursor: pointer;
-    }
-
-    .filter.active {
-      color: #18220f;
-      background: #a5ed69;
-      font-weight: bold;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      padding-bottom: 45px;
-    }
-
-    .card {
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      background: #1a2119;
-      border: 1px solid #394239;
-      border-radius: 14px;
-    }
-
-    .cover {
-      display: grid;
-      height: 125px;
-      place-items: center;
-      background: linear-gradient(135deg, #33432c, #1c241b);
-      font-size: 55px;
-    }
-
-    .content {
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-      padding: 16px;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 5px 9px;
-      color: #a5ed69;
-      background: #a5ed691c;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    .category {
-      margin-left: 5px;
-      color: #c8d0c4;
-      font-size: 12px;
-    }
-
-    .card h2 {
-      margin: 13px 0 7px;
-      font-size: 19px;
-    }
-
-    .card p {
-      color: #bbc4b8;
-      line-height: 1.5;
-      font-size: 14px;
-    }
-
-    .bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      margin-top: auto;
-    }
-
-    .version {
-      color: #aab4a7;
-      font-size: 12px;
-    }
-
-    .download {
-      padding: 9px 11px;
-      color: #172010;
-      background: #a5ed69;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    footer {
-      padding: 22px 0;
-      color: #9ba695;
-      border-top: 1px solid #394239;
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    footer a {
-      color: #a5ed69;
-    }
-
-    @media (max-width: 750px) {
-      .grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      h1 {
-        font-size: 38px;
-      }
-    }
-
-    @media (max-width: 500px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <div class="container">
-      <div class="logo">◆ BEDROCK ARŞİVİ</div>
+<header>
+    <div class="logo">⛏ BedrockCraft</div>
+
+    <nav>
+        <a href="#anasayfa">Ana Sayfa</a>
+        <a href="#modlar">Modlar</a>
+        <a href="#sunucular">Sunucular</a>
+        <a href="#hakkimizda">Hakkımızda</a>
+    </nav>
+</header>
+
+<div class="hero" id="anasayfa">
+    <h1>MINECRAFT <span>BEDROCK</span></h1>
+
+    <p>
+        Minecraft Bedrock dünyasına hoş geldin!
+        Yeni maceraları keşfet, modlarını bul ve
+        arkadaşlarınla birlikte blok dünyasını fethet.
+    </p>
+
+    <div>
+        <a href="#modlar" class="btn">Modları Keşfet</a>
+        <a href="#sunucular" class="btn btn-dark">Sunucular</a>
     </div>
-  </header>
+</div>
 
-  <main class="container">
+<section id="modlar">
+    <h2 class="section-title">🧱 Modlar & Kaynak Paketleri</h2>
+    <p class="section-desc">
+        Minecraft deneyimini yeni içeriklerle zenginleştir.
+    </p>
 
-    <section class="hero">
-      <small>MINECRAFT BEDROCK • EKLENTİLER</small>
+    <div class="cards">
 
-      <h1>
-        Dünyanı değiştir.<br>
-        <span>Yeni şeyler keşfet.</span>
-      </h1>
+        <div class="card">
+            <div class="emoji">🐉</div>
+            <span class="tag">MACERA</span>
+            <h3>Ejderha Dünyası</h3>
+            <p>
+                Fantastik yaratıklar ve yeni maceralar
+                için hazırlanmış mod fikri.
+            </p>
+            <a class="btn"
+               href="https://www.minecraft.net/en-us/marketplace"
+               target="_blank" rel="noopener noreferrer">
+               İçerikleri Keşfet
+            </a>
+        </div>
 
-      <p class="intro">
-        Minecraft Bedrock eklentilerini tek bir yerde keşfet.
-        Arama kutusunu ve kategori düğmelerini kullanarak modları bul.
-      </p>
+        <div class="card">
+            <div class="emoji">⚔️</div>
+            <span class="tag">SAVAŞ</span>
+            <h3>Savaş Ekipmanları</h3>
+            <p>
+                Yeni ekipmanlar ve savaş temalı
+                içerikler keşfet.
+            </p>
+            <a class="btn"
+               href="https://www.minecraft.net/en-us/marketplace"
+               target="_blank" rel="noopener noreferrer">
+               İçerikleri Keşfet
+            </a>
+        </div>
 
-      <div class="notice">
-        <strong>Bilgi:</strong> Aşağıdaki modlar örnek olarak eklenmiştir.
-        Gerçek indirme bağlantısı eklemek için kartlardaki
-        <code>href="#"</code> yazısını kendi dosya bağlantınla değiştir.
-      </div>
-    </section>
+        <div class="card">
+            <div class="emoji">🌌</div>
+            <span class="tag">GÖRSEL</span>
+            <h3>Görsel Paketler</h3>
+            <p>
+                Dünyanın görünümünü değiştiren
+                doku ve kaynak paketlerini incele.
+            </p>
+            <a class="btn"
+               href="https://www.minecraft.net/en-us/marketplace"
+               target="_blank" rel="noopener noreferrer">
+               Paketleri Keşfet
+            </a>
+        </div>
 
-    <section id="mods">
-      <div class="tools">
-        <input
-          id="search"
-          type="search"
-          placeholder="Mod ara..."
-          aria-label="Mod ara"
-        >
-
-        <button class="filter active" data-filter="Hepsi">Hepsi</button>
-        <button class="filter" data-filter="Dünya">Dünya</button>
-        <button class="filter" data-filter="Görsel">Görsel</button>
-        <button class="filter" data-filter="Eşya">Eşya</button>
-      </div>
-
-      <div class="grid" id="grid">
-
-        <article class="card" data-category="Eşya" data-name="BMC Add-On 4.25">
-          <div class="cover">🧰</div>
-          <div class="content">
-            <div>
-              <span class="badge">Örnek mod</span>
-              <span class="category">Eşya</span>
-            </div>
-            <h2>BMC Add-On 4.25</h2>
-            <p>Bu mod için açıklamanı buraya yazabilirsin.</p>
-            <div class="bottom">
-              <span class="version">Bedrock eklentisi</span>
-              <a class="download" href="#" onclick="demoUyari(event)">İndir</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" data-category="Dünya" data-name="Better Trees by Daniye">
-          <div class="cover">🌳</div>
-          <div class="content">
-            <div>
-              <span class="badge">Örnek mod</span>
-              <span class="category">Dünya</span>
-            </div>
-            <h2>Better Trees by Daniye</h2>
-            <p>Ağaçlar ve dünya görünümü için eklenti açıklaması.</p>
-            <div class="bottom">
-              <span class="version">Bedrock eklentisi</span>
-              <a class="download" href="#" onclick="demoUyari(event)">İndir</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" data-category="Görsel" data-name="Durability Armor Viewer">
-          <div class="cover">🛡️</div>
-          <div class="content">
-            <div>
-              <span class="badge">Örnek mod</span>
-              <span class="category">Görsel</span>
-            </div>
-            <h2>Durability Armor Viewer</h2>
-            <p>Zırh dayanıklılığını gösteren eklenti açıklaması.</p>
-            <div class="bottom">
-              <span class="version">Bedrock eklentisi</span>
-              <a class="download" href="#" onclick="demoUyari(event)">İndir</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" data-category="Dünya" data-name="Effortless Building">
-          <div class="cover">🏗️</div>
-          <div class="content">
-            <div>
-              <span class="badge">Örnek mod</span>
-              <span class="category">Dünya</span>
-            </div>
-            <h2>Effortless Building</h2>
-            <p>Yapı kurmayı kolaylaştıran eklenti açıklaması.</p>
-            <div class="bottom">
-              <span class="version">Bedrock eklentisi</span>
-              <a class="download" href="#" onclick="demoUyari(event)">İndir</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" data-category="Eşya" data-name="Item Physics Behavior">
-          <div class="cover">🪙</div>
-          <div class="content">
-            <div>
-              <span class="badge">Örnek mod</span>
-              <span class="category">Eşya</span>
-            </div>
-            <h2>Item Physics Behavior</h2>
-            <p>Eşya davranışları için eklenti açıklaması.</p>
-            <div class="bottom">
-              <span class="version">Bedrock eklentisi</span>
-              <a class="download" href="#" onclick="demoUyari(event)">İndir</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" data-category="Dünya" data-name="Rustic Furniture">
-          <div class="cover">🪑</div>
-          <div class="content">
-            <div>
-              <span class="badge">Örnek mod</span>
-              <span class="category">Dünya</span>
-            </div>
-            <h2>Rustic Furniture</h2>
-            <p>Mobilya eklentisi için açıklama ve sürüm bilgisi.</p>
-            <div class="bottom">
-              <span class="version">Bedrock eklentisi</span>
-              <a class="download" href="#" onclick="demoUyari(event)">İndir</a>
-            </div>
-          </div>
-        </article>
-
-      </div>
-
-      <p id="empty" style="display:none;color:#bbc4b8">
-        Aramana uygun mod bulunamadı.
-      </p>
-    </section>
-
-    <div class="notice">
-      Bedrock eklentileri genellikle kaynak paketi veya davranış paketi içerir.
-      Yalnızca güvendiğin kaynaklardan dosya indir.
     </div>
+</section>
 
-  </main>
+<section class="servers" id="sunucular">
+    <h2 class="section-title">🌐 Bedrock Sunucuları</h2>
+    <p class="section-desc">
+        Kendi sunucu bilgilerini buraya ekleyebilirsin.
+    </p>
 
-  <footer>
-    <div class="container">
-      Bağımsız topluluk sitesi taslağıdır; Minecraft'ın resmî sitesi değildir.
-      <a href="https://www.minecraft.net/tr-tr/creator" target="_blank">
-        Minecraft içerik oluşturucu bilgileri
-      </a>
+    <div class="cards">
+
+        <div class="card">
+            <div class="emoji">🏝️</div>
+            <h3>Survival Sunucusu</h3>
+            <p>Hayatta kal, evini kur ve arkadaşlarınla oyna.</p>
+            <div class="server-ip">IP: kendi-sunucun.com</div>
+            <p>Port: 19132</p>
+            <button class="btn"
+                onclick="copyIP('kendi-sunucun.com')">
+                IP'yi Kopyala
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="emoji">🛏️</div>
+            <h3>BedWars Sunucusu</h3>
+            <p>Takımını kur, yatağını koru ve mücadele et.</p>
+            <div class="server-ip">IP: sunucu-ip-adresi</div>
+            <p>Port: 19132</p>
+            <button class="btn"
+                onclick="copyIP('sunucu-ip-adresi')">
+                IP'yi Kopyala
+            </button>
+        </div>
+
     </div>
-  </footer>
+</section>
 
-  <script>
-    const arama = document.getElementById("search");
-    const kartlar = document.querySelectorAll(".card");
-    const filtreler = document.querySelectorAll(".filter");
-    let seciliKategori = "Hepsi";
+<section id="hakkimizda">
+    <h2 class="section-title">💚 Hakkımızda</h2>
+    <div class="about">
+        <p>
+            BedrockCraft, Minecraft Bedrock oyuncuları için
+            hazırlanmış bir topluluk sitesi tasarımıdır.
+            Modlarını keşfet, sunucu bilgilerini paylaş
+            ve kendi Minecraft topluluğunu oluştur!
+        </p>
 
-    function guncelle() {
-      const kelime = arama.value.toLocaleLowerCase("tr");
-      let gorunenKart = 0;
+        <br>
 
-      kartlar.forEach(function(kart) {
-        const ad = kart.dataset.name.toLocaleLowerCase("tr");
-        const kategoriUygun =
-          seciliKategori === "Hepsi" ||
-          kart.dataset.category === seciliKategori;
+        <a class="btn"
+           href="https://www.minecraft.net/"
+           target="_blank" rel="noopener noreferrer">
+           Minecraft Resmî Sitesi
+        </a>
+    </div>
+</section>
 
-        const aramaUygun = ad.includes(kelime);
-        const gorunsun = kategoriUygun && aramaUygun;
+<footer>
+    <p>⛏ <span>BedrockCraft</span> © 2026</p>
+    <p>Topluluk tarafından hazırlanan bağımsız bir fan sitesi.</p>
+    <p>Minecraft, Mojang ve Microsoft'un ticari markasıdır.</p>
+</footer>
 
-        kart.style.display = gorunsun ? "flex" : "none";
-
-        if (gorunsun) {
-          gorunenKart++;
-        }
-      });
-
-      document.getElementById("empty").style.display =
-        gorunenKart === 0 ? "block" : "none";
+<script>
+async function copyIP(ip) {
+    try {
+        await navigator.clipboard.writeText(ip);
+        alert("Sunucu adresi kopyalandı: " + ip);
+    } catch (error) {
+        prompt("Sunucu adresini kopyala:", ip);
     }
-
-    arama.addEventListener("input", guncelle);
-
-    filtreler.forEach(function(dugme) {
-      dugme.addEventListener("click", function() {
-        seciliKategori = dugme.dataset.filter;
-
-        filtreler.forEach(function(digerDugme) {
-          digerDugme.classList.remove("active");
-        });
-
-        dugme.classList.add("active");
-        guncelle();
-      });
-    });
-
-    function demoUyari(event) {
-      event.preventDefault();
-      alert("Bu örnek düğmedir. Gerçek mod indirme bağlantısını eklemelisin.");
-    }
-  </script>
+}
+</script>
 
 </body>
-                </html>
+</html>
