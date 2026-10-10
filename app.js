@@ -224,7 +224,34 @@ function profil(){
  c.toBlob(b=>{const f=new File([b],'mcbehub-kart.png',{type:'image/png'});
   if(navigator.canShare&&navigator.canShare({files:[f]}))navigator.share({files:[f],title:'Mcbehub kartım',text:location.origin}).catch(()=>{});
   else{saveAs(b,'mcbehub-kart.png');toast('📇 Kart indirildi')}})}
-
 // Tıklamalar (öneri, benzer modlar, profil)
 $('#md').addEventListener('click',e=>{
- const
+ const a=e.target.closest('[data-wz]');if(a){const[i,k]=a.dataset.wz.split(',').map(Number);wz[i]=WZ[i].o[k][1];return wizard(i+1)}
+ if(e.target.closest('[data-wz0]'))return wizard(0);
+ const z=e.target.closest('[data-wzall]');if(z){setPick(z.dataset.wzall.split(',').filter(M));S.pkc++;persist();gain(5);chk();close_();return toast('🧺 Öneriler koleksiyona eklendi')}
+ if(e.target.closest('[data-pf]'))return profil();
+ const o=e.target.closest('[data-open]');if(o)openM(o.dataset.open)});
+
+// Mod penceresine "benzer modlar"
+const _o=openM;openM=function(id){_o(id);const m=M(id),mb=$('#md .mb'),ac=mb&&mb.querySelector('.act');if(!m||!ac)return;
+ const r=MODS.filter(x=>x.id!==id&&(x.c===m.c||x.t.some(t=>m.t.includes(t)))).slice(0,3);
+ if(r.length)ac.insertAdjacentHTML('beforebegin',`<h4>Benzer modlar</h4><div class="vl">${r.map(x=>`<div data-open="${x.id}" style="cursor:pointer"><b style="min-width:34px;font-size:1.4rem">${x.e}</b><span><b style="color:#fff;min-width:0">${x.n}</b></span></div>`).join('')}</div>`)};
+
+// Başarım penceresine seri ve profil kartı
+const _a=openA;openA=function(){_a();const m=$('#md .mb'),b=m&&m.querySelector('.by'),a=m&&m.querySelector('.act');
+ if(b)b.insertAdjacentHTML('beforeend',' • 🔥 '+(S.streak||1)+' gün seri');
+ if(a)a.insertAdjacentHTML('beforeend','<button class="b2" data-pf>📇 Profil kartı</button>')};
+$('#xp').onclick=openA;
+
+// Komut paletine yeni komutlar
+const _p=pal;pal=function(t=''){_p(t);const L=t.toLowerCase();
+ pitems.push(...[{t:'🧙 Bana mod öner',f:()=>wizard(0)},{t:'📇 Profil kartım',f:profil},
+  {t:'🔗 Siteyi paylaş',f:()=>navigator.share?navigator.share({title:'Mcbehub',url:location.origin}).catch(()=>{}):navigator.clipboard.writeText(location.origin).then(()=>toast('🔗 Link kopyalandı'))}
+ ].filter(x=>x.t.toLowerCase().includes(L)));prn()};
+
+// Ana sayfa butonları ve yukarı çık
+$('.search').insertAdjacentHTML('afterend','<div class="xrow"><button class="b2" id="wzb">🧙 Bana mod öner</button><button class="b2" id="pfb">📇 Profil kartım</button></div>');
+$('#wzb').onclick=()=>wizard(0);$('#pfb').onclick=profil;
+document.body.insertAdjacentHTML('beforeend','<button class="b2 up" id="up" style="display:none">⬆</button>');
+$('#up').onclick=()=>scrollTo({top:0,behavior:'smooth'});
+addEventListener('scroll',()=>{$('#up').style.display=scrollY>700?'':'none'});
