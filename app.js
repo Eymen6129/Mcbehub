@@ -148,3 +148,83 @@ Promise.all([load(),loadC()]).then(([m])=>{MODS=m;render();packs();daily();
   if(S.last&&n)toast('🆕 Son ziyaretinden beri '+n+' yeni/güncel mod var!');S.last=Date.now();persist()});
  if(location.hash.length>1)openM(decodeURIComponent(location.hash.slice(1)))
 }).catch(e=>{console.error(e);G.innerHTML='<div class="none">Modlar yüklenemedi 😢 Sayfayı yenile.</div>'});
+/* ===== EKSTRA ÖZELLİKLER: app.js dosyasının EN ALTINA yapıştır ===== */
+const CREDIT='Eymen6129';   // footer'da görünecek yapımcı adı
+
+document.head.insertAdjacentHTML('beforeend',`<style>
+.xrow{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.cf{position:fixed;top:-16px;z-index:200;width:9px;height:14px;pointer-events:none;animation:cf 3s ease-in forwards}
+@keyframes cf{to{transform:translateY(108vh) rotate(720deg)}}
+.up{position:fixed;right:14px;bottom:90px;z-index:45;width:44px;height:44px;justify-content:center;border-radius:50%;background:rgba(20,22,36,.92)}
+.wzq{font-size:1.05rem;margin:14px 0 6px}
+</style>`);
+
+// Footer (yapımcı imzası)
+$('footer').innerHTML=`© 2026 Mcbehub • Yapımcı: <a href="https://github.com/${USER}" target="_blank" rel="noopener">${CREDIT}</a> • Modların hakları yapımcılarına aittir • Mojang AB ile bağlantılı değildir<br><a href="${REQ}" target="_blank" rel="noopener">📝 Mod iste</a>${DISCORD?`<a href="${DISCORD}" target="_blank" rel="noopener">💬 Discord</a>`:''}`;
+
+// Yeni tema renkleri
+TH.push(['#f97316','249,115,22'],['#ec4899','236,72,153']);
+$('#dots').innerHTML=TH.map((t,i)=>`<span class="dot" data-i="${i}" style="background:${t[0]}"></span>`).join('');
+theme(S.ac);
+
+// Yeni başarımlar
+ACH.push(
+ {id:'st3',e:'🔥',n:'Ateşli',d:'3 gün üst üste gir',f:()=>(S.streak||0)>=3},
+ {id:'wz',e:'🧙',n:'Büyücü',d:'Mod önericiyi kullan',f:()=>S.wzc>=1},
+ {id:'cd',e:'📇',n:'Kartvizit',d:'Profil kartı oluştur',f:()=>S.cdc>=1}
+);
+
+// Günlük seri
+(function(){const d=new Date().toDateString(),y=new Date(Date.now()-864e5).toDateString();
+ if(S.day===d)return;
+ S.streak=S.day===y?(S.streak||0)+1:1;S.day=d;persist();
+ setTimeout(()=>{const b=Math.min(S.streak,7)*5;gain(b);if(S.streak>1)toast('🔥 '+S.streak+' gün üst üste! +'+b+' XP');chk()},1800)})();
+
+// Konfeti (seviye atlama ve başarımda)
+function confetti(){for(let i=0;i<40;i++){const s=document.createElement('i');s.className='cf';
+ s.style.cssText=`left:${Math.random()*100}vw;background:hsl(${Math.random()*360},90%,60%);animation-delay:${Math.random()*.6}s;animation-duration:${2+Math.random()*1.5}s`;
+ document.body.appendChild(s);setTimeout(()=>s.remove(),4500)}}
+const _g=gain;gain=function(n){const o=LV(S.xp);_g(n);if(LV(S.xp)>o)confetti()};
+const _c=chk;chk=function(){const n=S.ach.length;_c();if(S.ach.length>n)confetti()};
+
+// Mod önerici
+const WZ=[
+ {q:'Ne yapmayı seviyorsun?',o:[['🏗️ İnşa etmek',['inşa']],['⛏️ Madencilik',['madenci']],['⚔️ Hayatta kalma ve savaş',['zırh','mob']],['🏡 Dekor ve köy',['dekor','mobilya','ağaç','ışık']]]},
+ {q:'Oyunun nasıl olsun?',o:[['✨ Daha güzel görünsün',['görsel','ışık','ağaç']],['🌀 Gerçekçi fizik',['fizik']],['🛠️ Kullanışlı araçlar',['araç','hud']]]}
+];
+let wz=[];
+function wizard(i){
+ if(i===0)wz=[];
+ if(i>=WZ.length)return wzRes();
+ const w=WZ[i];
+ $('#md').innerHTML=`<button class="x" data-x>✕</button><div class="mb"><h2 class="px" style="font-size:.9rem;padding-right:40px">🧙 Mod Önerici</h2><div class="by">Soru ${i+1}/${WZ.length}</div><div class="wzq">${w.q}</div>
+<div class="act" style="flex-direction:column">${w.o.map((o,k)=>`<button class="b2" data-wz="${i},${k}">${o[0]}</button>`).join('')}</div></div>`;
+ $('#ov').classList.add('show');document.body.style.overflow='hidden'}
+function wzRes(){
+ const ks=wz.flat(),top=MODS.map(m=>{const s=(m.t.join(' ')+' '+m.c+' '+m.d).toLowerCase();return{m,n:ks.filter(k=>s.includes(k)).length}}).sort((a,b)=>b.n-a.n).slice(0,3).map(x=>x.m);
+ S.wzc=(S.wzc||0)+1;persist();chk();
+ $('#md').innerHTML=`<button class="x" data-x>✕</button><div class="mb"><h2 class="px" style="font-size:.9rem;padding-right:40px">🎯 Sana Özel</h2><div class="by">Senin için seçtim, birine dokun</div>
+<div class="vl" style="margin-top:14px">${top.map(m=>`<div data-open="${m.id}" style="cursor:pointer"><b style="min-width:34px;font-size:1.5rem">${m.e}</b><span><b style="color:#fff;min-width:0">${m.n}</b><br>${m.d}</span></div>`).join('')}</div>
+<div class="act"><button class="b2" data-wzall="${top.map(m=>m.id).join(',')}">🧺 Hepsini koleksiyona ekle</button><button class="b2" data-wz0>🔁 Tekrar</button></div></div>`}
+
+// Profil kartı (resim olarak paylaşılır)
+function profil(){
+ const c=document.createElement('canvas');c.width=900;c.height=500;const x=c.getContext('2d'),l=LV(S.xp),a=20*(l-1)**2,p=(S.xp-a)/(20*l*l-a);
+ const g=x.createLinearGradient(0,0,900,500);g.addColorStop(0,'#14162a');g.addColorStop(1,TH[S.ac][0]);
+ x.fillStyle=g;x.fillRect(0,0,900,500);x.fillStyle='rgba(0,0,0,.35)';x.fillRect(30,30,840,440);
+ x.fillStyle='#fff';x.font='bold 30px system-ui,sans-serif';x.fillText('▣ McbeHub • Oyuncu Kartı',60,95);
+ x.font='bold 96px system-ui,sans-serif';x.fillText('Sv '+l,60,205);
+ x.fillStyle='rgba(255,255,255,.18)';x.fillRect(60,235,780,26);x.fillStyle='#7bff5a';x.fillRect(60,235,780*p,26);
+ x.fillStyle='#fff';x.font='24px system-ui,sans-serif';x.fillText(S.xp+' XP',60,295);
+ [['⬇',S.dl,'indirme'],['❤',S.like.length,'beğeni'],['🏆',S.ach.length+'/'+ACH.length,'başarım'],['🔥',S.streak||1,'gün seri']].forEach((s,i)=>{
+  const px=60+i*200;x.fillStyle='#fff';x.font='bold 46px system-ui,sans-serif';x.fillText(s[0]+' '+s[1],px,375);
+  x.font='22px system-ui,sans-serif';x.fillStyle='rgba(255,255,255,.7)';x.fillText(s[2],px,410)});
+ x.fillStyle='rgba(255,255,255,.6)';x.font='22px system-ui,sans-serif';x.fillText(location.host,60,448);
+ S.cdc=(S.cdc||0)+1;persist();chk();
+ c.toBlob(b=>{const f=new File([b],'mcbehub-kart.png',{type:'image/png'});
+  if(navigator.canShare&&navigator.canShare({files:[f]}))navigator.share({files:[f],title:'Mcbehub kartım',text:location.origin}).catch(()=>{});
+  else{saveAs(b,'mcbehub-kart.png');toast('📇 Kart indirildi')}})}
+
+// Tıklamalar (öneri, benzer modlar, profil)
+$('#md').addEventListener('click',e=>{
+ const
