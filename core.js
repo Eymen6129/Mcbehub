@@ -93,7 +93,7 @@ async function get(v,cb){const e=encodeURIComponent(v[1]);
   if(!r.ok||(r.headers.get('content-type')||'').includes('text/html'))continue;
   const T=+r.headers.get('content-length')||v[2]||0,rd=r.body.getReader(),ch=[];let L=0;
   for(;;){const{done,value}=await rd.read();if(done)break;ch.push(value);L+=value.length;cb&&cb(T?Math.min(1,L/T):.6)}
-  return new Blob(ch)}catch(x){}}
+  return new Blob(ch,{type:'application/octet-stream'})}catch(x){}}
  return null}
 const saveAs=(b,n)=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=n;document.body.appendChild(a);a.click();a.remove()};
 async function dl(m,v,b){const o=b.innerHTML;b.classList.add('busy');b.style.setProperty('--p','4%');b.textContent='⏳';
@@ -111,7 +111,7 @@ function zip(fs){const A=[],B=[],en=new TextEncoder();let o=0;
   A.push(h,nm,f.d);B.push(g,nm);o+=30+nm.length+L});
  const e=new DataView(new ArrayBuffer(22));
  e.setUint32(0,0x06054b50,1);e.setUint16(8,fs.length,1);e.setUint16(10,fs.length,1);e.setUint32(12,B.reduce((a,b)=>a+b.byteLength,0),1);e.setUint32(16,o,1);
- return new Blob([...A,...B,e])}
+ return new Blob([...A,...B,e],{type:'application/zip'})}
 async function zipAll(){const b=$('#zb'),fs=[];b.classList.add('busy');
  for(let i=0;i<P.length;i++){const m=M(P[i]),v=cur(m);b.textContent=`⏳ ${i+1}/${P.length}`;
   const bl=await get(v);if(bl){fs.push({n:v[1],d:new Uint8Array(await bl.arrayBuffer())});bump(m.id,'downloads',1)}}
@@ -121,3 +121,4 @@ async function zipAll(){const b=$('#zb'),fs=[];b.classList.add('busy');
  toast('✅ '+fs.length+' mod zip olarak indirildi')}
 function dock(){const d=$('#dock');d.classList.toggle('show',P.length>0);if(P.length)d.innerHTML=`🧺 <b>${P.length}</b> mod seçildi <button class="btn sm" id="zb">⬇ ZIP indir</button><button class="b2" id="zc">✕</button>`}
 function setPick(ids){P=ids;document.querySelectorAll('[data-act=pick]').forEach(b=>{const w=b.closest('[data-id]'),on=P.includes(w&&w.dataset.id);b.classList.toggle('on',on);b.querySelector('u').textContent=IC.pick[+on]});dock()}
+                     
