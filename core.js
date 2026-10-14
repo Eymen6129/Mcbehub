@@ -87,21 +87,42 @@ function render(na){
 }
 const go=c=>{cat=c;q='';$('#q').value='';render();$('#mh').scrollIntoView()};
 
+// İndirme paneli (alttan çıkan kart)
+document.head.insertAdjacentHTML('beforeend',`<style>
+.dsh{position:fixed;left:50%;bottom:16px;transform:translate(-50%,240px);z-index:97;width:min(420px,94vw);padding:16px 18px;border-radius:18px;background:#161827;border:1px solid var(--a);box-shadow:0 12px 50px var(--glow);transition:.4s}
+.dsh.show{transform:translate(-50%,0)}
+.dsh>b{display:block;font-size:.95rem;word-break:break-all}
+.dsh small{display:block;color:var(--mut);font-size:.82rem;line-height:1.6;margin:6px 0 10px}
+.dsh small b{color:#fff}
+.dbar{height:10px;border-radius:6px;background:rgba(255,255,255,.12);overflow:hidden}
+.dbar i{display:block;height:100%;width:var(--w,0%);background:linear-gradient(90deg,var(--a),var(--b));transition:width .2s}
+.dsh .act{margin-top:12px}
+</style>`);
+const TIP=/iPhone|iPad|iPod/i.test(navigator.userAgent)?'Dosyalar uygulamasında dosyaya uzun bas → <b>Paylaş → Minecraft</b>.':'Bildirimdeki dosyaya dokun → <b>Minecraft ile aç</b>.';
+const mbs=x=>(x/1048576).toFixed(1);
+function dsh(h,keep){let e=$('#dsh');if(!e){e=document.createElement('div');e.id='dsh';e.className='dsh';document.body.appendChild(e)}
+ e.innerHTML=h;e.classList.add('show');clearTimeout(dsh.t);if(!keep)dsh.t=setTimeout(()=>e.classList.remove('show'),15000)}
+addEventListener('click',e=>{if(e.target.closest('[data-dc]'))$('#dsh').classList.remove('show')});
+
 // İndirme + ZIP
 async function get(v,cb){const e=encodeURIComponent(v[1]);
  for(const u of ['./'+e,RAW+e]){try{const r=await fetch(u);
   if(!r.ok||(r.headers.get('content-type')||'').includes('text/html'))continue;
   const T=+r.headers.get('content-length')||v[2]||0,rd=r.body.getReader(),ch=[];let L=0;
-  for(;;){const{done,value}=await rd.read();if(done)break;ch.push(value);L+=value.length;cb&&cb(T?Math.min(1,L/T):.6)}
+  for(;;){const{done,value}=await rd.read();if(done)break;ch.push(value);L+=value.length;cb&&cb(T?Math.min(1,L/T):.6,L,T)}
   return new Blob(ch,{type:'application/octet-stream'})}catch(x){}}
  return null}
-const saveAs=(b,n)=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=n;document.body.appendChild(a);a.click();a.remove()};
-async function dl(m,v,b){const o=b.innerHTML;b.classList.add('busy');b.style.setProperty('--p','4%');b.textContent='⏳';
- const bl=await get(v,p=>b.style.setProperty('--p',p*100+'%'));
+const saveAs=(b,n)=>{const u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download=n;a.style.display='none';document.body.appendChild(a);a.click();setTimeout(()=>{a.remove();URL.revokeObjectURL(u)},60000)};
+async function dl(m,v,b){const o=b.innerHTML,n=v[1],e=encodeURIComponent(n);
+ b.classList.add('busy');b.style.setProperty('--p','4%');b.textContent='⏳';
+ dsh(`<b>⬇ ${n}</b><small>Hazırlanıyor…</small><div class="dbar"><i></i></div>`,1);
+ const bl=await get(v,(p,L,T)=>{b.style.setProperty('--p',p*100+'%');const s=$('#dsh');
+  s.querySelector('i').style.setProperty('--w',p*100+'%');
+  s.querySelector('small').textContent='İndiriliyor… %'+Math.round(p*100)+' • '+mbs(L)+(T?' / '+mbs(T):'')+' MB'});
  b.classList.remove('busy');b.innerHTML=o;
- if(!bl)return toast('❌ Dosya bulunamadı: '+v[1]);
- saveAs(bl,v[1]);bump(m.id,'downloads',1);S.dl++;gain(10);chk();
- toast('✅ '+m.n+' '+v[0]+' indirildi, dosyaya dokunarak aç')}
+ if(!bl)return dsh(`<b>❌ İndirilemedi</b><small>${n}<br>İnternetini kontrol et ya da doğrudan bağlantıyı dene.</small><div class="act"><a class="b2" href="./${e}" download="${n}">⬇ Doğrudan indir</a><button class="b2" data-dc>Kapat</button></div>`);
+ saveAs(bl,n);bump(m.id,'downloads',1);S.dl++;gain(10);chk();
+ dsh(`<b>✅ İndirildi</b><small>${n} • ${mbs(bl.size)} MB<br>${TIP}<br>Dosya adı <b>.txt</b> ya da <b>.zip</b> ile bitiyorsa adını <b>.mcaddon</b> yap.</small><div class="act"><button class="b2" data-dc>Tamam</button><a class="b2" href="./${e}" download="${n}">🔁 Doğrudan indir</a></div>`)}
 const crcT=(()=>{let t=[],c;for(let n=0;n<256;n++){c=n;for(let k=0;k<8;k++)c=c&1?3988292384^(c>>>1):c>>>1;t[n]=c}return t})();
 const crc=u=>{let c=-1;for(let i=0;i<u.length;i++)c=crcT[(c^u[i])&255]^(c>>>8);return(c^-1)>>>0};
 function zip(fs){const A=[],B=[],en=new TextEncoder();let o=0;
@@ -121,4 +142,4 @@ async function zipAll(){const b=$('#zb'),fs=[];b.classList.add('busy');
  toast('✅ '+fs.length+' mod zip olarak indirildi')}
 function dock(){const d=$('#dock');d.classList.toggle('show',P.length>0);if(P.length)d.innerHTML=`🧺 <b>${P.length}</b> mod seçildi <button class="btn sm" id="zb">⬇ ZIP indir</button><button class="b2" id="zc">✕</button>`}
 function setPick(ids){P=ids;document.querySelectorAll('[data-act=pick]').forEach(b=>{const w=b.closest('[data-id]'),on=P.includes(w&&w.dataset.id);b.classList.toggle('on',on);b.querySelector('u').textContent=IC.pick[+on]});dock()}
-                     
+ 
